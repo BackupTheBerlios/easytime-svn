@@ -11,6 +11,8 @@ package fr.umlv.easytime.test.dragndrop;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -31,6 +33,7 @@ public class dndPanel {
     private int nbJours;
     private int nbDivisions;
     private GridBagConstraints c;
+    final JLabel cours;
     
     private void makeDay(int i, boolean last){
         JLabel l = new JLabel("jour" +(i+1));
@@ -79,7 +82,7 @@ public class dndPanel {
         makeDivs(nbDivisions-1,true);
         
         
-        JLabel cours=new JLabel("cours de test");
+        cours=new JLabel("cours de test");
         //JButton cours=new JButton("cours de test");
         //cours.setHorizontalAlignment(JLabel.CENTER);
         
@@ -97,12 +100,32 @@ public class dndPanel {
         //c.weighty = 1.0;
         c.weightx = 0.0001;
         grid.setConstraints(cours,c);
-        System.out.println(cours.getWidth());
+        
         back.add(cours);
         dndMouseMotionListener d = new dndMouseMotionListener(cours,grid);
         cours.addMouseListener(d);
         cours.addMouseMotionListener(d);
         
+        JButton b = new JButton("Switch");
+        b.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cours.setVisible(! cours.isVisible());
+				
+			}
+		
+		
+		
+        });
+        c.gridx=0;
+        c.gridy=0;
+        c.gridheight=1;
+        c.gridwidth=1;
+        c.weightx = 0;
+        c.weighty = 0;
+        grid.setConstraints(b,c);
+        back.add(b);
         
         
         //back.setLayout(new G)
