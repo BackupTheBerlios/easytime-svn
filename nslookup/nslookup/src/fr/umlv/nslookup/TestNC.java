@@ -35,11 +35,15 @@ public class TestNC {
 	    NamingContextExt rootContext = 
 	      NamingContextExtHelper.narrow(
 	          orb.resolve_initial_references("NameService"));
-	      
+	    
+	    
+	    NamingContext save = null;
+	    
 	    for(int i=0;i<5;i++) { 
 	        NameComponent[] contextName = rootContext.to_name("Forum"+i);
 	        NamingContext newContext = rootContext.new_context();
 	        rootContext.rebind_context(contextName,newContext);
+	        save = newContext;
 	       //rootContext.rebind(contextName,forumRef1);
 	      }
 	      
@@ -58,7 +62,7 @@ public class TestNC {
 	      org.omg.CORBA.Object ref = 
 	          rootPOA.id_to_reference(servantId);
 	      
-	      
+	      save.rebind(contextName,ref);
 	      rootContext.rebind(contextName,ref);
 	      
 	      
