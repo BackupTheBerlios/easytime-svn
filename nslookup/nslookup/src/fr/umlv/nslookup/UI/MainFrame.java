@@ -40,7 +40,7 @@ import fr.umlv.nslookup.UI.tree.ORBTreeCellRenderer;
  */
 public class MainFrame extends JFrame {
 
-    private JTree tree;
+    private DNDTree tree;
     private NSLUToolBar toolBar;
     private NSLUMenuBar menuBar;
     private ActionContainer ac;
@@ -117,4 +117,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	
+    public DNDTree getTree() {
+        return tree;
+    }
 }
