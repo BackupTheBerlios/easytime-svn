@@ -15,8 +15,15 @@ import java.io.IOException;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CosNaming.Binding;
 import org.omg.CosNaming.BindingType;
+import org.omg.CosNaming.NamingContext;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
  * @author Mat
@@ -86,6 +93,69 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         }
     }
     
+    
+    public NamingContext getParentContext(){
+    	
+    	
+    	
+    	NamingContext namingContext = null;
+    	switch(type)
+		{    	
+    		case (TYPE_CONTEXT):
+    		{
+    			namingContext =  (NamingContext)((NamingContextTreeNode)getParent()).getNodeObject();
+    			break;
+    		}
+    		case (TYPE_OBJECT):
+    		{
+    			namingContext =  (NamingContext)((NamingContextTreeNode)getParent()).getNodeObject();
+    			break;
+    		}
+    		case (TYPE_NS):
+    			return null;
+    		case (TYPE_ROOT):
+				return null;    	
+		}
+		return namingContext;
+    }
+    
+    public Object getNodeObject(){
+    	
+    	NamingContext nc = null;
+    	
+    	if(type==TYPE_ROOT) return null;
+    	if(type==TYPE_NS) 
+    	{
+			String[] args = {"-ORBInitialPort",getPort(),"-ORBInitialHost",getHost()}; 
+			ORB orb = ORB.init(args, null);
+			try {
+				nc = NamingContextExtHelper.narrow(orb.resolve_initial_references("NameService"));
+			} catch (InvalidName e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return nc;
+		}    	
+    	else
+    	{
+    	nc = getParentContext();
+    	Object o = null;
+    	if(nc !=null)
+			try {
+				o = nc.resolve(binding.binding_name);
+			} catch (NotFound e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (CannotProceed e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	return o;
+    	}
+    }
     
     public int getType() {
         

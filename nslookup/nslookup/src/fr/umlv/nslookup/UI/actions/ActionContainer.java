@@ -133,11 +133,12 @@ public class ActionContainer {
                 choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 choice.setFileFilter(new ORBCfgFileFilter());                
                 int rp = choice.showOpenDialog(frame);
+                
                 if (rp == JFileChooser.APPROVE_OPTION) {
                     String path = choice.getSelectedFile().getAbsolutePath();
                     
                     ORBConfig[] tab = ConfigTool.loadConfig(path);
-                                        
+                    root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);                    
                     for(int i =0;i<tab.length;i++)
                     {                        
                         String host = tab[i].getAddress();
@@ -153,7 +154,8 @@ public class ActionContainer {
                 			};
                         
                     }
-                    ((DefaultTreeModel)frame.getTree().getModel()).reload();
+                    ((DefaultTreeModel)frame.getTree().getModel()).setRoot(root);
+                    
                     
                     
                     
@@ -167,6 +169,7 @@ public class ActionContainer {
         prop = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
                 DNDTree tree = frame.getTree();
+                
                 NamingContextTreeNode node = (NamingContextTreeNode)tree.getSelectedNode();
                 MiscDialog.showCORBAProperties(frame, node);
             }            
@@ -185,7 +188,9 @@ public class ActionContainer {
         
         help = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+            	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
+                MiscDialog.showAddORB(frame,root);
+                ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
         help.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/help16.gif")));

@@ -39,6 +39,7 @@ public class TreeFactory {
 	    root.add(ORBroot);
 	    }catch(org.omg.CORBA.SystemException se) 
 	    { 
+	    	se.printStackTrace();
 		    throw new org.omg.CORBA.ORBPackage.InvalidName();
 		}
 	    catch(Exception e) 

@@ -12,6 +12,8 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 
+import org.omg.CosNaming.NamingContextExt;
+
 import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 
@@ -23,7 +25,7 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class DnDTreeSelectionListener implements TreeSelectionListener {
 
-    /* (non-Javadoc)
+	/* (non-Javadoc)
      * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
      */
     public void valueChanged(TreeSelectionEvent e) {
@@ -64,6 +66,7 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    	    ActionContainer.addOBJ.setEnabled(true);
 	    	    ActionContainer.remOBJ.setEnabled(false);
 	    	    
+	    	    
 	    	    break;
 	    	}
 	    
@@ -77,6 +80,17 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    	    ActionContainer.remOBJ.setEnabled(true);
 	    	    
 	    	    break;
+	    	}
+	    	
+	    	default:
+	    	{
+	    		ActionContainer.prop.setEnabled(false);
+	    	    ActionContainer.addORB.setEnabled(true);
+	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addNC.setEnabled(false);
+	    	    ActionContainer.remNC.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(false);
+	    	    ActionContainer.remOBJ.setEnabled(false);	    			    		
 	    	}
     
         }

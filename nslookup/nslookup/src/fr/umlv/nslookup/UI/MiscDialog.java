@@ -18,7 +18,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.omg.CORBA.ORBPackage.InvalidName;
+
 import fr.umlv.nslookup.NamingContextTreeNode;
+import fr.umlv.nslookup.TreeFactory;
 
 
 
@@ -48,6 +51,35 @@ public class MiscDialog{
               tmp = (NamingContextTreeNode)tmp.getParent();
           }
           return path;
+      }
+      
+      public static void showAddORB(Frame frame,NamingContextTreeNode root){
+      	JPanel panel = new JPanel(new BorderLayout());
+        JPanel fieldPanel = new JPanel();
+        JPanel valuePanel = new JPanel();
+        panel.add(new JLabel("  "), BorderLayout.CENTER);
+        panel.add(fieldPanel, BorderLayout.WEST);
+        panel.add(valuePanel, BorderLayout.EAST);
+        final JLabel host = new JLabel("Host :"); 
+        final JLabel port = new JLabel("Port :");
+        fieldPanel.setLayout(new GridLayout(2, 1));
+	    valuePanel.setLayout(new GridLayout(2, 1));
+  	    fieldPanel.add(host);
+  	    JTextField hostField = new JTextField("127.0.0.1"); 
+  	    valuePanel.add(hostField);
+  	    fieldPanel.add(port);
+  	    JTextField portField = new JTextField("1234");
+  	    valuePanel.add(portField);
+  	    JOptionPane.showMessageDialog(frame, panel, "Ajouter un ORB", JOptionPane.INFORMATION_MESSAGE);
+  	    if((! hostField.getText().equals("")) && (! portField.getText().equals("")))
+			try {
+				TreeFactory.createORBTree(hostField.getText(),portField.getText(),root);
+				
+			} catch (InvalidName e) {
+				JOptionPane.showMessageDialog(frame,"Connexion impossible à " + hostField.getText() + ":" + portField.getText(),"Erreur!",JOptionPane.ERROR_MESSAGE);
+			}
+  	    
+      
       }
       
       public static void showCORBAProperties(Frame frame,NamingContextTreeNode node){
@@ -81,7 +113,7 @@ public class MiscDialog{
           	    fieldPanel.add(port);
           	    valuePanel.add(new JLabel("1234"));
           	    fieldPanel.add(IOR);
-          	    valuePanel.add(new JLabel("qsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+          	    valuePanel.add(new JLabel(node.getNodeObject().toString()));
           	    break;
           	}
           	case 2 : {		// NC case
@@ -95,7 +127,7 @@ public class MiscDialog{
         	    fieldPanel.add(path);
         	    valuePanel.add(new JLabel(getPath(node)));
         	    fieldPanel.add(IOR);
-        	    valuePanel.add(new JLabel("fcfqsdfqsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+        	    valuePanel.add(new JLabel(node.getNodeObject().toString()));
         	    break;
           	}
           	case 3 : {		// CORBA OBJECT case
@@ -108,7 +140,7 @@ public class MiscDialog{
         	    fieldPanel.add(path);
         	    valuePanel.add(new JLabel(getPath(node)));
         	    fieldPanel.add(IOR);
-        	    valuePanel.add(new JLabel("fcfqsdfqsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+        	    valuePanel.add(new JLabel(node.getNodeObject().toString()));
           	    break;
           	}
           }
