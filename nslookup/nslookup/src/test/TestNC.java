@@ -1,4 +1,4 @@
-package fr.umlv.nslookup;
+package test;
 import horloge.HorlogeImpl;
 
 import org.omg.CORBA.ORB;

@@ -14,7 +14,6 @@ import javax.swing.tree.TreePath;
 
 import org.omg.CosNaming.NamingContextExt;
 
-import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 
 /**

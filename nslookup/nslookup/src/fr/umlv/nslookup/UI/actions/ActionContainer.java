@@ -33,14 +33,14 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import td1.HorlogeHelper;
 
-import fr.umlv.nslookup.DNDTree;
-import fr.umlv.nslookup.NamingContextTreeNode;
-import fr.umlv.nslookup.TreeFactory;
 import fr.umlv.nslookup.UI.AboutDialog;
 import fr.umlv.nslookup.UI.MainFrame;
 import fr.umlv.nslookup.UI.MiscDialog;
 import fr.umlv.nslookup.UI.NSLUMenuBar;
 import fr.umlv.nslookup.UI.ORBCfgFileFilter;
+import fr.umlv.nslookup.UI.tree.DNDTree;
+import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
+import fr.umlv.nslookup.UI.tree.TreeFactory;
 import fr.umlv.nslookup.config.ConfigTool;
 import fr.umlv.nslookup.config.ORBConfig;
 

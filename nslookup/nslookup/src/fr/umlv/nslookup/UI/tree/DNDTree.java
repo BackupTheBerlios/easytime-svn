@@ -1,5 +1,5 @@
 
-package fr.umlv.nslookup;
+package fr.umlv.nslookup.UI.tree;
 import java.awt.Point;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;

@@ -20,8 +20,8 @@ import javax.swing.JTextField;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
 
-import fr.umlv.nslookup.NamingContextTreeNode;
-import fr.umlv.nslookup.TreeFactory;
+import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
+import fr.umlv.nslookup.UI.tree.TreeFactory;
 
 
 

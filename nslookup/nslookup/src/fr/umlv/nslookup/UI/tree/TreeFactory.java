@@ -1,4 +1,4 @@
-package fr.umlv.nslookup;
+package fr.umlv.nslookup.UI.tree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 

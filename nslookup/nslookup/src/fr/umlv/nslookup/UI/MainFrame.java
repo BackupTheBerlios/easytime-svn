@@ -39,12 +39,12 @@ import javax.swing.tree.TreeSelectionModel;
 import org.omg.CORBA.ORBPackage.InvalidName;
 
 
-import fr.umlv.nslookup.DNDTree;
-import fr.umlv.nslookup.NamingContextTreeNode;
-import fr.umlv.nslookup.TreeFactory;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
+import fr.umlv.nslookup.UI.tree.DNDTree;
 import fr.umlv.nslookup.UI.tree.DnDTreeSelectionListener;
+import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.tree.ORBTreeCellRenderer;
+import fr.umlv.nslookup.UI.tree.TreeFactory;
 
 
 /**

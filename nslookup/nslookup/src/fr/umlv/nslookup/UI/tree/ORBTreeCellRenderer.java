@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.MainFrame;
 
 /**

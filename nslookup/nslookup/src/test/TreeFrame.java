@@ -1,4 +1,4 @@
-package fr.umlv.nslookup;
+package test;
 import javax.swing.JFrame;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
@@ -8,6 +8,10 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
+
+import fr.umlv.nslookup.UI.tree.DNDTree;
+import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
+import fr.umlv.nslookup.UI.tree.TreeFactory;
 
 /*
  * Created on 7 janv. 2005
