@@ -40,18 +40,22 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
     private static ImageIcon objIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/obj16.png"));
     private static ImageIcon objSelIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/obj16sel.png"));
     
+    
+    
 	/* (non-Javadoc)
 	 * @see javax.swing.tree.TreeCellRenderer#getTreeCellRendererComponent(javax.swing.JTree, java.lang.Object, boolean, boolean, boolean, int, boolean)
-	 */
+	 */    
 	public Component getTreeCellRendererComponent(JTree tree, Object obj,
 			boolean isSelected, boolean isExpanded, boolean isLeaf, int row, boolean hasFocus) {
+	    
+	    Component res = super.getTreeCellRendererComponent(tree, obj, isSelected, isExpanded, isLeaf, row, hasFocus);
 		
 	    NamingContextTreeNode node = (NamingContextTreeNode)obj;
 	    setText(node.toString());
 			    
 		if(node.getType() == NamingContextTreeNode.TYPE_ROOT) {
 		    setIcon(rootIcon);
-			return this;
+			return res;
 		}
 		
 		if(node.getType() == NamingContextTreeNode.TYPE_NS) {
@@ -64,7 +68,7 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 		    	if(isSelected) setIcon(orbSelIcon);
 		    	else setIcon(orbIcon);
 			}
-			return this;
+			return res;
 		}
 		
 		if(node.getType() == NamingContextTreeNode.TYPE_CONTEXT) {
@@ -77,7 +81,7 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 		    	if(isSelected) setIcon(nsSelIcon);
 		    	else setIcon(nsIcon);
 			}
-			return this;
+			return res;
 		}
 		
 		if(node.getType() == NamingContextTreeNode.TYPE_OBJECT) {
@@ -85,7 +89,7 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 	    	if(isSelected) setIcon(objSelIcon);
 	    	else setIcon(objIcon);
 	  
-			return this;
+			return res;
 		}
 		
 
