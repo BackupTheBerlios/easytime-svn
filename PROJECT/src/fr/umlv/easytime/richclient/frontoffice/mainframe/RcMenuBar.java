@@ -37,6 +37,9 @@ public class RcMenuBar extends JMenuBar {
 		visuMenu.add(teacher);
 		visuMenu.add(room);
 		visuMenu.add(device);
+
+		fichierMenu.addSeparator();
+		
 		
 		JMenuItem layout = new JMenuItem("Mise en page");
 		fichierMenu.add(layout);
@@ -61,6 +64,34 @@ public class RcMenuBar extends JMenuBar {
 		
 		return fichierMenu;
 	}
+	
+	public JMenu createEditionMenu(){
+			JMenu editionMenu = new JMenu("Edition");
+	
+			JMenuItem copy = new JMenuItem("Copier");
+			editionMenu.add(copy);
+			
+			JMenuItem cut = new JMenuItem("Couper");
+			editionMenu.add(cut);
+			
+			JMenuItem paste = new JMenuItem("Coller");
+			editionMenu.add(paste);
+			
+			JMenuItem remove = new JMenuItem("Supprimer");
+			editionMenu.add(remove);
+			
+			editionMenu.addSeparator();
+			
+			JMenuItem properties = new JMenuItem("Proprietes");
+			editionMenu.add(properties);
+			
+			JMenuItem preferences = new JMenuItem("Preferences");
+			editionMenu.add(preferences);
+			
+			return editionMenu;
+	}
+
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Easytime");
 		
