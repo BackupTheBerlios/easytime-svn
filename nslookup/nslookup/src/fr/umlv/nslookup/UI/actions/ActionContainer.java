@@ -18,13 +18,18 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultTreeModel;
 
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ObjectHelper;
 import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
 import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
+
+import td1.HorlogeHelper;
 
 import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
@@ -280,6 +285,22 @@ public class ActionContainer {
     
         addOBJ = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+                NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
+                NamingContext rootContext = (NamingContext)n.getNodeObject();
+                String IOR=JOptionPane.showInputDialog("Veuillez entrer une IOR:");
+                System.out.println(IOR);
+                String[] args = {"-ORBInitialPort",n.getPort(),"-ORBInitialHost",n.getHost()}; 
+        		ORB orb = ORB.init(args, null);
+                Object o = orb.string_to_object(IOR);
+                NameComponent[] contextName = new NameComponent[1];
+            	contextName[0] = new NameComponent("TestObj","");
+                try {
+                    rootContext.bind(contextName,(org.omg.CORBA.Object)o);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(frame,"Insertion de l'objet impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+                }  
+                
+                
             }            
         };
         addOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addobj16.png")));

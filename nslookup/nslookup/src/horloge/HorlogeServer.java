@@ -27,6 +27,7 @@ public class HorlogeServer {
 
     // Récupération de la référence du servant et écriture dans un fichier
     String reference = orb.object_to_string(rootPOA.id_to_reference(servantId));
+    System.out.println(reference);
     PrintWriter file = new PrintWriter("ObjectRef");
     file.println(reference);
     file.close();
