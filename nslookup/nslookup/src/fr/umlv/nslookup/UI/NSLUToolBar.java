@@ -120,7 +120,7 @@ public class NSLUToolBar extends JToolBar {
 		loadButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/load24.png")));
 		optionButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/option24.gif")));
 		helpButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/help24.gif")));
-		//aboutButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/about24.gif")));
+		aboutButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/logoc24.png")));
 		quitButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/quit24.png")));
 		
 	}
