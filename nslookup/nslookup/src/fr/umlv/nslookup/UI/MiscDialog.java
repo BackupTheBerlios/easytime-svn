@@ -45,9 +45,9 @@ public class MiscDialog{
     private static String getPath(NamingContextTreeNode node){
           String path = "";
           NamingContextTreeNode tmp = node;
-          while(tmp.getType() != NamingContextTreeNode.TYPE_NS){
+          while(tmp != null){
               switch(tmp.getType()){
-            	case 0 : path = "$>"+path;break;
+            	//case 0 : path = "$>"+path;break;
               	case 1 : path = "("+tmp+")>"+path;break;
               	case 2 : path = "["+tmp+"]>"+path;break;
               	case 3 : path = tmp+path;break;
