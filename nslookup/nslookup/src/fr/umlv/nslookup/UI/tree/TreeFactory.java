@@ -3,11 +3,17 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import org.omg.CORBA.ORB;
+import org.omg.CORBA.Object;
 import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CORBA.portable.ObjectImpl;
+
 import java.io.*;
 import org.omg.CORBA.*;
 import org.omg.CosNaming.*;
 import org.omg.CosNaming.NamingContextPackage.*;
+
+import com.sun.corba.se.impl.interceptors.IORInfoImpl;
+import com.sun.corba.se.impl.ior.IORImpl;
 
 
 /*
@@ -28,12 +34,16 @@ public class TreeFactory {
     private static ORB orb = null; 
     
 	public static NamingContextTreeNode createORBTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName{
-	
+	    try{
 	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
 		orb = ORB.init(args, null);
 		// 	Récupération de la référence du sevice de nommage
-		try{
-	    NamingContextExt namingContext = NamingContextExtHelper.narrow(orb.resolve_initial_references("NameService"));
+		ObjectImpl o = (ObjectImpl)orb.resolve_initial_references("NameService");
+		String[] ids = o._ids();
+		for (int i = 0; i < ids.length; i++) {
+            System.out.println(ids[i]);
+        }
+	    NamingContextExt namingContext = NamingContextExtHelper.narrow(o);
 		NamingContextTreeNode ORBroot = new NamingContextTreeNode(host,port);
 	    explore((NamingContext) namingContext,ORBroot );
 	    root.add(ORBroot);

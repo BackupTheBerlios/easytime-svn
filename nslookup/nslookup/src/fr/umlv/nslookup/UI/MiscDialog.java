@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CORBA.portable.ObjectImpl;
 
 import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.tree.TreeFactory;
@@ -86,6 +87,12 @@ public class MiscDialog{
       
       }
       
+      private String getIDLType(NamingContextTreeNode node){
+          String type = "";
+          
+          return type;
+      }
+      
       public static void showCORBAProperties(Frame frame,NamingContextTreeNode node){
           JPanel panel = new JPanel(new BorderLayout());
           JPanel fieldPanel = new JPanel();
@@ -102,8 +109,13 @@ public class MiscDialog{
           
           final JTextField namet = new JTextField(30); 
           namet.setEditable(false);
-          namet.setText(node.toString());
-          
+          //namet.setText(node.toString());
+          namet.setText(((ObjectImpl)node.getNodeObject())._ids()[0]);
+          System.out.println("longeur : "+((ObjectImpl)node.getNodeObject())._ids().length);
+          String[] ids = ((ObjectImpl)node.getNodeObject())._ids();
+          for (int i = 0; i < ids.length; i++) {
+            System.out.println(ids[i]);
+        }
           final JTextField orbTypet = new JTextField("ORB/Naming Service"); 
           orbTypet.setEditable(false);
           final JTextField ncTypet = new JTextField("Naming Context"); 

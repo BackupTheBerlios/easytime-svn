@@ -298,7 +298,15 @@ public class ActionContainer {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
                 NamingContext rootContext = (NamingContext)n.getNodeObject();
                 String IOR=JOptionPane.showInputDialog("Veuillez entrer une IOR:");
+                
+                if(IOR == null)
+                    return;
+                
                 String nom=JOptionPane.showInputDialog("Veuillez entrer un nom:");
+                
+                if(nom == null)
+                    return;
+                
                 String[] args = {"-ORBInitialPort",n.getPort(),"-ORBInitialHost",n.getHost()}; 
         		ORB orb = ORB.init(args, null);
                 Object o = orb.string_to_object(IOR);
