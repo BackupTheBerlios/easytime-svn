@@ -19,10 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
-
-
-
-
 /**
  * @author Mat
  *

@@ -19,7 +19,7 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
 /**
  * @author Jo
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Class responsible for creating the toolbar.
  *
  */
 public class NSLUToolBar extends JToolBar {

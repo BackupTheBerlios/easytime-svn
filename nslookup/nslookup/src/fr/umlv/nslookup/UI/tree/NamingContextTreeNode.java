@@ -28,9 +28,9 @@ import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /**
- * @author Mat
+ * @author Mathias Loyen
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Special treenode for representing Corba object of the Naming Context.
  *
  */
 public class NamingContextTreeNode extends DefaultMutableTreeNode implements Transferable {
@@ -42,30 +42,19 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
 	public static final int TYPE_OBJECT = 3;
 	public static final int TYPE_ROOT = 0;
 	
-	
+	//		private 
     private Binding binding;
-    //private 
     private int type;
     private String host;
     private String port;
     public static final DataFlavor TREENODE_FLAVOR = new DataFlavor(NamingContextTreeNode.class, "NCTreeNode"); 
-    /*
-    public boolean equals(Object o){
-        
-        try{
-            NamingContextTreeNode n = (NamingContextTreeNode)o;
-            return (
-                    (n.getPort().equals(getPort()))
-                   &&         
-                     (n.getHost().equals(getHost()))
-                   &&
-                     (n.getBinding().equals(getBinding()))
-                     );
-            
-        }catch(Exception e){return false;}
-        
-        
-    }*/
+    
+    /**
+     * Find the index of a child
+     *
+     * @param n
+     * @return
+     */
     public int findIndex(NamingContextTreeNode n){
         int i=0;
         for (Iterator iter = children.iterator(); iter.hasNext();) {
@@ -81,9 +70,14 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         
     
     
+    /**
+     * Creates a new NamingContextTreeNode object for a Corba NamingContext or object.
+     *
+     * @param b the corresponding Binding
+     */
     public NamingContextTreeNode(Binding b){
         super(b.binding_name[0].id);
-        //System.out.println("name component" +b.binding_name[0].id+ " "+ b.binding_name[0].kind);
+       
         this.binding = b;
         
         if(binding.binding_type.equals(BindingType.ncontext))
@@ -93,6 +87,12 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
 
     }
     
+    /**
+     * Creates a new NamingContextTreeNode object for a naming service.
+     *
+     * @param host the host of the NamingService (NS)
+     * @param port the port of the NamingService (NS)
+     */
     public NamingContextTreeNode(String host, String port){
         super(host+" "+port);
         this.host = host;
@@ -102,7 +102,12 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         
     }
     
-    public NamingContextTreeNode(String s, int type){
+    /**
+     * Creates a new NamingContextTreeNode object for the root.
+     *
+     * @param s the name of the node
+     */
+    public NamingContextTreeNode(String s){
         super(s);
         
         this.binding = null;
@@ -110,6 +115,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         
     }
 
+    /**
+     * Returns the corresponding NamingService host name
+     *
+     * @return the corresponding NamingService host name
+     */
     public String getHost(){
         
         switch(type){
@@ -119,6 +129,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         }
     }
     
+    /**
+     * Returns the corresponding NamingService host port
+     *
+     * @return the corresponding NamingService host port
+     */
     public String getPort(){
         
         switch(type){
@@ -129,6 +144,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     }
     
     
+    /**
+     * Returns the parent naming context
+     *
+     * @return the parent naming context if any
+     */
     public NamingContext getParentContext(){
     	
     	
@@ -154,6 +174,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
 		return namingContext;
     }
     
+    /**
+     * Returns the corba Object associated to the node
+     *
+     * @return the corba object, if any.
+     */
     public Object getNodeObject(){
     	
     	NamingContext nc = null;
@@ -179,19 +204,28 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
 			try {
 				o = nc.resolve(binding.binding_name);
 			} catch (NotFound e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (CannotProceed e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			} catch (org.omg.CosNaming.NamingContextPackage.InvalidName e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
     	return o;
     	}
     }
     
+    /**
+     * Rebinds an object to another NamingContext
+     *
+     * @param newParent the new NamingContext parent
+     * @throws NotFound
+     * @throws CannotProceed
+     * @throws org.omg.CosNaming.NamingContextPackage.InvalidName
+     * @throws AlreadyBound
+     */
     public void rebind(NamingContext newParent) throws NotFound, CannotProceed, org.omg.CosNaming.NamingContextPackage.InvalidName, AlreadyBound{
 
     	Object o = getNodeObject();
@@ -208,6 +242,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     	binding.binding_name = name;
     }
     
+    /**
+     * Returns the node type
+     *
+     * @return the node type
+     */
     public int getType() {
         
         return this.type;
@@ -236,6 +275,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         else throw new UnsupportedFlavorException(df);
     }
 
+    /**
+     * Returns the binding
+     *
+     * @return the associated binding
+     */
     public Binding getBinding() {
         return binding;
     }

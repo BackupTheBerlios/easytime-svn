@@ -272,7 +272,7 @@ public class MainFrame extends JFrame {
      *
      */
     private void initRoot(){
-        root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);
+        root = new NamingContextTreeNode("Root");
     }
     
     /**

@@ -15,9 +15,9 @@ import javax.swing.tree.TreePath;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 
 /**
- * @author Jo
+ * @author Mathias Loyen
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Class responsible for handling selection in the DNDTree
  *
  */
 public class DnDTreeSelectionListener implements TreeSelectionListener {

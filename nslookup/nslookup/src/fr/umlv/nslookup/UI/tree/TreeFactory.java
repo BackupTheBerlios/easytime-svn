@@ -12,90 +12,74 @@ import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 
-/*
- * Created on 7 janv. 2005
- *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
 
 /**
- * @author mloyen
+ * @author Mathias Loyen
  *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * Class responsible for creating the tree structure associated to a naming service
+ *
  */
 public class TreeFactory {
-
+    
     private static ORB orb = null; 
     
-	public static NamingContextTreeNode createORBTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName{
-	    try{
-	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
-		orb = ORB.init(args, null);
-		
-		// 	Récupération de la référence du sevice de nommage
-		ObjectImpl o = (ObjectImpl)orb.resolve_initial_references("NameService");
-		
-	    NamingContextExt namingContext = NamingContextExtHelper.narrow(o);
-		NamingContextTreeNode ORBroot = new NamingContextTreeNode(host,port);
-	    explore((NamingContext) namingContext,ORBroot );
-	    root.add(ORBroot);
-	    }catch(org.omg.CORBA.SystemException se) 
-	    { 
-	    	//se.printStackTrace();
-		    throw new org.omg.CORBA.ORBPackage.InvalidName();
-		}
-	    catch(Throwable e) 
-	    { 
-		    throw new org.omg.CORBA.ORBPackage.InvalidName();
-		}
-	    ;
-	    
-	    return root;
-	}
-	
-private static void explore(NamingContext context, NamingContextTreeNode node) throws org.omg.CosNaming.NamingContextPackage.InvalidName, NotFound, CannotProceed {
+    /**
+     * Creates the tree structure associated to a naming service
+     *
+     * @param host host of the naming service
+     * @param port port of the naming service
+     * @param root root of the existing tree
+     * @return the new root of the tree
+     * @throws org.omg.CORBA.ORBPackage.InvalidName
+     */
+    public static NamingContextTreeNode createORBTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName{
+        try{
+            String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
+            orb = ORB.init(args, null);
+            
+            // 	Récupération de la référence du sevice de nommage
+            ObjectImpl o = (ObjectImpl)orb.resolve_initial_references("NameService");
+            
+            NamingContextExt namingContext = NamingContextExtHelper.narrow(o);
+            NamingContextTreeNode ORBroot = new NamingContextTreeNode(host,port);
+            explore((NamingContext) namingContext,ORBroot );
+            root.add(ORBroot);
+        }catch(org.omg.CORBA.SystemException se) 
+        { 
+            
+            throw new org.omg.CORBA.ORBPackage.InvalidName();
+        }
+        catch(Throwable e) 
+        { 
+            throw new org.omg.CORBA.ORBPackage.InvalidName();
+        }
+        ;
+        
+        return root;
+    }
     
-    BindingListHolder listHolder = new BindingListHolder(); 
-    BindingIteratorHolder iteratorHolder = new BindingIteratorHolder();
-    context.list(10,listHolder,iteratorHolder);
-    
-    
-    
-    //System.out.println(iteratorHolder);
-    //System.out.println(listHolder.value.length);
-    
-    Binding bindings[];
-    
-    
-    do {
-        bindings = listHolder.value;
-        //System.out.println("Passage while ");
-      for (int i=0;i<bindings.length;i++) {
-      	Binding binding = bindings[i];
-      	//System.out.println(i+" binding " + binding);
-      	NamingContextTreeNode newSon = new NamingContextTreeNode(binding);
-      	
-      	node.add(newSon );
-                  
-        if (newSon.getType()== NamingContextTreeNode.TYPE_CONTEXT ) {
-            //System.out.println("nouveau contexte");
-          NamingContext newContext = 
-            NamingContextHelper.narrow(context.resolve(binding.binding_name));
-          	explore(newContext, newSon);
-         
-          }
-      }
-      } while((iteratorHolder.value != null)&&(iteratorHolder.value.next_n(10,listHolder)));
-      
-      
-      
+    private static void explore(NamingContext context, NamingContextTreeNode node) throws org.omg.CosNaming.NamingContextPackage.InvalidName, NotFound, CannotProceed {
+        
+        BindingListHolder listHolder = new BindingListHolder(); 
+        BindingIteratorHolder iteratorHolder = new BindingIteratorHolder();
+        context.list(10,listHolder,iteratorHolder);
+        
+        Binding bindings[];
+        
+        do {
+            bindings = listHolder.value;
+            for (int i=0;i<bindings.length;i++) {
+                Binding binding = bindings[i];
+                NamingContextTreeNode newSon = new NamingContextTreeNode(binding);
+                node.add(newSon );
+                if (newSon.getType()== NamingContextTreeNode.TYPE_CONTEXT ) {
+                    NamingContext newContext = 
+                        NamingContextHelper.narrow(context.resolve(binding.binding_name));
+                    explore(newContext, newSon);
+                    
+                }
+            }
+        } while((iteratorHolder.value != null)&&(iteratorHolder.value.next_n(10,listHolder)));
     } 
-         
-    
-   
-    
-  
-	
+      
 }

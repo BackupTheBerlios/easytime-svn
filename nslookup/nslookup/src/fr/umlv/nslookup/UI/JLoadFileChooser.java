@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 /**
  * @author Jo
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Class responsible for displaying the custon file chooser
  *
  */
 public class JLoadFileChooser extends JFileChooser {

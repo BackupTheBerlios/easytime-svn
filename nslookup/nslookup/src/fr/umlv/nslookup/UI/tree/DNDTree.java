@@ -18,9 +18,6 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -37,13 +34,11 @@ import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.InvalidName;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
-import fr.umlv.nslookup.UI.actions.ActionContainer;
 
 /** Creates a JTree with Drag and Drop facilities.
-* <p>
-* Create and use an object of DNDTree instead of a JTree to include Drag and Drop features for your tree.
+* 
 * @version 1.01 03/01/2001
-* @author Prathap G
+* @author Prathap G, M. Loyen
 */
 public class DNDTree extends JTree implements DropTargetListener,DragSourceListener, DragGestureListener{
 	
@@ -67,46 +62,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 		dropTarget = new DropTarget (this, this);
 		dragSource = new DragSource();
 		dragSource.createDefaultDragGestureRecognizer( this, DnDConstants.ACTION_MOVE, this);
-		/*
-		this.addKeyListener(new KeyListener(){
-
-            public void keyTyped(KeyEvent e) {
-                if(e.getKeyChar() == KeyEvent.VK_DELETE){
-                    
-                    if(getSelectedNode() != null)
-                    {
-                    
-                        switch(((NamingContextTreeNode)getSelectedNode()).getType())
-                        {
-                        	case(NamingContextTreeNode.TYPE_NS):
-                        	{
-                        		ActionContainer.remNS.actionPerformed(new ActionEvent(e.getSource(),-1,null));
-                        		break;
-                        	}
-                        	case(NamingContextTreeNode.TYPE_CONTEXT):
-                        	{
-                        		ActionContainer.remNC.actionPerformed(new ActionEvent(e.getSource(),-1,null));
-                        		break;
-                        	}
-                        	case(NamingContextTreeNode.TYPE_OBJECT):
-                        	{
-                        		ActionContainer.remOBJ.actionPerformed(new ActionEvent(e.getSource(),-1,null));
-                        		break;
-                        	}                        	
-                        }
-                    }                    
-                }
-             }
-
-            public void keyPressed(KeyEvent e) {
-           
-            }
-
-            public void keyReleased(KeyEvent e) {
-   
-            }
-  
-		});*/
+		
 	}
 
 	/** Internally implemented, Do not override!*/

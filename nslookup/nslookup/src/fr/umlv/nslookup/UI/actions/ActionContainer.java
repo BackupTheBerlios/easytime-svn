@@ -159,7 +159,7 @@ public class ActionContainer {
                     String path = choice.getSelectedFile().getAbsolutePath();
                     
                     NSConfig[] tab = ConfigTool.loadConfig(path);
-                    root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);                    
+                    root = new NamingContextTreeNode("Réseau");                    
                     for(int i =0;i<tab.length;i++)
                     {                        
                         String host = tab[i].getAddress();
