@@ -7,4 +7,11 @@
 		<id name="id">
 			<generator class="native"/>
         </id>
-       	<property name="typeID"
+       	<property name="typeID" type="int"/>
+       	<set name="devicekinds">
+       		<key column="kindId"/>
+       		<one-to-many class=src.server.resource.device.DeviceKind"/>
+       	</set>
+    </class>
+</hibernate-mapping>
+       	
