@@ -1,4 +1,89 @@
 <html>
-Prochainement ici, l'aide de NSLookup !
-<img src="ig2000.jpg">
+
+<head>
+<meta http-equiv="Content-Language" content="fr">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>AIDE</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1 align="center"><b>AIDE : <i><font color="#000099">Quoi que c'est NSLookUp 
+  ???</font></i></b></h1>
+<h1 align="center">&nbsp;</h1>
+<h3>1 - D&eacute;marrer NSLookUp : <i><font color="#000099">O&ugrave; que c'est 
+  qu'on met la cl&eacute; ?</font></i></h3>
+<p>&nbsp;&nbsp;&nbsp; Pour démarrer NSLookUp, il suffit de lancer le fichier <i>nslookup.jar</i> 
+  :</p>
+<ul>
+  <li>&nbsp;&nbsp;&nbsp; Sous<b> Windows </b>: double-cliquer sur le fichier qui 
+    s'exécutera à l'aide de la JVM qui devra &ecirc;tre pr&eacute;alablement install&eacute;e.</li>
+  <li>&nbsp;&nbsp;&nbsp; Sous<b> Linux </b>: lancer la commande suivante dans 
+    le répertoire du jar : <i>java -jar nslookup.jar</i></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp; La fen&ecirc;tre de l'application devrait alors appara&icirc;tre.</p>
+<p>&nbsp;</p>
+<h3>2 - Se connecter à un Name Service : <font color="#000099">Allo ?</font></h3>
+<p>&nbsp;&nbsp;&nbsp; Pour se connecter &agrave; un Name Service (NS), cliquer 
+  sur <i>Ajouter un NS</i> (dans le menu CORBA, la barre d'outil ou le menu contextuel), 
+  une fen&ecirc;tre de dialogue vous demandera alors l'adresse IP (ou nom r&eacute;solvable 
+  par DNS) et le port sur lequel le NS est lanc&eacute;. Si l'une ou l'autre des 
+  informations saisies n'est pas correcte alors un message d'erreur le signalera.</p>
+<p>&nbsp;&nbsp;&nbsp; Une fois connect&eacute;, le NS appara&icirc;tra dans l'arborescence 
+  avec tous ses Naming Contexts et CORBA Object. Il est possible de se connecter 
+  &agrave; autant de NS que souhait&eacute; sur le r&eacute;seau.</p>
+<p>&nbsp;</p>
+<h3>3 - Les objets manipulés : <font color="#000099">Ca trifouille ! Ca trifouille 
+  !!!</font></h3>
+<p>&nbsp;&nbsp;&nbsp; NSLookUp vous permet de manipuler les Name Services et tous 
+  les objets qu'ils contiennent. Il est possible de se d&eacute;/connecter &agrave; 
+  un NS, d'Ajouter ou de retirer un Naming Context et de le d&eacute;placer par 
+  un glisser d&eacute;poser dans l'arbre sous condition de le faire lier un Name 
+  Service ou &agrave; un Name Context. De m&ecirc;me, il est possible de d&eacute;/lier 
+  un Object CORBA. et de le d&eacute;placer. </p>
+<p>&nbsp;&nbsp;&nbsp; Les op&eacute;rations d'ajout et de retrait se font &agrave; 
+  l'aide du menu, de la barre d'outil ou du menu contextuel accessible par un 
+  clique droit. Les d&eacute;placement se font par des glisser -d&eacute;poser. 
+  Un bouton suppl&eacute;mentaire vous permet de rafra&icirc;chir l'arborescence. 
+  Ce rafra&icirc;chissement se fait automatiquement toute les 30 secondes.</p>
+<p>&nbsp;</p>
+<h3>4 - Propiétés : <font color="#000099">Quoi qu'il y a l&agrave;-dedans ?</font></h3>
+<p>&nbsp;&nbsp;&nbsp; Pour tous les objets sauf la racine (r&eacute;seau) il est 
+  possible de demander les propri&eacute;t&eacute;s, on y retrouve en commun : 
+</p>
+<ul>
+  <li>Le nom d&eacute;clar&eacute; dans le context : utilisable pour une r&eacute;solution 
+    de nom dans un Naming Context.</li>
+  <li>Le type d'object (Name Service, Naming Context ou CORBA Object).</li>
+  <li>Le type IDL : indiquant l'interface IDL implant&eacute;e par l'objet li&eacute;.</li>
+  <li>Le chemin dans l'arborescence des NC : utilisable pour naviguer dans un 
+    Name Service.</li>
+  <li>L'IOR : utilisable pour une r&eacute;solution d'IOR dans un ORB.</li>
+</ul>
+<p>Les propi&eacute;t&eacute;s d'un NS montre en plus l'adresse et le port de 
+  celui-ci. </p>
+<p>&nbsp;</p>
+<h3>5 - Sauvegarder et charger une configuration : <font color="#000099">J'vous 
+  d&eacute;pose &ccedil;a o&ugrave; ?</font></h3>
+<p>&nbsp;&nbsp;&nbsp; Il est possible de sauvegarder la configuration de NSLookUp, 
+  c'est &agrave; dire de sauvegarder les coordonn&eacute;es des Name Services 
+  auquel on est connect&eacute;. Ces informations seront enregistr&eacute;es dans 
+  un fichier .cfg. Lors du chargement d'une configuration, si des NS ne sont pas 
+  joignable des erreurs seront remont&eacute;es.</p>
+<p>&nbsp;&nbsp;&nbsp; Les actions de sauvegarde et de chargement se font en appuyant 
+  sur les boutons sauvegarder/charger une configuration du <i>menu fichier </i>ou 
+  de la barre d'outil.</p>
+<p>&nbsp;</p>
+<h3>6 - Quitter : <font color="#000099">Runawwwwaaaayyy !!!!</font></h3>
+<p>&nbsp;&nbsp;&nbsp; Pour quitter l'application, vous pouvez soit appuyer sur 
+  la croix en haut &agrave; droite, soit sur le bouton <i>Quitter</i> du <i>menu 
+  fichier</i> ou soit faire le raccourci clavier de de fermeture de fen&ecirc;tre 
+  de votre OS.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
 </html>
