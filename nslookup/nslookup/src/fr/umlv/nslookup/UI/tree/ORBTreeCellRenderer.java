@@ -8,6 +8,7 @@
  */
 package fr.umlv.nslookup.UI.tree;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.ImageIcon;
@@ -47,7 +48,6 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 		
 	    NamingContextTreeNode node = (NamingContextTreeNode)obj;
 	    setText(node.toString());
-		
 			    
 		if(node.getType() == NamingContextTreeNode.TYPE_ROOT) {
 		    setIcon(rootIcon);
@@ -88,8 +88,9 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 			return this;
 		}
 		
+
 		
-		
+
 
 		return null;
 	}

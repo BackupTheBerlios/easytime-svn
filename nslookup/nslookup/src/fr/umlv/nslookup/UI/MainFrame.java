@@ -12,6 +12,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Enumeration;
@@ -19,12 +21,14 @@ import java.util.Enumeration;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -190,6 +194,28 @@ public class MainFrame extends JFrame {
      });
         tree.setCellRenderer(new ORBTreeCellRenderer());
         tree.addTreeSelectionListener(new DnDTreeSelectionListener());
+        final JPopupMenu PPmenu = new NSLUPopUpMenu();
+        tree.addMouseListener(new MouseListener(){
+
+            public void mouseClicked(MouseEvent e) {}
+
+            public void mousePressed(MouseEvent e) {
+                if(e.getButton()!=MouseEvent.BUTTON1){
+                    TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+                    tree.setSelectionPath(path);
+                    if(path==null) ActionContainer.reset();
+                }
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                if(e.getButton()==MouseEvent.BUTTON3) PPmenu.show(MainFrame.this, e.getX(), e.getY());
+            }
+
+            public void mouseEntered(MouseEvent arg0) {}
+
+            public void mouseExited(MouseEvent arg0) {}
+            
+        });
     }
     
     private void createToolBar(){
@@ -232,7 +258,7 @@ public class MainFrame extends JFrame {
 //		} catch (UnsupportedLookAndFeelException e) {return;}
     }
     public static void main(String[] args) {
-    	new MainFrame();
+        new MainFrame();
     }
     
     
