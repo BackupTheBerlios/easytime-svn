@@ -270,6 +270,8 @@ public class ActionContainer {
         addNC = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
             	String nom = MiscDialog.showNCInputDialog(frame);
+            	if(nom == null)
+                    return;
             	NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
             	NamingContext rootContext = (NamingContext)n.getNodeObject();
             	
