@@ -324,8 +324,8 @@ public class ActionContainer {
             }            
         };
         remNC.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remnc16.png")));
-        remNC.putValue(Action.NAME, "Retirer un NC");
-        remNC.putValue(Action.SHORT_DESCRIPTION,"Retirer un Contexte de Nommage");
+        remNC.putValue(Action.NAME, "Supprimer un NC");
+        remNC.putValue(Action.SHORT_DESCRIPTION,"Supprimer un Contexte de Nommage");
         remNC.setEnabled(false);
     
         addOBJ = new AbstractAction(){
@@ -381,8 +381,8 @@ public class ActionContainer {
             }            
         };
         remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remobj16.png")));
-        remOBJ.putValue(Action.NAME, "Retirer un Obj.");
-        remOBJ.putValue(Action.SHORT_DESCRIPTION,"Retirer un Objet CORBA");
+        remOBJ.putValue(Action.NAME, "Supprimer un Obj.");
+        remOBJ.putValue(Action.SHORT_DESCRIPTION,"Supprimer un Objet CORBA");
         remOBJ.setEnabled(false);
             
         addNS = new AbstractAction(){
@@ -411,8 +411,8 @@ public class ActionContainer {
             }            
         };
         remNS.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remorb16.png")));
-        remNS.putValue(Action.NAME, "Retirer un NS");
-        remNS.putValue(Action.SHORT_DESCRIPTION,"Retirer un Name Service");
+        remNS.putValue(Action.NAME, "Supprimer un NS");
+        remNS.putValue(Action.SHORT_DESCRIPTION,"Supprimer un Name Service");
         remNS.setEnabled(false);
             
     }
