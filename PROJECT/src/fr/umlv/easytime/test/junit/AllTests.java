@@ -18,7 +18,7 @@ import junit.framework.TestSuite;
 public class AllTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for fr.uml.mloyen.monpackage");
+		TestSuite suite = new TestSuite("Test for fr.umlv.easytime.test.junit");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(AdditionnerBeanTest.class);
 		suite.addTestSuite(AdditionnerBeanComputeTest.class);
