@@ -33,7 +33,7 @@ public class NSLUMenuBar extends JMenuBar {
 	private JMenuItem remOBJButton=new JMenuItem(ActionContainer.remOBJ);
 	private JMenuItem refreshButton=new JMenuItem(ActionContainer.refresh);
 	private JMenuItem propButton=new JMenuItem(ActionContainer.prop);
-	private JMenuItem optionButton=new JMenuItem(ActionContainer.option);
+	//private JMenuItem optionButton=new JMenuItem(ActionContainer.option);
 	private JMenuItem helpButton=new JMenuItem(ActionContainer.help);
 	private JMenuItem aboutButton=new JMenuItem(ActionContainer.about);
 	private JMenuItem quitButton=new JMenuItem(ActionContainer.quit);
@@ -50,7 +50,7 @@ public class NSLUMenuBar extends JMenuBar {
 		menu.add(saveButton);
 		menu.add(loadButton);
 		menu.add(refreshButton);
-		menu.add(optionButton);
+		//menu.add(optionButton);
 		menu.addSeparator();
 		menu.add(quitButton);
 		return menu;
@@ -99,7 +99,7 @@ public class NSLUMenuBar extends JMenuBar {
 	 * 
 	 */
 	private void loadStaticActions(){
-		optionButton.setAction(ActionContainer.option);
+		//optionButton.setAction(ActionContainer.option);
 		helpButton.setAction(ActionContainer.help);
 		aboutButton.setAction(ActionContainer.about);
 		quitButton.setAction(ActionContainer.quit);
