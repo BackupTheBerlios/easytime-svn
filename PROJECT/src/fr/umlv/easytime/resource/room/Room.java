@@ -11,8 +11,10 @@ package fr.umlv.easytime.resource.room;
 /**
  * @author rjourdan
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
- *
+ * This public class describe the room Resource dataObject.
+ * This class gathers all informations about a room. 
+ * It's JavaBean compliant so that the mapping could be done with
+ * Hibernate.
  */
 public class Room {
 
