@@ -44,8 +44,9 @@ public class TreeFrame {
 			};
 		
 		DefaultTreeModel model = new DefaultTreeModel(root);
-		tree = new JTree(model);
-		
+		//tree = new JTree(model);
+		tree = new DNDTree(model);
+		/*
 		tree.addTreeSelectionListener(new TreeSelectionListener(){
 
             public void valueChanged(TreeSelectionEvent e) {
@@ -62,7 +63,7 @@ public class TreeFrame {
 		    
 		    
 		});
-		
+		*/
 		
 		
 		frame.getContentPane().add(tree);
