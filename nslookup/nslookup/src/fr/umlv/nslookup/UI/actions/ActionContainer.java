@@ -63,15 +63,7 @@ public class ActionContainer {
     public static Action about;
     public static Action quit;
     
-//    public void initDefault(){
-//        addNC = DefaultActionFactory.addNC;
-//        remNC= DefaultActionFactory.remNC;
-//        addOBJ= DefaultActionFactory.addOBJ;
-//        remOBJ= DefaultActionFactory.remOBJ;
-//        addORB= DefaultActionFactory.addORB;
-//        remORB= DefaultActionFactory.remORB;
-//        
-//    }
+
     
     private void initStaticActions(){
         save = new AbstractAction(){
@@ -198,9 +190,6 @@ public class ActionContainer {
         
         help = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-            	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
-                MiscDialog.showAddORB(frame,root);
-                ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
         help.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/help16.gif")));
@@ -239,6 +228,8 @@ public class ActionContainer {
         addNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")));
         addNC.putValue(Action.NAME, "Ajouter un NC");
         addNC.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Contexte de Nommage");
+        addNC.setEnabled(false);
+
             
         remNC = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
@@ -247,7 +238,8 @@ public class ActionContainer {
         remNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remnc16.png")));
         remNC.putValue(Action.NAME, "Retirer un NC");
         remNC.putValue(Action.SHORT_DESCRIPTION,"Retirer un Contexte de Nommage");
-            
+        remNC.setEnabled(false);
+    
         addOBJ = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
             }            
@@ -255,7 +247,8 @@ public class ActionContainer {
         addOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addobj16.png")));
         addOBJ.putValue(Action.NAME, "Ajouter un Obj.");
         addOBJ.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Objet CORBA");
-            
+        addOBJ.setEnabled(false);
+        
         remOBJ = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
             }            
@@ -263,15 +256,20 @@ public class ActionContainer {
         remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remobj16.png")));
         remOBJ.putValue(Action.NAME, "Retirer un Obj.");
         remOBJ.putValue(Action.SHORT_DESCRIPTION,"Retirer un Objet CORBA");
+        remOBJ.setEnabled(false);
             
         addORB = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+            	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
+                MiscDialog.showAddORB(frame,root);
+                ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
         addORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addorb16.png")));
         addORB.putValue(Action.NAME, "Ajouter un ORB/NS");
         addORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
-            
+        addORB.setEnabled(false);
+        
         remORB = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
             }            
@@ -279,6 +277,7 @@ public class ActionContainer {
         remORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remorb16.png")));
         remORB.putValue(Action.NAME, "Ajouter un ORB/NS");
         remORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
+        remORB.setEnabled(false);
             
     }
  
