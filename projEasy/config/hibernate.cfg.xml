@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- properties -->
+		<property name="dialect">net.sf.hibernate.dialect.HSQLDialect</property>
+		<property name="show_sql">true</property>
+		<property name="use_outer_join">false</property>
+		<property name="jta.UserTransaction">java:comp/UserTransaction</property>
+		
+		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost:9001/mappingdb</property>
+		<property name="hibernate.connection.username">sa</property>
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.pool_size">2</property>
+
+		<mapping resource="Person.hbm.xml" />
+		<mapping resource="Right.hbm.xml" />
+		<mapping resource="Estate.hbm.xml" />
+		
+		
+	</session-factory>
+</hibernate-configuration>
+
+

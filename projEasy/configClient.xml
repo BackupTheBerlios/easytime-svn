@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configClient>
+	<server>
+		<port>8080</port>
+		<name>easytimeServer</name>
+		
+	</server>
+</configClient>
