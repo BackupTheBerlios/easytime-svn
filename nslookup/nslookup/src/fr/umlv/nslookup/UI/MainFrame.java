@@ -47,19 +47,32 @@ import fr.umlv.nslookup.UI.tree.ORBTreeCellRenderer;
 /**
  * @author Jo
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
- *
+ * Main frame class, which display the client window. It contains a tool bar, a menu bar which allows to access to the
+ * major actions (contained in a ActionContainer) and a Tree which gives access to the Naming Services browsing.
+ * 
  */
 public class MainFrame extends JFrame {
 
+    	// JTree allowing to browse through the  opened Naming Services and to manipulate Naming Contextes and CORBA Objects.
     private DNDTree tree;
+    	// Tool bar containing the button linked to the most used actions
     private NSLUToolBar toolBar;
+    	// Menu bar containing all the available actions 
     private NSLUMenuBar menuBar;
+    	// ActionContainer allowing to access the actions
     private final ActionContainer ac;
+    	// Root node of the tree
     private NamingContextTreeNode root;
     
+    
+    
+    /**
+     * Creates a new MainFrame object, and instanciate all the internal component.
+     */
     public MainFrame(){
         super("NS lookup");
+        
+        	// Initialisation of the Frame
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){            
             public void windowClosing(WindowEvent e){                
@@ -69,39 +82,26 @@ public class MainFrame extends JFrame {
         this.setSize(800, 600);
         ImageIcon icon = new ImageIcon(MainFrame.class.getResource("icons/logo carre.png"));
         this.setIconImage(icon.getImage());
-        ac = new ActionContainer(this);
-        
-        
         initLookAndFeel();
-        initRoot();// C'est là que l'arbre est créé
+        
+        	// Instanciation of the internal components
+        ac = new ActionContainer(this);
+        initRoot();
         createMenuBar();
         createToolBar();
         createTreeView();
-        
-        
-        Runnable r = new Runnable(){
-        	public void run(){
-        		
-        		while(true)
-        		{
-        		try {
-					Thread.sleep(30000);
-				} catch (InterruptedException e) {}
-
-				((DefaultTreeModel)tree.getModel()).reload();
-
-				
-        		}
-        	}        	
-        };
-        
-        new Thread(r).start();
         this.getContentPane().add(new JScrollPane(tree));
         this.setVisible(true);
     }
     
+    /**
+     * Create the tree which implements Drag And Drop Manipulations.
+     * The tree model is modified because the reload method has been rewritten.
+     * A mouse Listener has been added to access to a PopUp menu similar to the Tool Bar.  
+     * 
+     */
     private void createTreeView(){
-        //tree = new DnDJTree(new DefaultTreeModel(root));
+        	// Creation of the Tree with the modified DefaultTreeModel
         tree = new DNDTree(new DefaultTreeModel(root){
             public void reload(){
                 NamingContextTreeNode root = (NamingContextTreeNode)getRoot();
@@ -192,8 +192,12 @@ public class MainFrame extends JFrame {
          
          
      });
+        	// Setting Up of a special Cell Renderer 
         tree.setCellRenderer(new ORBTreeCellRenderer());
+        	// Implementation of a tree selection listener which disable or enable the action following the type 
+        	// of the node selected
         tree.addTreeSelectionListener(new DnDTreeSelectionListener());
+        	// Implementation of a PopUp menu called by a mou right click.
         final JPopupMenu PPmenu = new NSLUPopUpMenu();
         tree.addMouseListener(new MouseListener(){
 
@@ -216,46 +220,61 @@ public class MainFrame extends JFrame {
             public void mouseExited(MouseEvent arg0) {}
             
         });
+        	// Start of a refresh thread
+        Runnable r = new Runnable(){
+        	public void run(){
+        		
+        		while(true)
+        		{
+        		try {
+					Thread.sleep(30000);
+				} catch (InterruptedException e) {}
+
+				((DefaultTreeModel)tree.getModel()).reload();
+
+				
+        		}
+        	}        	
+        };
+        new Thread(r).start();
+
     }
     
+    /**
+     * 
+     * Intanciates the tool bar with all its buttons and put it at the top of the frame.
+     *
+     */
     private void createToolBar(){
         toolBar = new NSLUToolBar();
         add(toolBar, BorderLayout.NORTH);
     }
     
+    /**
+     * 
+     * Intanciates the menu bar with all its buttons and adds to the frame.
+     *
+     */
     private void createMenuBar(){
         menuBar = new NSLUMenuBar();
         setJMenuBar(menuBar);
     }
     
+    /**
+     * 
+     * Intanciates the menu bar with all its buttons and adds to the frame.
+     *
+     */
     private void initRoot(){
-        
         root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);
-
-        /*
-        // Creation arbre d'un NC	
-        try{
-		    TreeFactory.createORBTree("localhost","1234", root);
-		} catch (InvalidName e)
-			{
-			System.out.println("No connection :( ");
-			e.printStackTrace();
-			};
-		*/
     }
     
     private void initLookAndFeel(){
     	try {
-//			Skin theSkinToUse = SkinLookAndFeel.loadThemePack("bin/UI/themes/aquathemepack.zip");
-//			SkinLookAndFeel.setSkin(theSkinToUse);
-//			UIManager.setLookAndFeel(new SkinLookAndFeel());
-//			SwingUtilities.updateComponentTreeUI(this);
-		} catch (Exception e) {e.printStackTrace();}
-    	
-    	//    	try {
-//			UIManager.setLookAndFeel(new LiquidLookAndFeel());
-//			SwingUtilities.updateComponentTreeUI(this);
-//		} catch (UnsupportedLookAndFeelException e) {return;}
+    	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+		    // Nothing is done if the LookAndFeel can't be installed.
+		}
     }
     public static void main(String[] args) {
         new MainFrame();
