@@ -162,7 +162,7 @@ public class ActionContainer {
 //                      Creation arbre d'un NC	
                         try{
                 		    TreeFactory.createORBTree(host,port,root);
-                		} catch (InvalidName e)
+                		} catch (Throwable e)
                 			{
                 		    JOptionPane.showMessageDialog(frame,"Connexion impossible à " + host + ":" + port,"Erreur!",JOptionPane.ERROR_MESSAGE);
                 			//System.out.println("No connection :( " + host + " " + port);

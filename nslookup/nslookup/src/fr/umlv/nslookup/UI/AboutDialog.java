@@ -178,7 +178,7 @@ class DefilPanel extends JPanel implements Runnable{
     currentY=this.getHeight();
     while(!Thread.interrupted())
         try{repaint();
-        Thread.sleep(50);
+        Thread.sleep(30);
         currentY--;
         }catch (InterruptedException e){};
     }

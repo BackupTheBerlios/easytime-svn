@@ -184,8 +184,12 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 	* throws IllegalArgumentException.
 	*/
 	public void dragDropEnd (DragSourceDropEvent event){
+	    
+	    
+	    
+	    
 		if ( event.getDropSuccess()){
-				if(dropnode.equals(selnode)){
+		    	if((selnode.getType() == NamingContextTreeNode.TYPE_NS)||(dropnode.equals(selnode))||(selnode.isNodeDescendant(dropnode))){
 					///System.out.println("drag==drop");
 					
 				}

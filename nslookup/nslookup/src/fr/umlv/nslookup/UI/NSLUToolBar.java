@@ -50,7 +50,7 @@ public class NSLUToolBar extends JToolBar {
     	add(remOBJButton);
     	add(refreshButton);
     	add(propButton);
-    	add(optionButton);
+    	//add(optionButton);
     	add(helpButton);
     	formatButtons();
 
