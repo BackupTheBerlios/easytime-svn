@@ -157,6 +157,15 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     	}
     }
     
+    public void unbind(){
+    	
+    }
+    
+    public void bind(NamingContext nc){
+    	
+    }
+    
+    
     public int getType() {
         
         return this.type;

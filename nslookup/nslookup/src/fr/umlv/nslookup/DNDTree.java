@@ -140,7 +140,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				    	System.out.println("Père:"+selnode.getParent());
 
 				    	
-				    	if((dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NC))
+				    	if((dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NS))
 				    	{
 				    		selnode.unbind();
 				    		selnode.bind((NamingContext)dropnode.getNodeObject());
