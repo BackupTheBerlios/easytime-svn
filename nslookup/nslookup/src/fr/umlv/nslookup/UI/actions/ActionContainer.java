@@ -307,14 +307,15 @@ public class ActionContainer {
                 if(nom == null)
                     return;
                 
+                try {
                 String[] args = {"-ORBInitialPort",n.getPort(),"-ORBInitialHost",n.getHost()}; 
         		ORB orb = ORB.init(args, null);
                 Object o = orb.string_to_object(IOR);
                 NameComponent[] contextName = new NameComponent[1];
             	contextName[0] = new NameComponent(nom,"");
-                try {
+                
                     rootContext.bind(contextName,(org.omg.CORBA.Object)o);
-                } catch (Exception e) {
+                } catch (Throwable e) {
                     JOptionPane.showMessageDialog(frame,"Insertion de l'objet "+nom+ " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
                 }  
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();
