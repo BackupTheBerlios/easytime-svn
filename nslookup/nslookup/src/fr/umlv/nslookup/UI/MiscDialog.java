@@ -70,8 +70,8 @@ public class MiscDialog{
   	    fieldPanel.add(port);
   	    JTextField portField = new JTextField("1234");
   	    valuePanel.add(portField);
-  	    JOptionPane.showMessageDialog(frame, panel, "Ajouter un ORB", JOptionPane.INFORMATION_MESSAGE);
-  	    if((! hostField.getText().equals("")) && (! portField.getText().equals("")))
+  	    int res = JOptionPane.showConfirmDialog(frame, panel, "Ajouter un ORB",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+  	    if((res == JOptionPane.OK_OPTION)&&(! hostField.getText().equals("")) && (! portField.getText().equals("")))
 			try {
 				TreeFactory.createORBTree(hostField.getText(),portField.getText(),root);
 				

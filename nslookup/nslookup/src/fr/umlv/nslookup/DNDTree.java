@@ -20,11 +20,14 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
+import javax.naming.Binding;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+
+import org.omg.CosNaming.NamingContext;
 
 /** Creates a JTree with Drag and Drop facilities.
 * <p>
@@ -135,9 +138,15 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				}
 				else{
 				    	System.out.println("Père:"+selnode.getParent());
-				    	dropnode.add(selnode);
+
 				    	
-						//TODO Faire le nouveau mapping
+				    	if((dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NC))
+				    	{
+				    		selnode.unbind();
+				    		selnode.bind((NamingContext)dropnode.getNodeObject());
+				    		dropnode.add(selnode);				    					    	
+				    	}
+						
 				}
 			} catch(IllegalArgumentException iae){
 				throw new IllegalArgumentException(iae.toString());
