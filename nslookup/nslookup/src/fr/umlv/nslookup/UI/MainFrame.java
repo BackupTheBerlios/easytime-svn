@@ -77,7 +77,31 @@ public class MainFrame extends JFrame {
     
     private void createTreeView(){
         //tree = new DnDJTree(new DefaultTreeModel(root));
-        tree = new DNDTree(new DefaultTreeModel(root));
+        tree = new DNDTree(new DefaultTreeModel(root){
+            public void reload(){
+                NamingContextTreeNode root = (NamingContextTreeNode)getRoot();
+                String[] hosts = new String[root.getChildCount()];
+                String[] ports = new String[root.getChildCount()];
+                
+                for (int i = 0; i < root.getChildCount(); i++) {
+                    NamingContextTreeNode tmp = (NamingContextTreeNode) root.getChildAt(i);
+                    hosts[i]=tmp.getHost();
+                    ports[i]=tmp.getPort();
+                    
+                }
+                root.removeAllChildren();
+                
+                for (int i = 0; i < hosts.length; i++) {
+                    try {
+                        TreeFactory.createORBTree(hosts[i], ports[i], root);
+                    } catch (InvalidName e) {
+//JoptionPane.show
+                    }
+                }
+                   super.reload();
+                
+            }
+        });
         tree.setCellRenderer(new ORBTreeCellRenderer());
         tree.addTreeSelectionListener(new DnDTreeSelectionListener());
     }

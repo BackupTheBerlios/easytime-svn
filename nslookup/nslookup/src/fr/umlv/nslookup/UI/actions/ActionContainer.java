@@ -56,6 +56,7 @@ public class ActionContainer {
     public static Action remOBJ;
     public static Action addORB;
     public static Action remORB;
+    public static Action refresh;
     public static Action prop;
     public static Action option;
     public static Action help;
@@ -165,6 +166,15 @@ public class ActionContainer {
         load.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/load16.png")));
         load.putValue(Action.NAME, "Charger");
         load.putValue(Action.SHORT_DESCRIPTION,"Charger une configuration");
+        
+        refresh = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+                ((DefaultTreeModel)frame.getTree().getModel()).reload();
+            }            
+        };
+        refresh.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/refresh16.png")));
+        refresh.putValue(Action.NAME, "Rafraîchir");
+        refresh.putValue(Action.SHORT_DESCRIPTION,"Rafraîchir");
         
         prop = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {

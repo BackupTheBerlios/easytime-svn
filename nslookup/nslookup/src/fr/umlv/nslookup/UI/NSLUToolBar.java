@@ -10,6 +10,7 @@ package fr.umlv.nslookup.UI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
 import fr.umlv.nslookup.UI.actions.ActionContainer;
@@ -31,6 +32,7 @@ public class NSLUToolBar extends JToolBar {
 	private JButton remNCButton=new JButton(ActionContainer.remNC);
 	private JButton addOBJButton=new JButton(ActionContainer.addOBJ);
 	private JButton remOBJButton=new JButton(ActionContainer.remOBJ);
+	private JButton refreshButton=new JButton(ActionContainer.refresh);
 	private JButton propButton=new JButton(ActionContainer.prop);
 	private JButton optionButton=new JButton(ActionContainer.option);
 	private JButton helpButton=new JButton(ActionContainer.help);
@@ -48,6 +50,7 @@ public class NSLUToolBar extends JToolBar {
     	add(remNCButton);
     	add(addOBJButton);
     	add(remOBJButton);
+    	add(refreshButton);
     	add(propButton);
     	add(optionButton);
     	add(helpButton);
@@ -112,13 +115,15 @@ public class NSLUToolBar extends JToolBar {
 	    saveButton.setText("");
 	    loadButton.setText("");
 	    optionButton.setText("");
-		helpButton.setText("");
+	    refreshButton.setText("");
+	    helpButton.setText("");
 		aboutButton.setText("");
 		quitButton.setText("");
 		
 		saveButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/save24.png")));
 		loadButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/load24.png")));
 		optionButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/option24.gif")));
+		refreshButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/refresh24.png")));
 		helpButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/help24.gif")));
 		aboutButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/logoc24.png")));
 		quitButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/quit24.png")));
