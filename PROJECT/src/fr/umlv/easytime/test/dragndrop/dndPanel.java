@@ -9,6 +9,7 @@
 package fr.umlv.easytime.test.dragndrop;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 /**
  * @author Mat
@@ -33,10 +40,12 @@ public class dndPanel {
     private int nbJours;
     private int nbDivisions;
     private GridBagConstraints c;
-    final JLabel cours;
+    //final JLabel cours;
+    final JTextPane cours;
     
     private void makeDay(int i, boolean last){
         JLabel l = new JLabel("jour" +(i+1));
+        l.setHorizontalAlignment(JLabel.CENTER);
         l.setBorder(BorderFactory.createLineBorder(Color.RED));
         
         c.gridx=i+1;
@@ -82,7 +91,16 @@ public class dndPanel {
         makeDivs(nbDivisions-1,true);
         
         
-        cours=new JLabel("cours de test");
+        cours=new JTextPane();
+        cours.setEditable(false);
+        
+        
+		cours.setText("test pour voir si ça déchire");
+		//cours = new JLabel("<html>test qui tue grave</html>");
+		cours.setPreferredSize(new Dimension(0,0));
+		
+		
+        //cours.setHorizontalAlignment(JLabel.CENTER);
         //JButton cours=new JButton("cours de test");
         //cours.setHorizontalAlignment(JLabel.CENTER);
         
@@ -95,10 +113,6 @@ public class dndPanel {
         c.gridy=7;
         c.gridheight=4;
         c.gridwidth=1;
-        //c.gridwidth=2;
-        //c.gridwidth=GridBagConstraints.RELATIVE;
-        //c.weighty = 1.0;
-        c.weightx = 0.0001;
         grid.setConstraints(cours,c);
         
         back.add(cours);
@@ -112,6 +126,8 @@ public class dndPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cours.setVisible(! cours.isVisible());
+				System.out.println(cours.getWidth());
+				
 				
 			}
 		
