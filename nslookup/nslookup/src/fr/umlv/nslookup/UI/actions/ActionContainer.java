@@ -156,7 +156,7 @@ public class ActionContainer {
                         
                     }
                     ((DefaultTreeModel)frame.getTree().getModel()).setRoot(root);
-                    
+                    ((DefaultTreeModel)frame.getTree().getModel()).reload();
                     
                     
                     
