@@ -16,6 +16,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import fr.umlv.nslookup.NamingContextTreeNode;
+import fr.umlv.nslookup.UI.MainFrame;
 
 /**
  * @author Administrateur
@@ -25,20 +26,20 @@ import fr.umlv.nslookup.NamingContextTreeNode;
  */
 public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 
-    private static ImageIcon rootIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/root24.gif"));
+    private static ImageIcon rootIcon = new ImageIcon(MainFrame.class.getResource("icons/root24.gif"));
     
-    private static ImageIcon orbIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/orb16.png"));
-    private static ImageIcon orbSelIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/orb16sel.png"));
-    private static ImageIcon orbOpenIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/orbopen16.png"));
-    private static ImageIcon orbOpenSelIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/orbopen16sel.png"));
+    private static ImageIcon orbIcon = new ImageIcon(MainFrame.class.getResource("icons/orb16.png"));
+    private static ImageIcon orbSelIcon = new ImageIcon(MainFrame.class.getResource("icons/orb16sel.png"));
+    private static ImageIcon orbOpenIcon = new ImageIcon(MainFrame.class.getResource("icons/orbopen16.png"));
+    private static ImageIcon orbOpenSelIcon = new ImageIcon(MainFrame.class.getResource("icons/orbopen16sel.png"));
 	
-    private static ImageIcon nsIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/nc16.png"));
-    private static ImageIcon nsSelIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/nc16sel.png"));
-    private static ImageIcon nsOpenIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/ncopen16.png"));
-    private static ImageIcon nsOpenSelIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/ncopen16sel.png"));
+    private static ImageIcon nsIcon = new ImageIcon(MainFrame.class.getResource("icons/nc16.png"));
+    private static ImageIcon nsSelIcon = new ImageIcon(MainFrame.class.getResource("icons/nc16sel.png"));
+    private static ImageIcon nsOpenIcon = new ImageIcon(MainFrame.class.getResource("icons/ncopen16.png"));
+    private static ImageIcon nsOpenSelIcon = new ImageIcon(MainFrame.class.getResource("icons/ncopen16sel.png"));
 	
-    private static ImageIcon objIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/obj16.png"));
-    private static ImageIcon objSelIcon = new ImageIcon(ORBTreeCellRenderer.class.getResource("../icons/obj16sel.png"));
+    private static ImageIcon objIcon = new ImageIcon(MainFrame.class.getResource("icons/obj16.png"));
+    private static ImageIcon objSelIcon = new ImageIcon(MainFrame.class.getResource("icons/obj16sel.png"));
     
     
     

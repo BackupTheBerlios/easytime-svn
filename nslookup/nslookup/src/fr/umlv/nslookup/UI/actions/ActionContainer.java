@@ -135,7 +135,7 @@ public class ActionContainer {
                 
             }            
         };
-        save.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/save16.png")));
+        save.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/save16.png")));
         save.putValue(Action.NAME, "Sauvegarder");
         save.putValue(Action.SHORT_DESCRIPTION,"Sauvegarder la configuration");
 
@@ -178,7 +178,7 @@ public class ActionContainer {
                 }
             }            
         };
-        load.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/load16.png")));
+        load.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/load16.png")));
         load.putValue(Action.NAME, "Charger");
         load.putValue(Action.SHORT_DESCRIPTION,"Charger une configuration");
         
@@ -187,7 +187,7 @@ public class ActionContainer {
                 ((DefaultTreeModel)frame.getTree().getModel()).reload();
             }            
         };
-        refresh.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/refresh16.png")));
+        refresh.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/refresh16.png")));
         refresh.putValue(Action.NAME, "Rafraîchir");
         refresh.putValue(Action.SHORT_DESCRIPTION,"Rafraîchir");
         
@@ -199,7 +199,7 @@ public class ActionContainer {
                 MiscDialog.showCORBAProperties(frame, node);
             }            
         };
-        prop.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/prop16.gif")));
+        prop.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/prop16.gif")));
         prop.putValue(Action.NAME, "Propriétés");
         prop.putValue(Action.SHORT_DESCRIPTION,"Propriétés");
     	prop.setEnabled(false);
@@ -208,7 +208,7 @@ public class ActionContainer {
             public void actionPerformed(ActionEvent arg0) {
             }            
         };
-        option.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/option16.gif")));
+        option.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/option16.gif")));
         option.putValue(Action.NAME, "Options");
         option.putValue(Action.SHORT_DESCRIPTION,"Options");
         
@@ -216,7 +216,7 @@ public class ActionContainer {
             public void actionPerformed(ActionEvent arg0) {
             }            
         };
-        help.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/help16.gif")));
+        help.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/help16.gif")));
         help.putValue(Action.NAME, "Aide");
         help.putValue(Action.SHORT_DESCRIPTION,"Aide");
         
@@ -232,7 +232,7 @@ public class ActionContainer {
                 d.setVisible(true);                
             }            
         };
-        about.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/logoc16.png")));
+        about.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/logoc16.png")));
         about.putValue(Action.NAME, "A propos");
         about.putValue(Action.SHORT_DESCRIPTION,"A propos");
         
@@ -245,7 +245,7 @@ public class ActionContainer {
                }
             }            
         };
-        quit.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/quit16.png")));
+        quit.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/quit16.png")));
         quit.putValue(Action.NAME, "Quitter");
         quit.putValue(Action.SHORT_DESCRIPTION,"Quitter NSLookUP");
         
@@ -270,7 +270,7 @@ public class ActionContainer {
             	((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
-        addNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")));
+        addNC.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addnc16.png")));
         addNC.putValue(Action.NAME, "Ajouter un NC");
         addNC.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Contexte de Nommage");
         addNC.setEnabled(false);
@@ -288,7 +288,7 @@ public class ActionContainer {
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
-        remNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remnc16.png")));
+        remNC.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remnc16.png")));
         remNC.putValue(Action.NAME, "Retirer un NC");
         remNC.putValue(Action.SHORT_DESCRIPTION,"Retirer un Contexte de Nommage");
         remNC.setEnabled(false);
@@ -313,7 +313,7 @@ public class ActionContainer {
                 
             }            
         };
-        addOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addobj16.png")));
+        addOBJ.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addobj16.png")));
         addOBJ.putValue(Action.NAME, "Ajouter un Obj.");
         addOBJ.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Objet CORBA");
         addOBJ.setEnabled(false);
@@ -330,7 +330,7 @@ public class ActionContainer {
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();                                
             }            
         };
-        remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remobj16.png")));
+        remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remobj16.png")));
         remOBJ.putValue(Action.NAME, "Retirer un Obj.");
         remOBJ.putValue(Action.SHORT_DESCRIPTION,"Retirer un Objet CORBA");
         remOBJ.setEnabled(false);
@@ -342,7 +342,7 @@ public class ActionContainer {
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
-        addORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addorb16.png")));
+        addORB.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addorb16.png")));
         addORB.putValue(Action.NAME, "Ajouter un ORB/NS");
         addORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
         addORB.setEnabled(true);
@@ -354,7 +354,7 @@ public class ActionContainer {
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
-        remORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remorb16.png")));
+        remORB.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remorb16.png")));
         remORB.putValue(Action.NAME, "Retirer un ORB/NS");
         remORB.putValue(Action.SHORT_DESCRIPTION,"Retirer un ORB/Naming Service");
         remORB.setEnabled(false);
