@@ -23,6 +23,7 @@ import java.io.IOException;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 /** Creates a JTree with Drag and Drop facilities.
@@ -143,7 +144,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 			treemodel.reload();
         }
 	}
-
+	
 	/** Internally implemented, Do not override!*/
 	public void dragEnter (DragSourceDragEvent event){
 	}
@@ -159,6 +160,12 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 	/** Internally implemented, Do not override!*/
 	public void dropActionChanged ( DragSourceDragEvent event){
 	}
+	
+	public TreeNode getSelectedNode(){
+        TreePath path = getSelectionPath();
+        if(path==null) return null;
+        else return (TreeNode) path.getLastPathComponent();
+    }
 }
 
 

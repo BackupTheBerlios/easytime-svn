@@ -14,7 +14,10 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
+import fr.umlv.nslookup.DNDTree;
+import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.MainFrame;
+import fr.umlv.nslookup.UI.MiscDialog;
 import fr.umlv.nslookup.UI.NSLUMenuBar;
 
 
@@ -30,12 +33,10 @@ public class ActionContainer {
 	
 	public ActionContainer(MainFrame frame){
 		this.frame = frame;
-	}
-	
-	static{
 		initDefault();
 		initStaticActions();
 	}
+	
 
 	public static Action save;
 	public static Action load;
@@ -51,7 +52,7 @@ public class ActionContainer {
     public static Action about;
     public static Action quit;
     
-    public static void initDefault(){
+    public void initDefault(){
         addNC = DefaultActionFactory.addNC;
         remNC= DefaultActionFactory.remNC;
         addOBJ= DefaultActionFactory.addOBJ;
@@ -61,10 +62,12 @@ public class ActionContainer {
         
     }
     
-    private static void initStaticActions(){
+    private void initStaticActions(){
         save = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+                DNDTree tree = frame.getTree();
+                NamingContextTreeNode node = (NamingContextTreeNode)tree.getSelectedNode();
+                System.out.println(MiscDialog.showIORInputDialog(frame));
             }            
         };
         save.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/save16.png")));
@@ -82,7 +85,9 @@ public class ActionContainer {
         
         prop = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+                DNDTree tree = frame.getTree();
+                NamingContextTreeNode node = (NamingContextTreeNode)tree.getSelectedNode();
+                MiscDialog.showCORBAProperties(frame, node);
             }            
         };
         prop.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/prop16.gif")));
@@ -119,14 +124,7 @@ public class ActionContainer {
     }
     
     
-//  save = new DefaultAction(new ImageIconnew ImageIcon(ActionContainer.class.getResource("../icons/save16.png")), "Sauvegarder", "Sauvegarder la configuration", true);
-    //load = new DefaultAction(new ImageIcon(ActionContainer.class.getResource("../icons/load16.png")), "Charger", "Charger une configuration", true);
-    //prop = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/prop16.gif")), "Propriétés", "Propriétés", false);
-    //option = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/option16.gif")), "Options", "Options", true);
-    //help = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/help16.gif")), "Aide", "Aide", true);
-    //about = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "A propos", "A propos", true);
-    //quit = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/quit16.png")), "Quitter", "Quitter", true);
-    
+ 
     
     /**
      * 

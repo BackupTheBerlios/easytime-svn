@@ -37,12 +37,12 @@ public class MiscDialog{
       private static String getPath(NamingContextTreeNode node){
           String path = "";
           NamingContextTreeNode tmp = node;
-          while(tmp!=null){
+          while(tmp.getType() != NamingContextTreeNode.TYPE_NS){
               switch(tmp.getType()){
-            	case 0 : path = "$>"+path;
-              	case 1 : path = "("+tmp+")>"+path;
-              	case 2 : path = "["+tmp+"]>"+path;
-              	case 3 : path = tmp+path;
+            	case 0 : path = "$>"+path;break;
+              	case 1 : path = "("+tmp+")>"+path;break;
+              	case 2 : path = "["+tmp+"]>"+path;break;
+              	case 3 : path = tmp+path;break;
               }
               tmp = (NamingContextTreeNode)tmp.getParent();
           }
@@ -75,6 +75,7 @@ public class MiscDialog{
           	    panel.add(new JLabel("1234"));
           	    panel.add(IOR);
           	    panel.add(new JLabel("qsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+          	    break;
           	}
           	case 2 : {		// NC case
           	    panel.setLayout(new GridLayout(4, 2));
@@ -86,6 +87,7 @@ public class MiscDialog{
           	    panel.add(new JLabel(getPath(node)));
         	    panel.add(IOR);
           	    panel.add(new JLabel("qsdfqsdfqsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+          	    break;
           	}
           	case 3 : {		// CORBA OBJECT case
           	    panel.setLayout(new GridLayout(4, 2));
@@ -97,6 +99,7 @@ public class MiscDialog{
           	    panel.add(new JLabel(getPath(node)));
         	    panel.add(IOR);
           	    panel.add(new JLabel("qsdfqsdfqsdf2345245qsdf563fsdgfgsdf425gf4gSDFG"));
+          	    break;
           	}
           }
           
