@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
@@ -95,7 +96,7 @@ public class MainFrame extends JFrame {
                     try {
                         TreeFactory.createORBTree(hosts[i], ports[i], root);
                     } catch (InvalidName e) {
-//JoptionPane.show
+                        JOptionPane.showMessageDialog(MainFrame.this , "Entité CORBA inaccessible", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                    super.reload();
