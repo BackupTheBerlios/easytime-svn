@@ -93,8 +93,8 @@ public class AboutDialog extends JDialog implements ActionListener {
         }
 
         private void jbInit() throws Exception  {
-          imgLogo = new ImageIcon(getClass().getResource("./icons/logo.jpg"));
-          imgIg2000 = new ImageIcon(getClass().getResource("./icons/ig2000.jpg"));
+          imgLogo = new ImageIcon(MainFrame.class.getResource("icons/logo.jpg"));
+          imgIg2000 = new ImageIcon(MainFrame.class.getResource("icons/ig2000.jpg"));
           this.setSize(437,200);
           this.setTitle("A propos de NSLookup");
           setResizable(false);
@@ -142,8 +142,8 @@ public class AboutDialog extends JDialog implements ActionListener {
       }
 
 class DefilPanel extends JPanel implements Runnable{
-    
-    private final ImageIcon sergio = new ImageIcon(getClass().getResource("./icons/mid1.gif"));
+   
+    private final ImageIcon sergio = new ImageIcon(MainFrame.class.getResource("icons/mid1.gif"));
 	
 	/** The messages **/
 	private final String[] messages = {
