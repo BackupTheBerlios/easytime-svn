@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
@@ -48,14 +49,13 @@ public class MainFrame extends JFrame {
         super("NS lookup");
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(new ScrollPane());
         ac = new ActionContainer(this);
         initLookAndFeel();
         initRoot();
         createMenuBar();
         createToolBar();
         createTreeView();
-        this.getContentPane().add(tree);
+        this.getContentPane().add(new JScrollPane(tree));
         this.setVisible(true);
         
         

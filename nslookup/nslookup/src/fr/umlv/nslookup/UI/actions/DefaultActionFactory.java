@@ -23,19 +23,23 @@ import javax.swing.ImageIcon;
 public class DefaultActionFactory {
 
     static{
-        addNC = new DefaultAction(new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")), "Ajouter NC", "Ajouter un Context de Nommage");
-        remNC = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/remnc16.png")), "Retirer NC", "Retirer un Context de Nommage");
-        addOBJ = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addobj16.png")), "Ajouter IOR", "Ajouter un Objet CORBA");
-        remOBJ = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addobj16.png")), "Retirer IOR", "Retirer un Objet CORBA");
-        addORB = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "Ajouter ORB", "Ajouter un ORB");
-        remORB = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "Retirer ORB", "Retirer un ORB");
-        prop = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/prop16.gif")), "Propriétés", "Propriétés");
-        option = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/option16.gif")), "Options", "Options");
-        help = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/help16.gif")), "Aide", "Aide");
-        about = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "A propos", "A propos");
-        quit = new DefaultAction(null, "Quitter", "Quitter");
+        save = new DefaultAction(new ImageIcon(ActionContainer.class.getResource("../icons/save16.png")), "Sauvegarder", "Sauvegarder la configuration", true);
+        load = new DefaultAction(new ImageIcon(ActionContainer.class.getResource("../icons/load16.png")), "Charger", "Charger une configuration", true);
+        addNC = new DefaultAction(new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")), "Ajouter NC", "Ajouter un Context de Nommage", false);
+        remNC = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/remnc16.png")), "Retirer NC", "Retirer un Context de Nommage", false);
+        addOBJ = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addobj16.png")), "Ajouter IOR", "Ajouter un Objet CORBA", false);
+        remOBJ = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addobj16.png")), "Retirer IOR", "Retirer un Objet CORBA", false);
+        addORB = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "Ajouter ORB", "Ajouter un ORB", false);
+        remORB = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "Retirer ORB", "Retirer un ORB", false);
+        prop = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/prop16.gif")), "Propriétés", "Propriétés", false);
+        option = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/option16.gif")), "Options", "Options", true);
+        help = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/help16.gif")), "Aide", "Aide", true);
+        about = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/addorb16.png")), "A propos", "A propos", true);
+        quit = new DefaultAction(new ImageIcon(DefaultActionFactory.class.getResource("../icons/quit16.png")), "Quitter", "Quitter", true);
     }
     
+    public final static Action save;
+    public final static Action load;
     public final static Action addNC;
     public final static Action remNC;
     public final static Action addOBJ;
@@ -51,11 +55,11 @@ public class DefaultActionFactory {
     
     private static class DefaultAction extends AbstractAction{
 
-        public DefaultAction(ImageIcon icon, String name, String tooltip){
+        public DefaultAction(ImageIcon icon, String name, String tooltip, boolean enabled){
             if(icon!=null) putValue(Action.SMALL_ICON, icon);
             putValue(Action.NAME, name);
             putValue(Action.SHORT_DESCRIPTION, 	tooltip);
-            //setEnabled(false);
+            setEnabled(enabled);
         }
         
        public void actionPerformed(ActionEvent arg0) {}        

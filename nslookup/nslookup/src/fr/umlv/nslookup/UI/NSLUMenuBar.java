@@ -8,6 +8,7 @@
  */
 package fr.umlv.nslookup.UI;
 
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -22,7 +23,9 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class NSLUMenuBar extends JMenuBar {
 
-	private JMenuItem addORBButton=new JMenuItem(ActionContainer.addORB);
+    private JMenuItem saveButton=new JMenuItem(ActionContainer.save);
+    private JMenuItem loadButton=new JMenuItem(ActionContainer.load);
+    private JMenuItem addORBButton=new JMenuItem(ActionContainer.addORB);
 	private JMenuItem remORBButton=new JMenuItem(ActionContainer.remORB);
 	private JMenuItem addNCButton=new JMenuItem(ActionContainer.addNC);
 	private JMenuItem remNCButton=new JMenuItem(ActionContainer.remNC);
@@ -43,6 +46,8 @@ public class NSLUMenuBar extends JMenuBar {
 	
 	public JMenu createFileMenu(){
 		JMenu menu = new JMenu("Fichier");
+		menu.add(saveButton);
+		menu.add(loadButton);
 		menu.add(optionButton);
 		menu.addSeparator();
 		menu.add(quitButton);

@@ -23,7 +23,9 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class NSLUToolBar extends JToolBar {
 
-	private JButton addORBButton=new JButton(ActionContainer.addORB);
+    private JButton saveButton=new JButton(ActionContainer.save);
+    private JButton loadButton=new JButton(ActionContainer.load);
+    private JButton addORBButton=new JButton(ActionContainer.addORB);
 	private JButton remORBButton=new JButton(ActionContainer.remORB);
 	private JButton addNCButton=new JButton(ActionContainer.addNC);
 	private JButton remNCButton=new JButton(ActionContainer.remNC);
@@ -38,6 +40,8 @@ public class NSLUToolBar extends JToolBar {
     public NSLUToolBar(){
     	super();
     	
+    	add(saveButton);
+    	add(loadButton);
     	add(addORBButton);
     	add(remORBButton);
     	add(addNCButton);
@@ -105,15 +109,19 @@ public class NSLUToolBar extends JToolBar {
 	}
 
 	private void formatStaticButtons(){
-		optionButton.setText("");
+	    saveButton.setText("");
+	    loadButton.setText("");
+	    optionButton.setText("");
 		helpButton.setText("");
 		aboutButton.setText("");
 		quitButton.setText("");
 		
+		saveButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/save24.png")));
+		loadButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/load24.png")));
 		optionButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/option24.gif")));
 		helpButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/help24.gif")));
 		//aboutButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/about24.gif")));
-		//quitButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/24.gif")));
+		quitButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/quit24.png")));
 		
 	}
 		

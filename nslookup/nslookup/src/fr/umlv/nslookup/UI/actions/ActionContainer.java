@@ -32,7 +32,9 @@ public class ActionContainer {
 		initDefault();
 	}
 
-    public static Action addNC;
+	public static Action save;
+	public static Action load;
+	public static Action addNC;
     public static Action remNC;
     public static Action addOBJ;
     public static Action remOBJ;
@@ -45,7 +47,9 @@ public class ActionContainer {
     public static Action quit;
     
     public static void initDefault(){
-    	addNC = DefaultActionFactory.addNC;
+        save = DefaultActionFactory.save;
+        load = DefaultActionFactory.load;
+        addNC = DefaultActionFactory.addNC;
         remNC= DefaultActionFactory.remNC;
         addOBJ= DefaultActionFactory.addOBJ;
         remOBJ= DefaultActionFactory.remOBJ;
