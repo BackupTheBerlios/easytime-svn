@@ -95,7 +95,8 @@ public class MainFrame extends JFrame {
     private void initRoot(){
         
         root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);
-        	
+
+        /*
         // Creation arbre d'un NC	
         try{
 		    TreeFactory.createORBTree("localhost","1234", root);
@@ -104,7 +105,7 @@ public class MainFrame extends JFrame {
 			System.out.println("No connection :( ");
 			e.printStackTrace();
 			};
-		
+		*/
     }
     
     private void initLookAndFeel(){

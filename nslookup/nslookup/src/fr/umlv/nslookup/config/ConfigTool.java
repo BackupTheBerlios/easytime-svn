@@ -29,7 +29,7 @@ import java.util.StringTokenizer;
 public class ConfigTool {
 	
 	
-	final static ORBConfig[] loadConfig(String filePath){
+	public final static ORBConfig[] loadConfig(String filePath){
 	    
 	    ArrayList list = new ArrayList();
 	    BufferedReader br;
@@ -68,7 +68,7 @@ public class ConfigTool {
 	    
 	}
 	
-	final static void saveConfig(String filePath, ORBConfig[] orbTab){
+	public final static void saveConfig(String filePath, ORBConfig[] orbTab){
 	    BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(filePath));

@@ -29,7 +29,7 @@ public class JLoadFileChooser extends JFileChooser {
     public static void main(String[] args) {
         JFrame frame =  new JFrame();
         
-        JFileChooser choice = new JFileChooser();
+        
         /*choice.setDialogTitle("Choix du fichier de configuration");
         choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
         choice.setFileFilter(new ORBCfgFileFilter());
@@ -41,7 +41,7 @@ public class JLoadFileChooser extends JFileChooser {
         }
         */
         
-        
+        JFileChooser choice = new JFileChooser();
         choice.setDialogTitle("Enregistrement de la configuration");
         choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
         choice.setFileFilter(new ORBCfgFileFilter());

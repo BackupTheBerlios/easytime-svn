@@ -35,6 +35,8 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     private Binding binding;
     //private 
     private int type;
+    private String host;
+    private String port;
     public static final DataFlavor TREENODE_FLAVOR = new DataFlavor(NamingContextTreeNode.class, "NCTreeNode"); 
     
     public NamingContextTreeNode(Binding b){
@@ -49,14 +51,42 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
 
     }
     
+    public NamingContextTreeNode(String host, String port){
+        super(host+" "+port);
+        this.host = host;
+        this.port = port;
+        this.binding = null;
+        this.type=TYPE_NS;
+        
+    }
+    
     public NamingContextTreeNode(String s, int type){
         super(s);
         
         this.binding = null;
-        this.type=type;
+        this.type=TYPE_ROOT;
         
     }
 
+    public String getHost(){
+        
+        switch(type){
+        	case(TYPE_ROOT): return null; 
+        	case(TYPE_NS):   return host; 
+        	default:		 return ((NamingContextTreeNode)getParent()).getHost();        
+        }
+    }
+    
+    public String getPort(){
+        
+        switch(type){
+        	case(TYPE_ROOT): return null; 
+        	case(TYPE_NS):   return port; 
+        	default:		 return ((NamingContextTreeNode)getParent()).getPort();        
+        }
+    }
+    
+    
     public int getType() {
         
         return this.type;

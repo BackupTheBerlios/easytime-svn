@@ -9,17 +9,26 @@
 package fr.umlv.nslookup.UI.actions;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultTreeModel;
+
+import org.omg.CORBA.ORBPackage.InvalidName;
 
 import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
+import fr.umlv.nslookup.TreeFactory;
 import fr.umlv.nslookup.UI.MainFrame;
 import fr.umlv.nslookup.UI.MiscDialog;
 import fr.umlv.nslookup.UI.NSLUMenuBar;
+import fr.umlv.nslookup.UI.ORBCfgFileFilter;
+import fr.umlv.nslookup.config.ConfigTool;
+import fr.umlv.nslookup.config.ORBConfig;
 
 
 /**
@@ -66,9 +75,48 @@ public class ActionContainer {
     private void initStaticActions(){
         save = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+                /*
                 DNDTree tree = frame.getTree();
                 NamingContextTreeNode node = (NamingContextTreeNode)tree.getSelectedNode();
                 System.out.println(MiscDialog.showIORInputDialog(frame));
+                */
+                NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
+                
+                if(root.getChildCount() == 0)
+                {
+                    JOptionPane.showMessageDialog(frame,"Aucun orb en cours de visualisation !","Rien à sauver !",JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                JFileChooser choice = new JFileChooser();
+                choice.setDialogTitle("Enregistrement de la configuration");
+                choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                choice.setFileFilter(new ORBCfgFileFilter());
+                
+                int rp = choice.showSaveDialog(frame);
+                if (rp == JFileChooser.APPROVE_OPTION) {
+                    String path = choice.getSelectedFile().getAbsolutePath();
+                    if( ! path.endsWith(".cfg"))
+                        path = path + ".cfg";
+                                                         
+                                        
+                    
+                    ORBConfig[] tab = new ORBConfig[root.getChildCount()];
+                    
+                    for(int i =0;i<root.getChildCount();i++)
+                    {
+                        NamingContextTreeNode node = (NamingContextTreeNode)root.getChildAt(i);
+                        String host = node.getHost();
+                        String port = node.getPort();                        
+                        tab[i] = new ORBConfig(port,host);
+                    }
+                    
+                    ConfigTool.saveConfig(path,tab);
+                    
+                    
+                }
+                
+                
             }            
         };
         save.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/save16.png")));
@@ -76,8 +124,40 @@ public class ActionContainer {
         save.putValue(Action.SHORT_DESCRIPTION,"Sauvegarder la configuration");
 
         load = new AbstractAction(){
+            
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+                NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
+                                
+                JFileChooser choice = new JFileChooser();
+                choice.setDialogTitle("Lecture de la configuration");
+                choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                choice.setFileFilter(new ORBCfgFileFilter());                
+                int rp = choice.showOpenDialog(frame);
+                if (rp == JFileChooser.APPROVE_OPTION) {
+                    String path = choice.getSelectedFile().getAbsolutePath();
+                    
+                    ORBConfig[] tab = ConfigTool.loadConfig(path);
+                                        
+                    for(int i =0;i<tab.length;i++)
+                    {                        
+                        String host = tab[i].getAddress();
+                        String port = tab[i].getPort();                   
+//                      Creation arbre d'un NC	
+                        try{
+                		    TreeFactory.createORBTree(host,port,root);
+                		} catch (InvalidName e)
+                			{
+                		    JOptionPane.showMessageDialog(frame,"Connexion impossible à " + host + ":" + port,"Erreur!",JOptionPane.ERROR_MESSAGE);
+                			//System.out.println("No connection :( " + host + " " + port);
+                			//e.printStackTrace();
+                			};
+                        
+                    }
+                    ((DefaultTreeModel)frame.getTree().getModel()).reload();
+                    
+                    
+                    
+                }
             }            
         };
         load.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/load16.png")));

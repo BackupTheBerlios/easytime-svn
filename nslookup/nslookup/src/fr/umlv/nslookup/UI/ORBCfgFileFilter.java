@@ -26,14 +26,14 @@ public class ORBCfgFileFilter extends FileFilter {
      * @see javax.swing.filechooser.FileFilter#accept(java.io.File)
      */
     public boolean accept(File f) {
-        return hasGoodExtension(f);
+        return hasGoodExtension(f) || f.isDirectory();
     }
 
     private boolean hasGoodExtension(File f){
         String name = f.getName();
         if(name.length()<5) return false;
         String tmp = name.substring((name.length()-4), (name.length()));
-        System.out.println(name+" - "+tmp);
+        //System.out.println(name+" - "+tmp);
         return (tmp.equals(".cfg"));
     }
     

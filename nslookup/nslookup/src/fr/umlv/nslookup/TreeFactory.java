@@ -27,18 +27,26 @@ public class TreeFactory {
 
     private static ORB orb = null; 
     
-	public static NamingContextTreeNode createORBTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName {
+	public static NamingContextTreeNode createORBTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName{
 	
 	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
 		orb = ORB.init(args, null);
 		// 	Récupération de la référence du sevice de nommage
-		
+		try{
 	    NamingContextExt namingContext = NamingContextExtHelper.narrow(orb.resolve_initial_references("NameService"));
-	    NamingContextTreeNode ORBroot = new NamingContextTreeNode(host+" "+port,NamingContextTreeNode.TYPE_NS);
-	    try{
+		NamingContextTreeNode ORBroot = new NamingContextTreeNode(host,port);
 	    explore((NamingContext) namingContext,ORBroot );
-	    }catch(Exception e){e.printStackTrace();};
 	    root.add(ORBroot);
+	    }catch(org.omg.CORBA.SystemException se) 
+	    { 
+		    throw new org.omg.CORBA.ORBPackage.InvalidName();
+		}
+	    catch(Exception e) 
+	    { 
+		    throw new org.omg.CORBA.ORBPackage.InvalidName();
+		}
+	    ;
+	    
 	    return root;
 	}
 	
