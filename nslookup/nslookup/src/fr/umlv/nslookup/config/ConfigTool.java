@@ -87,10 +87,10 @@ public class ConfigTool {
 	
 	public static void main(String[] args) {
 	    ORBConfig[] list = ConfigTool.loadConfig("configORB.cfg");
-		System.out.println(list.length);
-		for (int i = 0; i < list.length; i++) {
-            System.out.println(list[i]);
-        }
+		//System.out.println(list.length);
+		//for (int i = 0; i < list.length; i++) {
+        //    System.out.println(list[i]);
+        //}
 		
 		ORBConfig[] list2 = new ORBConfig[5];
 		list2[0] = new ORBConfig("5423", "192.0.0.5");

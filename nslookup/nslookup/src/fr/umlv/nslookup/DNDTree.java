@@ -63,7 +63,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 
 	/** Internally implemented, Do not override!*/
 	public void dragEnter(DropTargetDragEvent event){
-	    System.out.println("drag enter");
+	    //System.out.println("drag enter");
 		event.acceptDrag (DnDConstants.ACTION_MOVE);
 	}
 
@@ -91,7 +91,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				    event.getDropTargetContext().dropComplete(true);
 				else
 				{
-				    System.out.println("Rejeté !");
+				    //System.out.println("Rejeté !");
 					
 				}
 			}
@@ -113,7 +113,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 
 	/** Internally implemented, Do not override!*/
 	public void dragGestureRecognized( DragGestureEvent event){
-	    System.out.println("gesture recognized");
+	    //System.out.println("gesture recognized");
 		selnode=null;
 		dropnode=null;
 		
@@ -137,23 +137,23 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 		if ( event.getDropSuccess()){
 			try{
 				if(dropnode.equals(selnode)){
-					System.out.println("drag==drop");
+					///System.out.println("drag==drop");
 					throw new IllegalArgumentException("the source is the same as the destination");
 				}
 				else{
-				    	System.out.println("Père:"+selnode.getParent());
+				    	//System.out.println("Père:"+selnode.getParent());
 				    	
 				    	
 				    	if( (dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NS))
 				    	{
-				    		System.out.println(selnode.getType() +" "+ NamingContextTreeNode.TYPE_CONTEXT);
-				    		System.out.println(dropnode.getHost()+" "+ selnode.getHost());
+				    		//System.out.println(selnode.getType() +" "+ NamingContextTreeNode.TYPE_CONTEXT);
+				    		//System.out.println(dropnode.getHost()+" "+ selnode.getHost());
 				    		
 				    		if((selnode.getType() == NamingContextTreeNode.TYPE_CONTEXT)&&
 				    		   ((! dropnode.getPort().equals(selnode.getPort()))
 				    		  ||(! dropnode.getHost().equals(selnode.getHost()))))
 							{
-				    			System.out.println("Context changé d'ORB -> refusé !");
+				    			//System.out.println("Context changé d'ORB -> refusé !");
 								return;								
 							}
 				    		

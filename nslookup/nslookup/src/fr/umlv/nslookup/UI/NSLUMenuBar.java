@@ -30,7 +30,7 @@ public class NSLUMenuBar extends JMenuBar {
 	private JMenuItem addNCButton=new JMenuItem(ActionContainer.addNC);
 	private JMenuItem remNCButton=new JMenuItem(ActionContainer.remNC);
 	private JMenuItem addOBJButton=new JMenuItem(ActionContainer.addOBJ);
-	private JMenuItem remOBJButton=new JMenuItem(ActionContainer.addOBJ);
+	private JMenuItem remOBJButton=new JMenuItem(ActionContainer.remOBJ);
 	private JMenuItem refreshButton=new JMenuItem(ActionContainer.refresh);
 	private JMenuItem propButton=new JMenuItem(ActionContainer.prop);
 	private JMenuItem optionButton=new JMenuItem(ActionContainer.option);

@@ -288,18 +288,18 @@ public class ActionContainer {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
                 NamingContext rootContext = (NamingContext)n.getNodeObject();
                 String IOR=JOptionPane.showInputDialog("Veuillez entrer une IOR:");
-                System.out.println(IOR);
+                String nom=JOptionPane.showInputDialog("Veuillez entrer un nom:");
                 String[] args = {"-ORBInitialPort",n.getPort(),"-ORBInitialHost",n.getHost()}; 
         		ORB orb = ORB.init(args, null);
                 Object o = orb.string_to_object(IOR);
                 NameComponent[] contextName = new NameComponent[1];
-            	contextName[0] = new NameComponent("TestObj","");
+            	contextName[0] = new NameComponent(nom,"");
                 try {
                     rootContext.bind(contextName,(org.omg.CORBA.Object)o);
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(frame,"Insertion de l'objet impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame,"Insertion de l'objet "+nom+ " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
                 }  
-                
+                ((DefaultTreeModel)(frame.getTree().getModel())).reload();
                 
             }            
         };
