@@ -25,7 +25,7 @@ import org.omg.CosNaming.NamingContextPackage.*;
  */
 public class TreeFactory {
 
-	public static NamingContextTreeNode createTree(String host,String port) throws org.omg.CORBA.ORBPackage.InvalidName {
+	public static NamingContextTreeNode createORBTree(String host,String port) throws org.omg.CORBA.ORBPackage.InvalidName {
 	
 	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
 		ORB orb = ORB.init(args, null);

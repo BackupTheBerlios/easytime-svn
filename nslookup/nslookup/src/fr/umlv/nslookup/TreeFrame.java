@@ -36,7 +36,7 @@ public class TreeFrame {
 		
 		 
 		try{
-		    root =TreeFactory.createTree("localhost","1234");
+		    root =TreeFactory.createORBTree("localhost","1234");
 		} catch (InvalidName e)
 			{
 			System.out.println("No connection :( ");
