@@ -14,6 +14,7 @@ import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Enumeration;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -25,6 +26,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
 
@@ -99,10 +102,37 @@ public class MainFrame extends JFrame {
                         JOptionPane.showMessageDialog(MainFrame.this , "Entité CORBA inaccessible", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                   super.reload();
-                
-            }
-        });
+                super.reload();
+                System.out.println("expand merde !");
+                expandAll(tree, new TreePath(root), true);
+             
+         }
+         
+         
+         
+         private void expandAll(JTree tree, TreePath parent, boolean expand) {
+             // Traverse children
+             TreeNode node = (TreeNode)parent.getLastPathComponent();
+             if (node.getChildCount() >= 0) {
+                 for (Enumeration e=node.children(); e.hasMoreElements(); ) {
+                     TreeNode n = (TreeNode)e.nextElement();
+                     TreePath path = parent.pathByAddingChild(n);
+                     expandAll(tree, path, expand);
+                 }
+             }
+         
+             // Expansion or collapse must be done bottom-up
+             if (expand) {
+                 tree.expandPath(parent);
+             } else {
+                 tree.collapsePath(parent);
+             }
+         }
+         
+         
+         
+         
+     });
         tree.setCellRenderer(new ORBTreeCellRenderer());
         tree.addTreeSelectionListener(new DnDTreeSelectionListener());
     }

@@ -165,7 +165,13 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     	NameComponent[] name = binding.binding_name; 
     	NamingContext nc = getParentContext();
     	nc.unbind(name);
-    	newParent.bind(name,(org.omg.CORBA.Object)o);
+    	if(type == TYPE_OBJECT)
+    		newParent.bind(name,(org.omg.CORBA.Object)o);
+    	else
+    	{
+    		NamingContext nnc = (NamingContext)o;
+    		newParent.bind_context(name,nnc);
+    	}
     	binding.binding_name = name;
     }
     

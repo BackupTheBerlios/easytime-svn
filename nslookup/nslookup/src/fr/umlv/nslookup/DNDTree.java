@@ -142,10 +142,29 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				}
 				else{
 				    	System.out.println("Père:"+selnode.getParent());
-
 				    	
-				    	if((dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NS))
+				    	
+				    	if( (dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NS))
 				    	{
+				    		System.out.println(selnode.getType() +" "+ NamingContextTreeNode.TYPE_CONTEXT);
+				    		System.out.println(dropnode.getHost()+" "+ selnode.getHost());
+				    		
+				    		if((selnode.getType() == NamingContextTreeNode.TYPE_CONTEXT)&&
+				    		   ((! dropnode.getPort().equals(selnode.getPort()))
+				    		  ||(! dropnode.getHost().equals(selnode.getHost()))))
+							{
+				    			System.out.println("Context changé d'ORB -> refusé !");
+								return;								
+							}
+				    		
+				    		
+				    		
+				    		
+				    		
+				    		
+				    		
+				    		
+				    		
 				    		try {
 								selnode.rebind((NamingContext)dropnode.getNodeObject());
 							} catch (NotFound e) {
@@ -161,16 +180,18 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-				    		dropnode.add(selnode);				    					    	
+				    		dropnode.add(selnode);
+				    		
 				    	}
 						
 				}
 			} catch(IllegalArgumentException iae){
 				throw new IllegalArgumentException(iae.toString());
 			}
+			
 			treemodel.reload();
-			this.setExpandsSelectedPaths(true);
-	    	this.setSelectionPath(new TreePath(selnode.getPath()));
+			
+			
         }
 	}
 	
