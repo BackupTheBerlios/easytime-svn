@@ -6,7 +6,7 @@
  *
  * Person in charge: jvaldes
  */
-package src.fr.umlv.easytime.test.jvaldes;
+package fr.umlv.easytime.test.jvaldes;
 
 /**
  * @author jvaldes
