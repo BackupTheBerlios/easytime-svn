@@ -6,7 +6,7 @@
  *
  * Person in charge: Mat
  */
-package fr.uml.mloyen.monpackage;
+package fr.umlv.easytime.test.junit;
 
 import java.io.IOException;
 
