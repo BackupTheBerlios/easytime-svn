@@ -73,10 +73,29 @@ public class MainFrame extends JFrame {
         createMenuBar();
         createToolBar();
         createTreeView();
+        
+        
+        Runnable r = new Runnable(){
+        	public void run(){
+        		
+        		while(true)
+        		{
+        		try {
+					Thread.sleep(30000);
+				} catch (InterruptedException e) {}
+				
+				
+				((DefaultTreeModel)tree.getModel()).reload();
+				
+				
+				
+        		}
+        	}        	
+        };
+        
+        new Thread(r).start();
         this.getContentPane().add(new JScrollPane(tree));
         this.setVisible(true);
-        
-        
     }
     
     private void createTreeView(){
