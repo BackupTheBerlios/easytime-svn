@@ -85,6 +85,6 @@ public class Database {
 		this.port = port;
 	}
 	public String toString() {
-	      return "Database: host='" + host + "' port='" + port + "'" + "' name='" + name + "'" + "' login='" + login + "'" + "' password='" + password + "'";
+	      return "Database: host='" + host + "' port='" + port + "' name='" + name + "' login='" + login + "' password='" + password + "'";
 	   }
 }
