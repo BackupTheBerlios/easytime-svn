@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
@@ -30,8 +31,10 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
 
@@ -101,7 +104,7 @@ public class MainFrame extends JFrame {
      * 
      */
     private void createTreeView(){
-        	// Creation of the Tree with the modified DefaultTreeModel
+        // Creation of the Tree with the modified DefaultTreeModel        
         tree = new DNDTree(new DefaultTreeModel(root){
             public void reload(){
                 NamingContextTreeNode root = (NamingContextTreeNode)getRoot();
@@ -196,7 +199,9 @@ public class MainFrame extends JFrame {
         tree.setCellRenderer(new ORBTreeCellRenderer());
         	// Implementation of a tree selection listener which disable or enable the action following the type 
         	// of the node selected
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.addTreeSelectionListener(new DnDTreeSelectionListener());
+        
         	// Implementation of a PopUp menu called by a mou right click.
         final JPopupMenu PPmenu = new NSLUPopUpMenu();
         tree.addMouseListener(new MouseListener(){

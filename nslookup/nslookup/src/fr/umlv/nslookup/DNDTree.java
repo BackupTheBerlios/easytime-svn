@@ -21,12 +21,14 @@ import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
 import javax.naming.Binding;
+import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
 import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
@@ -73,8 +75,10 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 
 	/** Internally implemented, Do not override!*/
 	public void dragOver(DropTargetDragEvent event){
+	    
 	}
 
+	
 	/** Internally implemented, Do not override!*/
 	public void drop(DropTargetDropEvent event){
 		try {
@@ -130,15 +134,60 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 		}
 	}
 
+	
+	private void moveContext(NamingContextTreeNode source, NamingContext destination){
+	    
+	    if(source.getType() == NamingContextTreeNode.TYPE_OBJECT)
+	    {
+	        try {
+				source.rebind(destination);
+			} catch (NotFound e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (CannotProceed e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidName e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (AlreadyBound e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  			        
+	    }
+	    else
+	    {
+	        String name = source.toString();
+	        NamingContext newParent = destination;
+	        NameComponent[] contextName = new NameComponent[1];
+        	contextName[0] = new NameComponent(name,"");
+	        NamingContext newContext = newParent.new_context();
+	        try {
+                newParent.rebind_context(contextName,newContext);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Création du naming context "+ name + " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+            }
+            for (int i = 0; i < source.getChildCount(); i++) {
+                 moveContext((NamingContextTreeNode)source.getChildAt(i),newContext);               
+            }
+	        
+	        
+	    }
+	        
+	    
+	    
+	    
+	}
+	
+	
 	/** Internally implemented, Do not override!.
 	* throws IllegalArgumentException.
 	*/
 	public void dragDropEnd (DragSourceDropEvent event){
 		if ( event.getDropSuccess()){
-			try{
 				if(dropnode.equals(selnode)){
 					///System.out.println("drag==drop");
-					throw new IllegalArgumentException("the source is the same as the destination");
+					
 				}
 				else{
 				    	//System.out.println("Père:"+selnode.getParent());
@@ -152,19 +201,20 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				    		if((selnode.getType() == NamingContextTreeNode.TYPE_CONTEXT)&&
 				    		   ((! dropnode.getPort().equals(selnode.getPort()))
 				    		  ||(! dropnode.getHost().equals(selnode.getHost()))))
-							{
-				    			//System.out.println("Context changé d'ORB -> refusé !");
-								return;								
+				    		// Dropping a naming context in a différent naming service. Carefull... -> special method
+							{				    		    
+				    		    moveContext(selnode,(NamingContext)dropnode.getNodeObject());				    		    				    		    
+				    		    				    		    				    		  
+				            	NamingContext rootContext = (NamingContext)selnode.getParentContext();
+				            	try {
+				                    rootContext.unbind(selnode.getBinding().binding_name);
+				                } catch (Exception e) {
+				                    JOptionPane.showMessageDialog(null,"Suppression du naming context "+ selnode.getBinding().binding_name[0].id+ " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+				                }
+				    		    
 							}
-				    		
-				    		
-				    		
-				    		
-				    		
-				    		
-				    		
-				    		
-				    		
+				    		else
+				    		{
 				    		try {
 								selnode.rebind((NamingContext)dropnode.getNodeObject());
 							} catch (NotFound e) {
@@ -181,13 +231,11 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 								e.printStackTrace();
 							}
 				    		dropnode.add(selnode);
-				    		
+				    		}
 				    	}
 						
 				}
-			} catch(IllegalArgumentException iae){
-				throw new IllegalArgumentException(iae.toString());
-			}
+			
 			
 			treemodel.reload();
 			

@@ -63,6 +63,7 @@ public class TestNC {
 	          rootPOA.id_to_reference(servantId);
 	      
 	      save.rebind(contextName,ref);
+	      contextName = rootContext.to_name("Horloge2");
 	      rootContext.rebind(contextName,ref);
 	      
 	      
