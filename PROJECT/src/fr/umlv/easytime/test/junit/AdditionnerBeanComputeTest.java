@@ -25,7 +25,7 @@ public class AdditionnerBeanComputeTest extends TestCase {
 			ab.setArg1(5);
 			ab.setArg2(4);
 			ab.compute();
-			assertEquals("Addition ", 8 , ab.getSum() );
+			assertEquals("Addition ", 9 , ab.getSum() );
 			
 			
 			
