@@ -217,7 +217,7 @@ public class MainFrame extends JFrame {
             }
 
             public void mouseReleased(MouseEvent e) {
-                if(e.getButton()==MouseEvent.BUTTON3) PPmenu.show(MainFrame.this, e.getX(), e.getY());
+                if(e.getButton()==MouseEvent.BUTTON3) PPmenu.show(tree, e.getX(), e.getY());
             }
 
             public void mouseEntered(MouseEvent arg0) {}
