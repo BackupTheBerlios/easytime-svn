@@ -24,14 +24,12 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 
 /**
@@ -46,8 +44,12 @@ public class AboutDialog extends JDialog implements ActionListener {
 	
     
 
+    
+    private static final long serialVersionUID = 3906090052923767096L;
         JPanel panel1 = new JPanel(){
             
+            private static final long serialVersionUID = 3978425802029217333L;
+
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D)g;
@@ -143,6 +145,9 @@ public class AboutDialog extends JDialog implements ActionListener {
 
 class DefilPanel extends JPanel implements Runnable{
    
+   
+    private static final long serialVersionUID = 3257568425210755122L;
+
     private final ImageIcon sergio = new ImageIcon(MainFrame.class.getResource("icons/mid1.gif"));
 	
 	/** The messages **/

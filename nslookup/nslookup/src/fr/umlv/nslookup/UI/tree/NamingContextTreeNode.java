@@ -22,7 +22,6 @@ import org.omg.CosNaming.Binding;
 import org.omg.CosNaming.BindingType;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
-import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
 import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
@@ -36,6 +35,8 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
  */
 public class NamingContextTreeNode extends DefaultMutableTreeNode implements Transferable {
 
+   
+    private static final long serialVersionUID = 3257852069146015794L;
     public static final int TYPE_NS = 1;
     public static final int TYPE_CONTEXT = 2;
 	public static final int TYPE_OBJECT = 3;

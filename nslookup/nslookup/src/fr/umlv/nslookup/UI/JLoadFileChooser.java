@@ -21,6 +21,10 @@ import javax.swing.JFrame;
  */
 public class JLoadFileChooser extends JFileChooser {
     
+    
+    private static final long serialVersionUID = 3257284734030919993L;
+
+
     public JLoadFileChooser(){
         super();
     }

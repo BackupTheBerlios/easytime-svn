@@ -1,7 +1,6 @@
 
 package fr.umlv.nslookup.UI;
 
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,7 +15,9 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class NSLUMenuBar extends JMenuBar {
 
-	// Menu items
+	
+    private static final long serialVersionUID = 3906925660336107827L;
+    // Menu items
     private JMenuItem saveButton=new JMenuItem(ActionContainer.save);
     private JMenuItem loadButton=new JMenuItem(ActionContainer.load);
     private JMenuItem addNSButton=new JMenuItem(ActionContainer.addNS);

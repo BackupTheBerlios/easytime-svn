@@ -1,9 +1,13 @@
 package horloge;
 
-import java.io.*;
-import org.omg.CORBA.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-import td1.*;
+import org.omg.CORBA.ORB;
+
+import td1.Horloge;
+import td1.HorlogeHelper;
 
 public class HorlogeClient {
 

@@ -1,12 +1,16 @@
 package horloge;
 
-import org.omg.CORBA.*;
-import org.omg.CORBA.ORBPackage.*;
-import org.omg.PortableServer.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+import org.omg.CORBA.ORB;
+import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
 import org.omg.PortableServer.POAManagerPackage.AdapterInactive;
-import org.omg.PortableServer.POAPackage.*;
-import java.io.*;
+import org.omg.PortableServer.POAPackage.ObjectNotActive;
+import org.omg.PortableServer.POAPackage.ServantAlreadyActive;
+import org.omg.PortableServer.POAPackage.WrongPolicy;
 
 public class HorlogeServer {
   public static void main(String args[]) throws ServantAlreadyActive,

@@ -11,7 +11,6 @@ package fr.umlv.nslookup.UI;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
 import fr.umlv.nslookup.UI.actions.ActionContainer;
@@ -25,7 +24,9 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class NSLUToolBar extends JToolBar {
 
-	// Tool bar buttons
+	
+    private static final long serialVersionUID = 3257568412443424052L;
+    // Tool bar buttons
     private JButton saveButton=new JButton(ActionContainer.save);
     private JButton loadButton=new JButton(ActionContainer.load);
     private JButton addNSButton=new JButton(ActionContainer.addNS);

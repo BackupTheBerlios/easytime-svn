@@ -4,7 +4,6 @@ package fr.umlv.nslookup.UI.actions;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -14,22 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultTreeModel;
 
 import org.omg.CORBA.ORB;
-import org.omg.CORBA.ObjectHelper;
-import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
-import org.omg.CosNaming.NamingContextExt;
-import org.omg.CosNaming.NamingContextExtHelper;
-import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
-import org.omg.CosNaming.NamingContextPackage.CannotProceed;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
-
-import td1.HorlogeHelper;
 
 import fr.umlv.nslookup.UI.AboutDialog;
 import fr.umlv.nslookup.UI.MainFrame;
 import fr.umlv.nslookup.UI.MiscDialog;
-import fr.umlv.nslookup.UI.NSLUMenuBar;
 import fr.umlv.nslookup.UI.NSCfgFileFilter;
 import fr.umlv.nslookup.UI.UIHelp;
 import fr.umlv.nslookup.UI.tree.DNDTree;
@@ -102,6 +91,9 @@ public class ActionContainer {
      */
     private void initStaticActions(){
         save = new AbstractAction(){
+            
+            private static final long serialVersionUID = 3257008760923633714L;
+
             public void actionPerformed(ActionEvent arg0) {
                 
             	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
@@ -149,6 +141,8 @@ public class ActionContainer {
 
         load = new AbstractAction(){
             
+            private static final long serialVersionUID = 3618698612868331570L;
+
             public void actionPerformed(ActionEvent arg0) {
                 NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
                                 
@@ -191,6 +185,9 @@ public class ActionContainer {
         load.putValue(Action.SHORT_DESCRIPTION,"Charger une configuration");
         
         refresh = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3256438114472835385L;
+
             public void actionPerformed(ActionEvent arg0) {
                 ((DefaultTreeModel)frame.getTree().getModel()).reload();
             }            
@@ -200,6 +197,9 @@ public class ActionContainer {
         refresh.putValue(Action.SHORT_DESCRIPTION,"Rafraîchir");
         
         prop = new AbstractAction(){
+            
+            private static final long serialVersionUID = 3834024779618465584L;
+
             public void actionPerformed(ActionEvent arg0) {
                 DNDTree tree = frame.getTree();
                 
@@ -213,6 +213,9 @@ public class ActionContainer {
     	prop.setEnabled(false);
 
         option = new AbstractAction(){
+            
+            private static final long serialVersionUID = 3618699699344126513L;
+
             public void actionPerformed(ActionEvent arg0) {
             }            
         };
@@ -221,6 +224,9 @@ public class ActionContainer {
         option.putValue(Action.SHORT_DESCRIPTION,"Options");
         
         help = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3618977884526818102L;
+
             public void actionPerformed(ActionEvent arg0) {
                 UIHelp.showHelp(frame);
             }            
@@ -230,6 +236,9 @@ public class ActionContainer {
         help.putValue(Action.SHORT_DESCRIPTION,"Aide");
         
         about = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3832897750001268020L;
+
             public void actionPerformed(ActionEvent arg0) {
                 AboutDialog d = new AboutDialog(frame);
                 d.setModal(true);
@@ -246,6 +255,9 @@ public class ActionContainer {
         about.putValue(Action.SHORT_DESCRIPTION,"A propos");
         
         quit = new AbstractAction(){
+         
+            private static final long serialVersionUID = 3258416148759589681L;
+
             public void actionPerformed(ActionEvent arg0) {
                if(JOptionPane.showConfirmDialog(frame,"Etes vous sur de vouloir quitter ?","Quitter ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION)
                {
@@ -268,6 +280,9 @@ public class ActionContainer {
      */
     private void initActions(){
         addNC = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3257566200518292281L;
+
             public void actionPerformed(ActionEvent arg0) {
             	String nom = MiscDialog.showNCInputDialog(frame);
             	if(nom == null)
@@ -294,6 +309,9 @@ public class ActionContainer {
 
             
         remNC = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3905521622692607794L;
+
             public void actionPerformed(ActionEvent arg0) {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
             	NamingContext rootContext = (NamingContext)n.getParentContext();
@@ -311,6 +329,9 @@ public class ActionContainer {
         remNC.setEnabled(false);
     
         addOBJ = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3762256339925283126L;
+
             public void actionPerformed(ActionEvent arg0) {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
                 NamingContext rootContext = (NamingContext)n.getNodeObject();
@@ -345,6 +366,9 @@ public class ActionContainer {
         addOBJ.setEnabled(false);
         
         remOBJ = new AbstractAction(){
+            
+            private static final long serialVersionUID = 3256436993486304306L;
+
             public void actionPerformed(ActionEvent arg0) {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
             	NamingContext rootContext = (NamingContext)n.getParentContext();
@@ -362,6 +386,9 @@ public class ActionContainer {
         remOBJ.setEnabled(false);
             
         addNS = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3906654089588061749L;
+
             public void actionPerformed(ActionEvent arg0) {
             	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
                 MiscDialog.showAddNS(frame,root);
@@ -374,6 +401,9 @@ public class ActionContainer {
         addNS.setEnabled(true);
         
         remNS = new AbstractAction(){
+           
+            private static final long serialVersionUID = 3258131366607795507L;
+
             public void actionPerformed(ActionEvent arg0) {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
                 n.removeFromParent();

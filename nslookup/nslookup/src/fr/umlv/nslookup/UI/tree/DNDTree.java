@@ -23,7 +23,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import javax.naming.Binding;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
@@ -47,7 +46,9 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
 * @author Prathap G
 */
 public class DNDTree extends JTree implements DropTargetListener,DragSourceListener, DragGestureListener{
-	/** The Drop position. */
+	
+    private static final long serialVersionUID = 3258126951431747126L;
+    /** The Drop position. */
 	private DropTarget dropTarget = null;
 	/** The Drag node.*/
 	private DragSource dragSource = null;

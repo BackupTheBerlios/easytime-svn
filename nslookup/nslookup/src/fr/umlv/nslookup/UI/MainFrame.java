@@ -9,44 +9,29 @@
 package fr.umlv.nslookup.UI;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.ScrollPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
-
 
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 import fr.umlv.nslookup.UI.tree.DNDTree;
@@ -65,7 +50,9 @@ import fr.umlv.nslookup.UI.tree.TreeFactory;
  */
 public class MainFrame extends JFrame {
 
-    	// JTree allowing to browse through the  opened Naming Services and to manipulate Naming Contextes and CORBA Objects.
+    
+    private static final long serialVersionUID = 3761688996253741621L;
+    // JTree allowing to browse through the  opened Naming Services and to manipulate Naming Contextes and CORBA Objects.
     private DNDTree tree;
     	// Tool bar containing the button linked to the most used actions
     private NSLUToolBar toolBar;
@@ -115,6 +102,11 @@ public class MainFrame extends JFrame {
     private void createTreeView(){
         // Creation of the Tree with the modified DefaultTreeModel        
         tree = new DNDTree(new DefaultTreeModel(root){
+            
+            private static final long serialVersionUID = 4050197561715471669L;
+
+
+
             public void reload(){
                 NamingContextTreeNode root = (NamingContextTreeNode)getRoot();
                 String[] hosts = new String[root.getChildCount()];

@@ -1,19 +1,15 @@
 package fr.umlv.nslookup.UI.tree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
-
 import org.omg.CORBA.ORB;
-import org.omg.CORBA.Object;
-import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CORBA.portable.ObjectImpl;
-
-import java.io.*;
-import org.omg.CORBA.*;
-import org.omg.CosNaming.*;
-import org.omg.CosNaming.NamingContextPackage.*;
-
-import com.sun.corba.se.impl.interceptors.IORInfoImpl;
-import com.sun.corba.se.impl.ior.IORImpl;
+import org.omg.CosNaming.Binding;
+import org.omg.CosNaming.BindingIteratorHolder;
+import org.omg.CosNaming.BindingListHolder;
+import org.omg.CosNaming.NamingContext;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 
 /*

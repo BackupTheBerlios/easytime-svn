@@ -12,8 +12,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 
-import org.omg.CosNaming.NamingContextExt;
-
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 
 /**

@@ -14,6 +14,9 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class NSLUPopUpMenu extends JPopupMenu {
 
+    
+    private static final long serialVersionUID = 3257283651782849076L;
+
     public NSLUPopUpMenu(){
         add(ActionContainer.addNS);
         add(ActionContainer.remNS);

@@ -1,7 +1,6 @@
 
 package fr.umlv.nslookup.UI.tree;
 
-import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.ImageIcon;
@@ -17,7 +16,10 @@ import fr.umlv.nslookup.UI.MainFrame;
  *
  */
 public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
-		// loaded icons
+	
+    private static final long serialVersionUID = 3256728372708325428L;
+
+    // loaded icons
     private static ImageIcon rootIcon = new ImageIcon(MainFrame.class.getResource("icons/root24.gif"));
     
     private static ImageIcon orbIcon = new ImageIcon(MainFrame.class.getResource("icons/orb16.png"));

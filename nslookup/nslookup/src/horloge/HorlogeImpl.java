@@ -1,7 +1,8 @@
 package horloge;
 
-import java.util.*;
-import java.net.*;
+import java.net.InetAddress;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import td1.HorlogePOA;
 
