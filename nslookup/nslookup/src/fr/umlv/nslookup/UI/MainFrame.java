@@ -10,6 +10,7 @@ package fr.umlv.nslookup.UI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ScrollPane;
 
 import javax.swing.JFrame;
 import javax.swing.JToolBar;
@@ -47,7 +48,7 @@ public class MainFrame extends JFrame {
         super("NS lookup");
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        this.setContentPane(new ScrollPane());
         ac = new ActionContainer(this);
         initLookAndFeel();
         initRoot();
@@ -56,6 +57,8 @@ public class MainFrame extends JFrame {
         createTreeView();
         this.getContentPane().add(tree);
         this.setVisible(true);
+        
+        
     }
     
     private void createTreeView(){
