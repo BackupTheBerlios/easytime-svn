@@ -78,7 +78,7 @@ public class dndPanel {
             makeDivs(i,false);
         makeDivs(nbDivisions-1,true);
         
-        /*
+        
         JLabel cours=new JLabel("cours de test");
         //JButton cours=new JButton("cours de test");
         //cours.setHorizontalAlignment(JLabel.CENTER);
@@ -95,13 +95,14 @@ public class dndPanel {
         //c.gridwidth=2;
         //c.gridwidth=GridBagConstraints.RELATIVE;
         //c.weighty = 1.0;
-        //c.weightx = 0.0001;
+        c.weightx = 0.0001;
         grid.setConstraints(cours,c);
+        System.out.println(cours.getWidth());
         back.add(cours);
         dndMouseMotionListener d = new dndMouseMotionListener(cours,grid);
         cours.addMouseListener(d);
         cours.addMouseMotionListener(d);
-        */
+        
         
         
         //back.setLayout(new G)
