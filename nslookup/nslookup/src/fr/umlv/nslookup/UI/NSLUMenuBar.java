@@ -1,11 +1,4 @@
-/* 
- * Project NSLookUPUI
- * NSLUMenuBar.java - package UI;
- * Creator: Administrateur
- * Created on 9 févr. 2005 23:05:41
- *
- * Person in charge: Administrateur
- */
+
 package fr.umlv.nslookup.UI;
 
 import javax.swing.JButton;
@@ -16,28 +9,33 @@ import javax.swing.JMenuItem;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 
 /**
- * @author Administrateur
+ * @author jvaldes
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Menu bar filled with all the buttons needed by the application.
  *
  */
 public class NSLUMenuBar extends JMenuBar {
 
+	// Menu items
     private JMenuItem saveButton=new JMenuItem(ActionContainer.save);
     private JMenuItem loadButton=new JMenuItem(ActionContainer.load);
-    private JMenuItem addORBButton=new JMenuItem(ActionContainer.addORB);
-	private JMenuItem remORBButton=new JMenuItem(ActionContainer.remORB);
+    private JMenuItem addNSButton=new JMenuItem(ActionContainer.addNS);
+	private JMenuItem remNSButton=new JMenuItem(ActionContainer.remNS);
 	private JMenuItem addNCButton=new JMenuItem(ActionContainer.addNC);
 	private JMenuItem remNCButton=new JMenuItem(ActionContainer.remNC);
 	private JMenuItem addOBJButton=new JMenuItem(ActionContainer.addOBJ);
 	private JMenuItem remOBJButton=new JMenuItem(ActionContainer.remOBJ);
 	private JMenuItem refreshButton=new JMenuItem(ActionContainer.refresh);
 	private JMenuItem propButton=new JMenuItem(ActionContainer.prop);
-	//private JMenuItem optionButton=new JMenuItem(ActionContainer.option);
 	private JMenuItem helpButton=new JMenuItem(ActionContainer.help);
 	private JMenuItem aboutButton=new JMenuItem(ActionContainer.about);
 	private JMenuItem quitButton=new JMenuItem(ActionContainer.quit);
 
+	/**
+	 * 
+	 * Creates a new NSLUMenuBar object.
+	 *
+	 */
 	public NSLUMenuBar(){
 		super();
 		this.add(createFileMenu());
@@ -45,21 +43,32 @@ public class NSLUMenuBar extends JMenuBar {
 		this.add(createMiscMenu());
 	}
 	
-	public JMenu createFileMenu(){
+	/**
+	 * 
+	 * returns the file menu containg load and save actions and allowing to refresh the tree or to quit.
+	 *
+	 * @return
+	 */
+	private JMenu createFileMenu(){
 		JMenu menu = new JMenu("Fichier");
 		menu.add(saveButton);
 		menu.add(loadButton);
 		menu.add(refreshButton);
-		//menu.add(optionButton);
 		menu.addSeparator();
 		menu.add(quitButton);
 		return menu;
 	}
 	
-	public JMenu createCORBAMenu(){
+	/**
+	 * 
+	 * returns the CORBA menu containing all CORBA Object manipulation buttons
+	 *
+	 * @return
+	 */
+	private JMenu createCORBAMenu(){
 		JMenu menu = new JMenu("CORBA");
-		menu.add(addORBButton);
-		menu.add(remORBButton);
+		menu.add(addNSButton);
+		menu.add(remNSButton);
 		menu.addSeparator();
 		menu.add(addNCButton);
 		menu.add(remNCButton);
@@ -71,7 +80,13 @@ public class NSLUMenuBar extends JMenuBar {
 		return menu;
 	}
 	
-	public JMenu createMiscMenu(){
+	/**
+	 * 
+	 * returns the miscalleous menu (help and about)
+	 *
+	 * @return
+	 */
+	private JMenu createMiscMenu(){
 		JMenu menu = new JMenu("?");
 		menu.add(helpButton);
 		menu.add(aboutButton);
@@ -80,12 +95,13 @@ public class NSLUMenuBar extends JMenuBar {
 	
 	
 	/**
-	 * Load actions for each buttons from the Action Container
+	 * Load actions for each buttons from the Action Container.
+	 * Method to call if the Action in the ActionContainer have changed.
 	 * 
 	 */
 	public void loadActions(){
-		addORBButton.setAction(ActionContainer.addORB);
-		remORBButton.setAction(ActionContainer.remORB);
+		addNSButton.setAction(ActionContainer.addOBJ);
+		remNSButton.setAction(ActionContainer.remNS);
 		addNCButton.setAction(ActionContainer.addNC);
 		remNCButton.setAction(ActionContainer.remNC);
 		addOBJButton.setAction(ActionContainer.addOBJ);
@@ -99,7 +115,6 @@ public class NSLUMenuBar extends JMenuBar {
 	 * 
 	 */
 	private void loadStaticActions(){
-		//optionButton.setAction(ActionContainer.option);
 		helpButton.setAction(ActionContainer.help);
 		aboutButton.setAction(ActionContainer.about);
 		quitButton.setAction(ActionContainer.quit);

@@ -1,11 +1,4 @@
-/* 
- * Project NSLookUPUI
- * ORBTreeCellRenderer.java - package UI.tree;
- * Creator: Administrateur
- * Created on 9 févr. 2005 09:49:05
- *
- * Person in charge: Administrateur
- */
+
 package fr.umlv.nslookup.UI.tree;
 
 import java.awt.Color;
@@ -18,13 +11,13 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import fr.umlv.nslookup.UI.MainFrame;
 
 /**
- * @author Administrateur
+ * @author jvaldes
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Renderer allowing to put specified icons for each node type.
  *
  */
 public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
-
+		// loaded icons
     private static ImageIcon rootIcon = new ImageIcon(MainFrame.class.getResource("icons/root24.gif"));
     
     private static ImageIcon orbIcon = new ImageIcon(MainFrame.class.getResource("icons/orb16.png"));
@@ -54,6 +47,7 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 	    setText(node.toString());
 			    
 		if(node.getType() == NamingContextTreeNode.TYPE_ROOT) {
+			setText("Réseau");
 		    setIcon(rootIcon);
 			return res;
 		}
@@ -92,10 +86,6 @@ public class ORBTreeCellRenderer extends DefaultTreeCellRenderer {
 			return res;
 		}
 		
-
-		
-
-
 		return null;
 	}
 

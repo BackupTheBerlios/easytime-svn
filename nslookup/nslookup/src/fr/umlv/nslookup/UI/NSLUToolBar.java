@@ -24,10 +24,11 @@ import fr.umlv.nslookup.UI.actions.ActionContainer;
  */
 public class NSLUToolBar extends JToolBar {
 
+	// Tool bar buttons
     private JButton saveButton=new JButton(ActionContainer.save);
     private JButton loadButton=new JButton(ActionContainer.load);
-    private JButton addORBButton=new JButton(ActionContainer.addORB);
-	private JButton remORBButton=new JButton(ActionContainer.remORB);
+    private JButton addNSButton=new JButton(ActionContainer.addNS);
+	private JButton remNSButton=new JButton(ActionContainer.remNS);
 	private JButton addNCButton=new JButton(ActionContainer.addNC);
 	private JButton remNCButton=new JButton(ActionContainer.remNC);
 	private JButton addOBJButton=new JButton(ActionContainer.addOBJ);
@@ -37,23 +38,26 @@ public class NSLUToolBar extends JToolBar {
 	private JButton optionButton=new JButton(ActionContainer.option);
 	private JButton helpButton=new JButton(ActionContainer.help);
 	
+	/**
+	 * 
+	 * Creates a new NSLUToolBar object.
+	 *
+	 */
     public NSLUToolBar(){
     	super();
     	
     	add(saveButton);
     	add(loadButton);
-    	add(addORBButton);
-    	add(remORBButton);
+    	add(addNSButton);
+    	add(remNSButton);
     	add(addNCButton);
     	add(remNCButton);
     	add(addOBJButton);
     	add(remOBJButton);
     	add(refreshButton);
     	add(propButton);
-    	//add(optionButton);
     	add(helpButton);
     	formatButtons();
-
 		formatStaticButtons();
 		
 		setFloatable(false);
@@ -61,11 +65,11 @@ public class NSLUToolBar extends JToolBar {
 	
 	/**
 	 * Load actions for each buttons from the Action Container
-	 * 
+	 * Method to call if the actions contained in ActionContainer has been changed. 
 	 */
 	public void loadActions(){
-		addORBButton.setAction(ActionContainer.addORB);
-		remORBButton.setAction(ActionContainer.remORB);
+		addNSButton.setAction(ActionContainer.addOBJ);
+		remNSButton.setAction(ActionContainer.remNS);
 		addNCButton.setAction(ActionContainer.addNC);
 		remNCButton.setAction(ActionContainer.remNC);
 		addOBJButton.setAction(ActionContainer.addOBJ);
@@ -86,18 +90,22 @@ public class NSLUToolBar extends JToolBar {
 		formatStaticButtons();
 	}
 	
-	
+	/**
+	 * 
+	 * Sets contextual buttons text to ", and change there icons for bigger icons.
+	 *
+	 */
 	private void formatButtons(){
-		addORBButton.setText("");
-		remORBButton.setText("");
+		addNSButton.setText("");
+		remNSButton.setText("");
 		addNCButton.setText("");
 		remNCButton.setText("");
 		addOBJButton.setText("");
 		remOBJButton.setText("");
 		propButton.setText("");
 		
-		addORBButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/addorb24.png")));
-		remORBButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/remorb24.png")));
+		addNSButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/addorb24.png")));
+		remNSButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/remorb24.png")));
 		addNCButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/addnc24.png")));
 		remNCButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/remnc24.png")));
 		addOBJButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/addobj24.png")));
@@ -105,6 +113,11 @@ public class NSLUToolBar extends JToolBar {
 		propButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/prop24.gif")));
 	}
 
+	/**
+	 * 
+	 * Sets static buttons text to ", and change there icons for bigger icons.
+	 *
+	 */
 	private void formatStaticButtons(){
 	    saveButton.setText("");
 	    loadButton.setText("");

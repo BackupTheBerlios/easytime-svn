@@ -1,11 +1,4 @@
-/* 
- * Project NSLookUPUI
- * ConfigTool.java - package config;
- * Creator: Administrateur
- * Created on 8 févr. 2005 00:44:18
- *
- * Person in charge: Administrateur
- */
+
 package fr.umlv.nslookup.config;
 
 import java.io.BufferedReader;
@@ -21,15 +14,21 @@ import java.util.StringTokenizer;
 
 
 /**
- * @author Administrateur
+ * @author jvaldes
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Class providing method useful save or load configuration files. 
  *
  */
 public class ConfigTool {
 	
-	
-	public final static ORBConfig[] loadConfig(String filePath){
+	/**
+	 * 
+	 * Read the config file and return all the NS Configuration in an Array.
+	 *
+	 * @param filePath
+	 * @return
+	 */
+	public final static NSConfig[] loadConfig(String filePath){
 	    
 	    ArrayList list = new ArrayList();
 	    BufferedReader br;
@@ -48,15 +47,15 @@ public class ConfigTool {
                      st = new StringTokenizer(line, " ");
                      st.nextToken();
                      tmp = st.nextToken();
-                     list.add(new ORBConfig(tmp, st.nextToken()));
+                     list.add(new NSConfig(tmp, st.nextToken()));
                  }
                  line = br.readLine();
              }
              
-             ORBConfig[] tab = new ORBConfig[list.size()];
+             NSConfig[] tab = new NSConfig[list.size()];
              int i=0;
              for (Iterator iter = list.iterator(); iter.hasNext();) {
-                 ORBConfig element = (ORBConfig) iter.next();
+                 NSConfig element = (NSConfig) iter.next();
                 tab[i++] = element;
             }
              
@@ -68,7 +67,15 @@ public class ConfigTool {
 	    
 	}
 	
-	public final static void saveConfig(String filePath, ORBConfig[] orbTab){
+	
+	/**
+	 * 
+	 * Write all the NS configurations (of the array) in the given file. 
+	 *
+	 * @param filePath
+	 * @param orbTab
+	 */
+	public final static void saveConfig(String filePath, NSConfig[] orbTab){
 	    BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(filePath));
@@ -85,21 +92,6 @@ public class ConfigTool {
 	}
 
 	
-	public static void main(String[] args) {
-	    ORBConfig[] list = ConfigTool.loadConfig("configORB.cfg");
-		//System.out.println(list.length);
-		//for (int i = 0; i < list.length; i++) {
-        //    System.out.println(list[i]);
-        //}
-		
-		ORBConfig[] list2 = new ORBConfig[5];
-		list2[0] = new ORBConfig("5423", "192.0.0.5");
-		list2[1] = new ORBConfig("8675", "192.0.0.76");
-		list2[2] = new ORBConfig("5876", "192.0.0.53");
-		list2[3] = new ORBConfig("1324", "192.0.0.25");
-		list2[4] = new ORBConfig("9148", "192.0.0.54");
-		
-		ConfigTool.saveConfig("config2.cfg", list2);
-	}
+	
 	
 }

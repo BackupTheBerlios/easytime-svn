@@ -40,10 +40,7 @@ public class TreeFactory {
 		
 		// 	Récupération de la référence du sevice de nommage
 		ObjectImpl o = (ObjectImpl)orb.resolve_initial_references("NameService");
-		String[] ids = o._ids();
-		for (int i = 0; i < ids.length; i++) {
-            System.out.println(ids[i]);
-        }
+		
 	    NamingContextExt namingContext = NamingContextExtHelper.narrow(o);
 		NamingContextTreeNode ORBroot = new NamingContextTreeNode(host,port);
 	    explore((NamingContext) namingContext,ORBroot );

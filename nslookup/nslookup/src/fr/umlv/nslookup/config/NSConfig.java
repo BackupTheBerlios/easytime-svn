@@ -1,6 +1,6 @@
 /* 
  * Project NSLookUPUI
- * ORBConfig.java - package config;
+ * NSConfig.java - package config;
  * Creator: Administrateur
  * Created on 8 févr. 2005 00:39:04
  *
@@ -14,19 +14,19 @@ package fr.umlv.nslookup.config;
  * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
  *
  */
-public class ORBConfig {
+public class NSConfig {
 	private String port;
 	private String address;
 	
 	
 	
     /**
-     * Creates a new ORBConfig object.
+     * Creates a new NSConfig object.
      *
      * @param port
      * @param address
      */
-    public ORBConfig(String port, String address) {
+    public NSConfig(String port, String address) {
         super();
         this.port = port;
         this.address = address;

@@ -283,6 +283,12 @@ public class MainFrame extends JFrame {
         root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);
     }
     
+    /**
+     * 
+     * Set the LookAndFeel to the system L&F.
+     *
+     *
+     */
     private void initLookAndFeel(){
     	try {
     	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -290,8 +296,10 @@ public class MainFrame extends JFrame {
 		    // Nothing is done if the LookAndFeel can't be installed.
 		}
     }
+    
     public static void main(String[] args) throws SecurityException, FileNotFoundException, IOException {
             new MainFrame();
+            // Set log displaying to allow to display only severe messages.
             LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE);
     }
     
@@ -304,7 +312,10 @@ public class MainFrame extends JFrame {
 	}
 	
 	
-    public DNDTree getTree() {
+	/**
+	 * @return Returns the JTree.
+	 */
+	public DNDTree getTree() {
         return tree;
     }
 }

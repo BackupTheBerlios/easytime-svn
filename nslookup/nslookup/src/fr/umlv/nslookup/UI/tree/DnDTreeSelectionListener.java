@@ -35,8 +35,8 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
         
 	    	case NamingContextTreeNode.TYPE_ROOT : {
 	    	    ActionContainer.prop.setEnabled(false);
-	    	    ActionContainer.addORB.setEnabled(true);
-	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(true);
+	    	    ActionContainer.remNS.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(false);
 	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(false);
@@ -46,8 +46,8 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    
 	    	case NamingContextTreeNode.TYPE_NS : {
 	    	    ActionContainer.prop.setEnabled(true);
-	    	    ActionContainer.addORB.setEnabled(true);
-	    	    ActionContainer.remORB.setEnabled(true);
+	    	    ActionContainer.addOBJ.setEnabled(true);
+	    	    ActionContainer.remNS.setEnabled(true);
 	    	    ActionContainer.addNC.setEnabled(true);
 	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(false);
@@ -58,8 +58,8 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    
 	    	case NamingContextTreeNode.TYPE_CONTEXT : {
 	    	    ActionContainer.prop.setEnabled(true);
-	    	    ActionContainer.addORB.setEnabled(true);
-	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(true);
+	    	    ActionContainer.remNS.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(true);
 	    	    ActionContainer.remNC.setEnabled(true);
 	    	    ActionContainer.addOBJ.setEnabled(true);
@@ -71,8 +71,8 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    
 	    	case NamingContextTreeNode.TYPE_OBJECT : {
 	    	    ActionContainer.prop.setEnabled(true);
-	    	    ActionContainer.addORB.setEnabled(true);
-	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(true);
+	    	    ActionContainer.remNS.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(false);
 	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(false);
@@ -84,8 +84,8 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    	default:
 	    	{
 	    		ActionContainer.prop.setEnabled(false);
-	    	    ActionContainer.addORB.setEnabled(true);
-	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(true);
+	    	    ActionContainer.remNS.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(false);
 	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(false);

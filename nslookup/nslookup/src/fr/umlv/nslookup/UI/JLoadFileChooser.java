@@ -32,7 +32,7 @@ public class JLoadFileChooser extends JFileChooser {
         
         /*choice.setDialogTitle("Choix du fichier de configuration");
         choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        choice.setFileFilter(new ORBCfgFileFilter());
+        choice.setFileFilter(new NSCfgFileFilter());
         
         int rp = choice.showOpenDialog(frame);
         if (rp == JFileChooser.APPROVE_OPTION) {
@@ -44,7 +44,7 @@ public class JLoadFileChooser extends JFileChooser {
         JFileChooser choice = new JFileChooser();
         choice.setDialogTitle("Enregistrement de la configuration");
         choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        choice.setFileFilter(new ORBCfgFileFilter());
+        choice.setFileFilter(new NSCfgFileFilter());
         
         int rp = choice.showSaveDialog(frame);
         if (rp == JFileChooser.APPROVE_OPTION) {

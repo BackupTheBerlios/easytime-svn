@@ -1,11 +1,4 @@
-/* 
- * Project NSLookUPUI
- * ActionContainer.java - package UI.actions;
- * Creator: Jo
- * Created on 9 févr. 2005 16:22:26
- *
- * Person in charge: Jo
- */
+
 package fr.umlv.nslookup.UI.actions;
 
 import java.awt.Dimension;
@@ -37,40 +30,33 @@ import fr.umlv.nslookup.UI.AboutDialog;
 import fr.umlv.nslookup.UI.MainFrame;
 import fr.umlv.nslookup.UI.MiscDialog;
 import fr.umlv.nslookup.UI.NSLUMenuBar;
-import fr.umlv.nslookup.UI.ORBCfgFileFilter;
+import fr.umlv.nslookup.UI.NSCfgFileFilter;
 import fr.umlv.nslookup.UI.UIHelp;
 import fr.umlv.nslookup.UI.tree.DNDTree;
 import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.tree.TreeFactory;
 import fr.umlv.nslookup.config.ConfigTool;
-import fr.umlv.nslookup.config.ORBConfig;
+import fr.umlv.nslookup.config.NSConfig;
 
 
 /**
- * @author Jo
+ * @author jvaldes
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Class containing all the action and allowing to let them available.
  *
  */
 public class ActionContainer {
-	
+		// Main client frame
 	private MainFrame frame;
-	
-	public ActionContainer(MainFrame frame){
-		this.frame = frame;
-		initActions();
-		initStaticActions();
-	}
-	
-
+		// all the actions
 	public static Action save;
 	public static Action load;
 	public static Action addNC;
     public static Action remNC;
     public static Action addOBJ;
     public static Action remOBJ;
-    public static Action addORB;
-    public static Action remORB;
+    public static Action addNS;
+    public static Action remNS;
     public static Action refresh;
     public static Action prop;
     public static Action option;
@@ -78,26 +64,47 @@ public class ActionContainer {
     public static Action about;
     public static Action quit;
     
+	
+	/**
+	 * 
+	 * Creates a new ActionContainer object.
+	 *
+	 * @param frame
+	 */
+	public ActionContainer(MainFrame frame){
+		this.frame = frame;
+		initActions();
+		initStaticActions();
+	}
+	
 
+	/**
+	 * 
+	 * Set all the action to disabled state.
+	 *
+	 *
+	 */
     public static void reset(){
     	addNC.setEnabled(false);
     	remNC.setEnabled(false);
     	addOBJ.setEnabled(false);
     	remOBJ.setEnabled(false);
-    	addORB.setEnabled(true);
-    	remORB.setEnabled(false);
+    	addNS.setEnabled(true);
+    	remNS.setEnabled(false);
     	prop.setEnabled(false);
     }
     
+    /**
+     * 
+     * Contructs all the static actions.
+     *
+     *
+     */
     private void initStaticActions(){
         save = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-                /*
-                DNDTree tree = frame.getTree();
-                NamingContextTreeNode node = (NamingContextTreeNode)tree.getSelectedNode();
-                System.out.println(MiscDialog.showIORInputDialog(frame));
-                */
-                NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
+                
+            	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
                 
                 if(root.getChildCount() == 0)
                 {
@@ -108,7 +115,7 @@ public class ActionContainer {
                 JFileChooser choice = new JFileChooser();
                 choice.setDialogTitle("Enregistrement de la configuration");
                 choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                choice.setFileFilter(new ORBCfgFileFilter());
+                choice.setFileFilter(new NSCfgFileFilter());
                 
                 int rp = choice.showSaveDialog(frame);
                 if (rp == JFileChooser.APPROVE_OPTION) {
@@ -118,14 +125,14 @@ public class ActionContainer {
                                                          
                                         
                     
-                    ORBConfig[] tab = new ORBConfig[root.getChildCount()];
+                    NSConfig[] tab = new NSConfig[root.getChildCount()];
                     
                     for(int i =0;i<root.getChildCount();i++)
                     {
                         NamingContextTreeNode node = (NamingContextTreeNode)root.getChildAt(i);
                         String host = node.getHost();
                         String port = node.getPort();                        
-                        tab[i] = new ORBConfig(port,host);
+                        tab[i] = new NSConfig(port,host);
                     }
                     
                     ConfigTool.saveConfig(path,tab);
@@ -148,13 +155,13 @@ public class ActionContainer {
                 JFileChooser choice = new JFileChooser();
                 choice.setDialogTitle("Lecture de la configuration");
                 choice.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                choice.setFileFilter(new ORBCfgFileFilter());                
+                choice.setFileFilter(new NSCfgFileFilter());                
                 int rp = choice.showOpenDialog(frame);
                 
                 if (rp == JFileChooser.APPROVE_OPTION) {
                     String path = choice.getSelectedFile().getAbsolutePath();
                     
-                    ORBConfig[] tab = ConfigTool.loadConfig(path);
+                    NSConfig[] tab = ConfigTool.loadConfig(path);
                     root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);                    
                     for(int i =0;i<tab.length;i++)
                     {                        
@@ -252,7 +259,13 @@ public class ActionContainer {
         quit.putValue(Action.SHORT_DESCRIPTION,"Quitter NSLookUP");
         
     }
-    
+
+    /**
+     * 
+     * Contructs all the contextual actions.
+     *
+     *
+     */
     private void initActions(){
         addNC = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
@@ -346,29 +359,29 @@ public class ActionContainer {
         remOBJ.putValue(Action.SHORT_DESCRIPTION,"Retirer un Objet CORBA");
         remOBJ.setEnabled(false);
             
-        addORB = new AbstractAction(){
+        addNS = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
             	NamingContextTreeNode root = (NamingContextTreeNode)frame.getTree().getModel().getRoot();
-                MiscDialog.showAddORB(frame,root);
+                MiscDialog.showAddNS(frame,root);
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
-        addORB.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addorb16.png")));
-        addORB.putValue(Action.NAME, "Ajouter un ORB/NS");
-        addORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
-        addORB.setEnabled(true);
+        addNS.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addorb16.png")));
+        addNS.putValue(Action.NAME, "Ajouter un NS");
+        addNS.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Name Service");
+        addNS.setEnabled(true);
         
-        remORB = new AbstractAction(){
+        remNS = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
                 NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
                 n.removeFromParent();
                 ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
-        remORB.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remorb16.png")));
-        remORB.putValue(Action.NAME, "Retirer un ORB/NS");
-        remORB.putValue(Action.SHORT_DESCRIPTION,"Retirer un ORB/Naming Service");
-        remORB.setEnabled(false);
+        remNS.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remorb16.png")));
+        remNS.putValue(Action.NAME, "Retirer un NS");
+        remNS.putValue(Action.SHORT_DESCRIPTION,"Retirer un Name Service");
+        remNS.setEnabled(false);
             
     }
  

@@ -1,11 +1,4 @@
-/* 
- * Project nslookup
- * NSLUPopUpMenu.java - package fr.umlv.nslookup.UI;
- * Creator: Jo
- * Created on 18 févr. 2005 16:51:33
- *
- * Person in charge: Jo
- */
+
 package fr.umlv.nslookup.UI;
 
 import javax.swing.JPopupMenu;
@@ -13,16 +6,17 @@ import javax.swing.JPopupMenu;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
 
 /**
- * @author Jo
+ * @author jvaldes
  *
- * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ * Popup menu containing the CORBA Object manipulation actions.
+ * It's used into the JTree.
  *
  */
 public class NSLUPopUpMenu extends JPopupMenu {
 
     public NSLUPopUpMenu(){
-        add(ActionContainer.addORB);
-        add(ActionContainer.remORB);
+        add(ActionContainer.addNS);
+        add(ActionContainer.remNS);
         add(ActionContainer.addNC);
         add(ActionContainer.remNC);
         add(ActionContainer.addOBJ);

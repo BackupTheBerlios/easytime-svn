@@ -1,11 +1,4 @@
-/* 
- * Project easytimeUI
- * Export.java - package fabe;
- * Creator: Administrateur
- * Created on 7 janv. 2005 21:53:44
- *
- * Person in charge: fgarac
- */
+
 package fr.umlv.nslookup.UI;
 
 import java.awt.BorderLayout;
@@ -28,37 +21,67 @@ import fr.umlv.nslookup.UI.tree.TreeFactory;
 
 
 /**
- * @author fgarac
+ * @author jvaldes
  *
- * Class responsible for displaying the user interface of export option
+ * Class providing static methods to display information et input dialog boxes. 
  *
  */
 public class MiscDialog{
     
+	/**
+	 * 
+	 * Show dialog Box asking to type the IOR of the new object to Bind.
+	 *
+	 * @param frame parent frame
+	 * @return
+	 */
 	public static String showIORInputDialog(Frame frame){
         return JOptionPane.showInputDialog(frame, "Veuillez saisir l'IOR :");
     }
   	
+	/**
+	 * 
+	 * Show dialog Box asking to type the binding name of the new NamingContext to Bind.
+	 *
+	 * @param frame parent frame
+	 * @return
+	 */
 	public static String showNCInputDialog(Frame frame){
         return JOptionPane.showInputDialog(frame, "Veuillez saisir le nom du contexte de nommage à créer :");
     }
   	
+	/**
+	 * 
+	 * Private method return a string describing the path to join a NameService, a CORBA Object or a NamingContext.
+	 * the NameServices are represented by : "(<address> <port>)"
+	 * the Naming Contextes are represented by : "[<binding name>]"
+	 * the CORBA Objects are represented by : "<binding name>"
+	 *
+	 * @param node 
+	 * @return
+	 */
     private static String getPath(NamingContextTreeNode node){
           String path = "";
           NamingContextTreeNode tmp = node;
           while(tmp != null){
               switch(tmp.getType()){
-            	//case 0 : path = "$>"+path;break;
-              	case 1 : path = "("+tmp+")>"+path;break;
-              	case 2 : path = "["+tmp+"]>"+path;break;
-              	case 3 : path = tmp+path;break;
+            	case NamingContextTreeNode.TYPE_NS : path = "("+tmp+")>"+path;break;
+              	case NamingContextTreeNode.TYPE_CONTEXT : path = "["+tmp+"]>"+path;break;
+              	case NamingContextTreeNode.TYPE_OBJECT : path = tmp+path;break;
               }
               tmp = (NamingContextTreeNode)tmp.getParent();
           }
           return path;
       }
       
-      public static void showAddORB(Frame frame,NamingContextTreeNode root){
+    /**
+     * 
+     * Show dialog Box asking the address (ip or name) and the port of the Name Service to connect.
+     *
+     * @param frame parent frame
+     * @param root root TreeNode
+     */
+      public static void showAddNS(Frame frame,NamingContextTreeNode root){
       	JPanel panel = new JPanel(new BorderLayout());
         JPanel fieldPanel = new JPanel();
         JPanel valuePanel = new JPanel();
@@ -75,7 +98,7 @@ public class MiscDialog{
   	    fieldPanel.add(port);
   	    JTextField portField = new JTextField("1234");
   	    valuePanel.add(portField);
-  	    int res = JOptionPane.showConfirmDialog(frame, panel, "Ajouter un ORB",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+  	    int res = JOptionPane.showConfirmDialog(frame, panel, "Ajouter un NS",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
   	    if((res == JOptionPane.OK_OPTION)&&(! hostField.getText().equals("")) && (! portField.getText().equals("")))
 			try {
 				TreeFactory.createORBTree(hostField.getText(),portField.getText(),root);
@@ -87,12 +110,26 @@ public class MiscDialog{
       
       }
       
-      private String getIDLType(NamingContextTreeNode node){
-          String type = "";
-          
+      /**
+       * 
+       * return the IDL type of the Object binded on this node
+       *
+       * @param node
+       * @return
+       */
+      private static String getIDLType(NamingContextTreeNode node){
+          String type = ((ObjectImpl)node.getNodeObject())._ids()[0];
+          type = type.substring(4, (type.length()-4));
           return type;
       }
       
+      /**
+       * 
+       * Show dialog Box displaying all the available information of a Node (NS/NC/CORBA/Object)
+       *
+       * @param frame
+       * @param node
+       */
       public static void showCORBAProperties(Frame frame,NamingContextTreeNode node){
           JPanel panel = new JPanel(new BorderLayout());
           JPanel fieldPanel = new JPanel();
@@ -102,6 +139,7 @@ public class MiscDialog{
           panel.add(valuePanel, BorderLayout.EAST);
           final JLabel name = new JLabel("Nom :"); 
           final JLabel type = new JLabel("Type :"); 
+          final JLabel IDLtype = new JLabel("Type IDL :"); 
           final JLabel address = new JLabel("Adresse réseau :"); 
           final JLabel port = new JLabel("Port :"); 
           final JLabel path = new JLabel("Chemin :"); 
@@ -109,14 +147,14 @@ public class MiscDialog{
           
           final JTextField namet = new JTextField(30); 
           namet.setEditable(false);
-          //namet.setText(node.toString());
-          namet.setText(((ObjectImpl)node.getNodeObject())._ids()[0]);
-          System.out.println("longeur : "+((ObjectImpl)node.getNodeObject())._ids().length);
-          String[] ids = ((ObjectImpl)node.getNodeObject())._ids();
-          for (int i = 0; i < ids.length; i++) {
-            System.out.println(ids[i]);
-        }
-          final JTextField orbTypet = new JTextField("ORB/Naming Service"); 
+          namet.setText(node.toString());
+          
+          final JTextField IDLtypet = new JTextField(30); 
+          IDLtypet.setEditable(false);
+          IDLtypet.setText(getIDLType(node));
+          
+          
+          final JTextField orbTypet = new JTextField("Name Service"); 
           orbTypet.setEditable(false);
           final JTextField ncTypet = new JTextField("Naming Context"); 
           ncTypet.setEditable(false);
@@ -134,18 +172,17 @@ public class MiscDialog{
           iort.setEditable(false);
           
           
-           
-          
-          
           
           switch(node.getType()){
-        	case 1 : {		// ORB/NS case 
-          	    fieldPanel.setLayout(new GridLayout(6, 1));
-        	    valuePanel.setLayout(new GridLayout(6, 1));
+        	case NamingContextTreeNode.TYPE_NS : {		// NS case 
+          	    fieldPanel.setLayout(new GridLayout(7, 1));
+        	    valuePanel.setLayout(new GridLayout(7, 1));
           	    fieldPanel.add(name);
           	    valuePanel.add(namet);
           	    fieldPanel.add(type);
           	    valuePanel.add(orbTypet);
+          	    fieldPanel.add(IDLtype);
+          	    valuePanel.add(IDLtypet);
           	    fieldPanel.add(path);
           	    valuePanel.add(patht);
           	    fieldPanel.add(address);
@@ -159,29 +196,33 @@ public class MiscDialog{
           	    valuePanel.add(iort);
           	    break;
           	}
-          	case 2 : {		// NC case
+          	case NamingContextTreeNode.TYPE_CONTEXT : {		// NC case
           	    
-          	    fieldPanel.setLayout(new GridLayout(4, 1));
-          	    valuePanel.setLayout(new GridLayout(4, 1));
+          	    fieldPanel.setLayout(new GridLayout(5, 1));
+          	    valuePanel.setLayout(new GridLayout(5, 1));
         	    fieldPanel.add(name);
         	    valuePanel.add(namet);
           	    fieldPanel.add(type);
         	    valuePanel.add(ncTypet);
-        	    fieldPanel.add(path);
+        	    fieldPanel.add(IDLtype);
+          	    valuePanel.add(IDLtypet);
+          	    fieldPanel.add(path);
         	    valuePanel.add(patht);
         	    fieldPanel.add(IOR);
         	    iort.setText(node.getNodeObject().toString());
           	    valuePanel.add(iort);
         	    break;
           	}
-          	case 3 : {		// CORBA OBJECT case
-          	    fieldPanel.setLayout(new GridLayout(4, 1));
-          	    valuePanel.setLayout(new GridLayout(4, 1));
+          	case NamingContextTreeNode.TYPE_OBJECT : {		// CORBA OBJECT case
+          	    fieldPanel.setLayout(new GridLayout(5, 1));
+          	    valuePanel.setLayout(new GridLayout(5, 1));
         	    fieldPanel.add(name);
         	    valuePanel.add(namet);
         	    fieldPanel.add(type);
         	    valuePanel.add(objtypet);
-        	    fieldPanel.add(path);
+        	    fieldPanel.add(IDLtype);
+          	    valuePanel.add(IDLtypet);
+          	    fieldPanel.add(path);
         	    valuePanel.add(patht);
         	    fieldPanel.add(IOR);
         	    iort.setText(node.getNodeObject().toString());
@@ -194,19 +235,5 @@ public class MiscDialog{
           
       }
       
-    	public static void main(String[] args) {
-            JFrame frame = new JFrame();
-            frame.setSize(1000, 600);
-            //PropertyDialog.
-            
-            
-            JTextField text = new JTextField();
-            Object[] tab= {"Ajouter IOR", text};
-            JOptionPane optionPane = new JOptionPane(tab,
-                    JOptionPane.QUESTION_MESSAGE,
-                    JOptionPane.YES_NO_OPTION
-                   );
-            //System.out.println(inputValue);
-            JOptionPane.showMessageDialog(frame, tab);
-        }
+    	
 }
