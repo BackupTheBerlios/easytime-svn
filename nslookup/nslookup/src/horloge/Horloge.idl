@@ -1,0 +1,8 @@
+module td1 {
+  interface Horloge {
+    readonly attribute string localite;
+    string getTime( );
+    void setHours(in short h);
+    void setMinutes(in short m);
+  };
+};
