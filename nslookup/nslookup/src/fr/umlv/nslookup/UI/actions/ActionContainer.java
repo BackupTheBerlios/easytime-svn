@@ -299,27 +299,5 @@ public class ActionContainer {
         target.setEnabled(true);
     }
     
-    public void setActions(Action addNC, Action remNC, Action addOBJ, Action remOBJ, Action addORB, Action remORB){
-    	
-    	copyActionSkeleton(DefaultActionFactory.addNC, ActionContainer.addNC);
-    	ActionContainer.addNC = addNC;
-    	
-    	copyActionSkeleton(DefaultActionFactory.remNC, ActionContainer.remNC);
-    	ActionContainer.remNC = remNC;
-    	
-    	copyActionSkeleton(DefaultActionFactory.addOBJ, ActionContainer.addOBJ);
-    	ActionContainer.addOBJ = addOBJ;
-    	
-    	copyActionSkeleton(DefaultActionFactory.remOBJ, ActionContainer.remOBJ);
-    	ActionContainer.remOBJ = remOBJ;
-    	
-    	copyActionSkeleton(DefaultActionFactory.addORB, ActionContainer.addORB);
-    	ActionContainer.addORB = addORB;
-    	
-    	copyActionSkeleton(DefaultActionFactory.remORB, ActionContainer.remORB);
-    	ActionContainer.remORB = remORB;
-    	
-    	frame.getToolBar().loadActions();
-    	((NSLUMenuBar)frame.getJMenuBar()).loadActions();
-    }
+    
 }
