@@ -29,6 +29,7 @@ import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.TreeFactory;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
+import fr.umlv.nslookup.UI.tree.DnDTreeSelectionListener;
 import fr.umlv.nslookup.UI.tree.ORBTreeCellRenderer;
 
 
@@ -68,6 +69,7 @@ public class MainFrame extends JFrame {
         //tree = new DnDJTree(new DefaultTreeModel(root));
         tree = new DNDTree(new DefaultTreeModel(root));
         tree.setCellRenderer(new ORBTreeCellRenderer());
+        tree.addTreeSelectionListener(new DnDTreeSelectionListener());
     }
     
     private void createToolBar(){

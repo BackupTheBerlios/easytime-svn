@@ -8,6 +8,7 @@
  */
 package fr.umlv.nslookup.UI;
 
+import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
 
@@ -31,7 +32,7 @@ import fr.umlv.nslookup.NamingContextTreeNode;
 public class MiscDialog{
     
       public static String showIORInputDialog(Frame frame){
-          return JOptionPane.showInputDialog(frame, "Veuillez L'IOR :");
+          return JOptionPane.showInputDialog(frame, "Veuillez saisir L'IOR :");
       }
     	
       private static String getPath(NamingContextTreeNode node){
@@ -50,10 +51,15 @@ public class MiscDialog{
       }
       
       public static void showCORBAProperties(Frame frame,NamingContextTreeNode node){
-          JPanel panel = new JPanel();
+          JPanel panel = new JPanel(new BorderLayout());
+          JPanel fieldPanel = new JPanel();
+          JPanel valuePanel = new JPanel();
+          panel.add(new JLabel("  "), BorderLayout.CENTER);
+          panel.add(fieldPanel, BorderLayout.WEST);
+          panel.add(valuePanel, BorderLayout.EAST);
           final JLabel name = new JLabel("Nom :"); 
           final JLabel type = new JLabel("Type :"); 
-          final JLabel address = new JLabel("adresse réseau :"); 
+          final JLabel address = new JLabel("Adresse réseau :"); 
           final JLabel port = new JLabel("Port :"); 
           final JLabel path = new JLabel("Chemin :"); 
           final JLabel IOR = new JLabel("IOR :"); 
@@ -62,48 +68,53 @@ public class MiscDialog{
           
           switch(node.getType()){
         	case 1 : {		// ORB/NS case 
-          	    panel.setLayout(new GridLayout(6, 2));
-          	    panel.add(name);
-          	    panel.add(new JLabel(node.toString()));
-          	    panel.add(type);
-          	    panel.add(new JLabel("ORB/Naming Service"));
-          	    panel.add(path);
-          	    panel.add(new JLabel(getPath(node)));
-        	    panel.add(address);
-          	    panel.add(new JLabel("localhost"));
-          	    panel.add(port);
-          	    panel.add(new JLabel("1234"));
-          	    panel.add(IOR);
-          	    panel.add(new JLabel("qsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+          	    fieldPanel.setLayout(new GridLayout(6, 1));
+        	    valuePanel.setLayout(new GridLayout(6, 1));
+          	    fieldPanel.add(name);
+          	    valuePanel.add(new JLabel(node.toString()));
+          	    fieldPanel.add(type);
+          	    valuePanel.add(new JLabel("ORB/Naming Service"));
+          	    fieldPanel.add(path);
+          	    valuePanel.add(new JLabel(getPath(node)));
+          	    fieldPanel.add(address);
+          	    valuePanel.add(new JLabel("localhost"));
+          	    fieldPanel.add(port);
+          	    valuePanel.add(new JLabel("1234"));
+          	    fieldPanel.add(IOR);
+          	    valuePanel.add(new JLabel("qsdfqsdf563fsdgfgsdf425gf4gSDFG"));
           	    break;
           	}
           	case 2 : {		// NC case
-          	    panel.setLayout(new GridLayout(4, 2));
-          	    panel.add(name);
-          	    panel.add(new JLabel(node.toString()));
-          	    panel.add(type);
-          	    panel.add(new JLabel("Naming Context"));
-          	    panel.add(path);
-          	    panel.add(new JLabel(getPath(node)));
-        	    panel.add(IOR);
-          	    panel.add(new JLabel("qsdfqsdfqsdfqsdf563fsdgfgsdf425gf4gSDFG"));
-          	    break;
+          	    
+          	    fieldPanel.setLayout(new GridLayout(4, 1));
+          	    valuePanel.setLayout(new GridLayout(4, 1));
+        	    fieldPanel.add(name);
+        	    valuePanel.add(new JLabel(node.toString()));
+        	    fieldPanel.add(type);
+        	    valuePanel.add(new JLabel("Naming Context"));
+        	    fieldPanel.add(path);
+        	    valuePanel.add(new JLabel(getPath(node)));
+        	    fieldPanel.add(IOR);
+        	    valuePanel.add(new JLabel("fcfqsdfqsdfqsdf563fsdgfgsdf425gf4gSDFG"));
+        	    break;
           	}
           	case 3 : {		// CORBA OBJECT case
-          	    panel.setLayout(new GridLayout(4, 2));
-          	    panel.add(name);
-          	    panel.add(new JLabel(node.toString()));
-          	    panel.add(type);
-          	    panel.add(new JLabel("CORBA object"));
-          	    panel.add(path);
-          	    panel.add(new JLabel(getPath(node)));
-        	    panel.add(IOR);
-          	    panel.add(new JLabel("qsdfqsdfqsdf2345245qsdf563fsdgfgsdf425gf4gSDFG"));
+          	    fieldPanel.setLayout(new GridLayout(4, 1));
+          	    valuePanel.setLayout(new GridLayout(4, 1));
+        	    fieldPanel.add(name);
+        	    valuePanel.add(new JLabel(node.toString()));
+        	    fieldPanel.add(type);
+        	    valuePanel.add(new JLabel("CORBA object"));
+        	    fieldPanel.add(path);
+        	    valuePanel.add(new JLabel(getPath(node)));
+        	    fieldPanel.add(IOR);
+        	    valuePanel.add(new JLabel("fcfqsdfqsdfqsdf563fsdgfgsdf425gf4gSDFG"));
           	    break;
           	}
           }
           
-          JOptionPane.showMessageDialog(frame, panel, "Propriétés", JOptionPane.OK_OPTION);
+          JOptionPane.showMessageDialog(frame, panel, "Propriétés", JOptionPane.INFORMATION_MESSAGE);
+          
       }
       
     	public static void main(String[] args) {

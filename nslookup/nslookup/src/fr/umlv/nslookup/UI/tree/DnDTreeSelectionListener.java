@@ -1,0 +1,94 @@
+/* 
+ * Project nslookup
+ * DnDTreeSelectionListener.java - package fr.umlv.nslookup.UI.tree;
+ * Creator: Jo
+ * Created on 16 févr. 2005 15:34:32
+ *
+ * Person in charge: Jo
+ */
+package fr.umlv.nslookup.UI.tree;
+
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.TreePath;
+
+import fr.umlv.nslookup.NamingContextTreeNode;
+import fr.umlv.nslookup.UI.actions.ActionContainer;
+
+/**
+ * @author Jo
+ *
+ * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
+ *
+ */
+public class DnDTreeSelectionListener implements TreeSelectionListener {
+
+    /* (non-Javadoc)
+     * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
+     */
+    public void valueChanged(TreeSelectionEvent e) {
+        NamingContextTreeNode node = getSelectedNode(e);
+        if(node==null) return;
+        
+        switch(node.getType()){
+        
+	    	case 0 : {
+	    	    ActionContainer.prop.setEnabled(false);
+	    	    ActionContainer.addORB.setEnabled(true);
+	    	    ActionContainer.remORB.setEnabled(true);
+	    	    ActionContainer.addNC.setEnabled(false);
+	    	    ActionContainer.remNC.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(false);
+	    	    ActionContainer.remOBJ.setEnabled(false);
+	    	    break;
+	    	}
+	    
+	    	case 1 : {
+	    	    ActionContainer.prop.setEnabled(true);
+	    	    ActionContainer.addORB.setEnabled(false);
+	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addNC.setEnabled(true);
+	    	    ActionContainer.remNC.setEnabled(true);
+	    	    ActionContainer.addOBJ.setEnabled(false);
+	    	    ActionContainer.remOBJ.setEnabled(false);
+	    	    
+	    	    break;
+	    	}
+	    
+	    	case 2 : {
+	    	    ActionContainer.prop.setEnabled(true);
+	    	    ActionContainer.addORB.setEnabled(false);
+	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addNC.setEnabled(false);
+	    	    ActionContainer.remNC.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(true);
+	    	    ActionContainer.remOBJ.setEnabled(true);
+	    	    
+	    	    break;
+	    	}
+	    
+	    	case 3 : {
+	    	    ActionContainer.prop.setEnabled(true);
+	    	    ActionContainer.addORB.setEnabled(false);
+	    	    ActionContainer.remORB.setEnabled(false);
+	    	    ActionContainer.addNC.setEnabled(false);
+	    	    ActionContainer.remNC.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(false);
+	    	    ActionContainer.remOBJ.setEnabled(false);
+	    	    
+	    	    break;
+	    	}
+    
+        }
+        
+
+    }
+
+    private NamingContextTreeNode getSelectedNode(TreeSelectionEvent e){
+        TreePath path = e.getPath();
+        if(path==null) return null;
+        NamingContextTreeNode node = (NamingContextTreeNode) path.getLastPathComponent();
+        return node;
+        
+    }
+}

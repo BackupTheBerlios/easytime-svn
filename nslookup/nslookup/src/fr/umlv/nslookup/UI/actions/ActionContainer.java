@@ -94,6 +94,14 @@ public class ActionContainer {
         prop.putValue(Action.NAME, "Propriétés");
         prop.putValue(Action.SHORT_DESCRIPTION,"Propriétés");
         
+        option = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        option.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/option16.gif")));
+        option.putValue(Action.NAME, "Options");
+        option.putValue(Action.SHORT_DESCRIPTION,"Options");
+        
         help = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
                 // TODO Auto-generated method stub
