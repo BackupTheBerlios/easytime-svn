@@ -28,6 +28,10 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.omg.CosNaming.NamingContext;
+import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.InvalidName;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 /** Creates a JTree with Drag and Drop facilities.
 * <p>
@@ -142,8 +146,21 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				    	
 				    	if((dropnode.getType() == NamingContextTreeNode.TYPE_CONTEXT) || (dropnode.getType() == NamingContextTreeNode.TYPE_NS))
 				    	{
-				    		selnode.unbind();
-				    		selnode.bind((NamingContext)dropnode.getNodeObject());
+				    		try {
+								selnode.rebind((NamingContext)dropnode.getNodeObject());
+							} catch (NotFound e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (CannotProceed e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvalidName e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (AlreadyBound e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 				    		dropnode.add(selnode);				    					    	
 				    	}
 						

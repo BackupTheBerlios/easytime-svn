@@ -19,9 +19,11 @@ import org.omg.CORBA.ORB;
 import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.CosNaming.Binding;
 import org.omg.CosNaming.BindingType;
+import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
 import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.AlreadyBound;
 import org.omg.CosNaming.NamingContextPackage.CannotProceed;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 
@@ -157,14 +159,15 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     	}
     }
     
-    public void unbind(){
-    	
+    public void rebind(NamingContext newParent) throws NotFound, CannotProceed, org.omg.CosNaming.NamingContextPackage.InvalidName, AlreadyBound{
+
+    	Object o = getNodeObject();
+    	NameComponent[] name = binding.binding_name; 
+    	NamingContext nc = getParentContext();
+    	nc.unbind(name);
+    	newParent.bind(name,(org.omg.CORBA.Object)o);
+    	binding.binding_name = name;
     }
-    
-    public void bind(NamingContext nc){
-    	
-    }
-    
     
     public int getType() {
         
