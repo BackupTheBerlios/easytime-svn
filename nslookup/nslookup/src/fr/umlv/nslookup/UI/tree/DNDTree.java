@@ -67,7 +67,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 		dropTarget = new DropTarget (this, this);
 		dragSource = new DragSource();
 		dragSource.createDefaultDragGestureRecognizer( this, DnDConstants.ACTION_MOVE, this);
-		
+		/*
 		this.addKeyListener(new KeyListener(){
 
             public void keyTyped(KeyEvent e) {
@@ -106,7 +106,7 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
    
             }
   
-		});
+		});*/
 	}
 
 	/** Internally implemented, Do not override!*/

@@ -4,12 +4,14 @@ package fr.umlv.nslookup.UI.actions;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.tree.DefaultTreeModel;
 
 import org.omg.CORBA.ORB;
@@ -138,6 +140,7 @@ public class ActionContainer {
         save.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/save16.png")));
         save.putValue(Action.NAME, "Sauvegarder");
         save.putValue(Action.SHORT_DESCRIPTION,"Sauvegarder la configuration");
+        save.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_S,KeyEvent.CTRL_DOWN_MASK));
 
         load = new AbstractAction(){
             
@@ -183,6 +186,7 @@ public class ActionContainer {
         load.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/load16.png")));
         load.putValue(Action.NAME, "Charger");
         load.putValue(Action.SHORT_DESCRIPTION,"Charger une configuration");
+        load.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_O,KeyEvent.CTRL_DOWN_MASK));
         
         refresh = new AbstractAction(){
            
@@ -195,7 +199,7 @@ public class ActionContainer {
         refresh.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/refresh16.png")));
         refresh.putValue(Action.NAME, "Rafraîchir");
         refresh.putValue(Action.SHORT_DESCRIPTION,"Rafraîchir");
-        
+        refresh.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_R,KeyEvent.CTRL_DOWN_MASK));
         prop = new AbstractAction(){
             
             private static final long serialVersionUID = 3834024779618465584L;
@@ -210,6 +214,7 @@ public class ActionContainer {
         prop.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/prop16.gif")));
         prop.putValue(Action.NAME, "Propriétés");
         prop.putValue(Action.SHORT_DESCRIPTION,"Propriétés");
+        prop.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_P,KeyEvent.ALT_DOWN_MASK));
     	prop.setEnabled(false);
 
         option = new AbstractAction(){
@@ -234,6 +239,7 @@ public class ActionContainer {
         help.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/help16.gif")));
         help.putValue(Action.NAME, "Aide");
         help.putValue(Action.SHORT_DESCRIPTION,"Aide");
+        help.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_F1,0));
         
         about = new AbstractAction(){
            
@@ -269,6 +275,7 @@ public class ActionContainer {
         quit.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/quit16.png")));
         quit.putValue(Action.NAME, "Quitter");
         quit.putValue(Action.SHORT_DESCRIPTION,"Quitter NSLookUP");
+        quit.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_F4,KeyEvent.ALT_DOWN_MASK));
         
     }
 
@@ -305,6 +312,7 @@ public class ActionContainer {
         addNC.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addnc16.png")));
         addNC.putValue(Action.NAME, "Ajouter un NC");
         addNC.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Contexte de Nommage");
+        addNC.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_N,KeyEvent.ALT_DOWN_MASK));
         addNC.setEnabled(false);
 
             
@@ -326,6 +334,7 @@ public class ActionContainer {
         remNC.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remnc16.png")));
         remNC.putValue(Action.NAME, "Supprimer un NC");
         remNC.putValue(Action.SHORT_DESCRIPTION,"Supprimer un Contexte de Nommage");
+        remNC.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_DELETE,0));
         remNC.setEnabled(false);
     
         addOBJ = new AbstractAction(){
@@ -363,6 +372,7 @@ public class ActionContainer {
         addOBJ.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addobj16.png")));
         addOBJ.putValue(Action.NAME, "Ajouter un Obj.");
         addOBJ.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Objet CORBA");
+        addOBJ.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_O,KeyEvent.ALT_DOWN_MASK));
         addOBJ.setEnabled(false);
         
         remOBJ = new AbstractAction(){
@@ -383,6 +393,7 @@ public class ActionContainer {
         remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remobj16.png")));
         remOBJ.putValue(Action.NAME, "Supprimer un Obj.");
         remOBJ.putValue(Action.SHORT_DESCRIPTION,"Supprimer un Objet CORBA");
+        remOBJ.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_DELETE,0));
         remOBJ.setEnabled(false);
             
         addNS = new AbstractAction(){
@@ -398,6 +409,7 @@ public class ActionContainer {
         addNS.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/addorb16.png")));
         addNS.putValue(Action.NAME, "Ajouter un NS");
         addNS.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Name Service");
+        addNS.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_A,KeyEvent.ALT_DOWN_MASK));
         addNS.setEnabled(true);
         
         remNS = new AbstractAction(){
@@ -413,6 +425,7 @@ public class ActionContainer {
         remNS.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/remorb16.png")));
         remNS.putValue(Action.NAME, "Supprimer un NS");
         remNS.putValue(Action.SHORT_DESCRIPTION,"Supprimer un Name Service");
+        remNS.putValue(Action.ACCELERATOR_KEY,KeyStroke.getAWTKeyStroke(KeyEvent.VK_DELETE,0));
         remNS.setEnabled(false);
             
     }
