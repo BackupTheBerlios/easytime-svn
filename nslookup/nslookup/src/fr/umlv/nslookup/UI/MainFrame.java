@@ -83,11 +83,9 @@ public class MainFrame extends JFrame {
         		try {
 					Thread.sleep(30000);
 				} catch (InterruptedException e) {}
-				
-				
+
 				((DefaultTreeModel)tree.getModel()).reload();
-				
-				
+
 				
         		}
         	}        	
@@ -106,6 +104,25 @@ public class MainFrame extends JFrame {
                 String[] hosts = new String[root.getChildCount()];
                 String[] ports = new String[root.getChildCount()];
                 
+                NamingContextTreeNode parent;
+                int[] indexes = null;
+                TreePath t = tree.getSelectionPath();
+                if(t!=null)
+                {
+                indexes = new int[t.getPathCount()];
+                
+                indexes[0] = 0;
+                parent = root;
+                for(int i=1;i<t.getPathCount();i++)
+                {
+                    NamingContextTreeNode n = (NamingContextTreeNode)(t.getPathComponent(i));
+                    int index = parent.findIndex(n); 
+                    indexes[i]=index;
+                    parent = n;
+                }
+                
+                }
+                
                 for (int i = 0; i < root.getChildCount(); i++) {
                     NamingContextTreeNode tmp = (NamingContextTreeNode) root.getChildAt(i);
                     hosts[i]=tmp.getHost();
@@ -123,6 +140,18 @@ public class MainFrame extends JFrame {
                 }
                 super.reload();
                 expandAll(tree, new TreePath(root), true);
+                if(t == null)
+                    return;
+                t = new TreePath(root);
+                parent = root;
+                for (int i = 1; i < indexes.length; i++) {
+                    System.out.println(i+" "+indexes[i]);
+                    parent = (NamingContextTreeNode)(parent.getChildAt(indexes[i]));
+                    t = t.pathByAddingChild(parent);
+                    System.out.println("ajout" + parent);
+                    
+                }
+                tree.setSelectionPath(t);
              
          }
          

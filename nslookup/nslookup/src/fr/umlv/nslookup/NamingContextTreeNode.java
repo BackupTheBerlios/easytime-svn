@@ -12,6 +12,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -47,6 +48,37 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     private String host;
     private String port;
     public static final DataFlavor TREENODE_FLAVOR = new DataFlavor(NamingContextTreeNode.class, "NCTreeNode"); 
+    /*
+    public boolean equals(Object o){
+        
+        try{
+            NamingContextTreeNode n = (NamingContextTreeNode)o;
+            return (
+                    (n.getPort().equals(getPort()))
+                   &&         
+                     (n.getHost().equals(getHost()))
+                   &&
+                     (n.getBinding().equals(getBinding()))
+                     );
+            
+        }catch(Exception e){return false;}
+        
+        
+    }*/
+    public int findIndex(NamingContextTreeNode n){
+        int i=0;
+        for (Iterator iter = children.iterator(); iter.hasNext();) {
+            NamingContextTreeNode element = (NamingContextTreeNode) iter.next();
+            if(element.equals(n))
+                return i;
+            i++;
+        }
+        
+    return i;
+    }
+        
+        
+    
     
     public NamingContextTreeNode(Binding b){
         super(b.binding_name[0].id);
@@ -203,4 +235,7 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
         else throw new UnsupportedFlavorException(df);
     }
 
+    public Binding getBinding() {
+        return binding;
+    }
 }
