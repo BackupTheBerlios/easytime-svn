@@ -1,12 +1,12 @@
 /*
- * Created on 6 janv. 2005
+ * Created on 6 janv. 2005_ 
  *
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package fr.umlv.easytime.richclient.frontoffice.mainframe;
+package fr.umlv.easytime.richclient.frontoffice.mainframe2;
 
-import javax.swing.JToolBar;
+import javax.swing.JFrame;
 
 /**
  * @author Jo
@@ -14,6 +14,6 @@ import javax.swing.JToolBar;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class rcToolBar extends JToolBar {
+public class ClientFrame extends JFrame {
 
 }
