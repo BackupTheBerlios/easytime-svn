@@ -146,9 +146,17 @@ public class MainFrame extends JFrame {
                 parent = root;
                 for (int i = 1; i < indexes.length; i++) {
                     System.out.println(i+" "+indexes[i]);
-                    parent = (NamingContextTreeNode)(parent.getChildAt(indexes[i]));
-                    t = t.pathByAddingChild(parent);
-                    System.out.println("ajout" + parent);
+                    if(indexes[i] < parent.getChildCount())
+                    {
+                        parent = (NamingContextTreeNode)(parent.getChildAt(indexes[i]));
+                    	t = t.pathByAddingChild(parent);
+                    }
+                    else 
+                    {
+                        
+                        ActionContainer.reset();
+                        return;
+                    }
                     
                 }
                 tree.setSelectionPath(t);
