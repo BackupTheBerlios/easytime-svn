@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ScrollPane;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
@@ -48,6 +49,8 @@ public class MainFrame extends JFrame {
     public MainFrame(){
         super("NS lookup");
         this.setSize(800, 600);
+        ImageIcon icon = new ImageIcon(MainFrame.class.getResource("icons/logo v-.png"));
+        this.setIconImage(icon.getImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ac = new ActionContainer(this);
         initLookAndFeel();
