@@ -4,12 +4,12 @@
  * Creator: Administrateur
  * Created on 6 janv. 2005 11:54:24
  *
- * Person in charge: Administrateur
+ * Person in charge: fgarac
  */
 package fr.umlv.easytime.richclient.frontoffice.resource.listing;
 
 /**
- * @author Administrateur
+ * @author fgarac
  *
  * "This [abstract|immmutable|private|...] class does ..." or "Class responsible for doing..."
  *
