@@ -34,9 +34,9 @@ public class TreeFrame {
 		frame = new JFrame("NSLookup");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		root = new NamingContextTreeNode("localhost 1234",NamingContextTreeNode.TYPE_NS) ;
+		 
 		try{
-		TreeFactory.createTree("localhost","1234",root);
+		    root =TreeFactory.createTree("localhost","1234");
 		} catch (InvalidName e)
 			{
 			System.out.println("No connection :( ");

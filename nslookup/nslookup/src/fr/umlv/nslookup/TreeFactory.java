@@ -25,19 +25,19 @@ import org.omg.CosNaming.NamingContextPackage.*;
  */
 public class TreeFactory {
 
-	public static void createTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName {
+	public static NamingContextTreeNode createTree(String host,String port) throws org.omg.CORBA.ORBPackage.InvalidName {
 	
 	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
 		ORB orb = ORB.init(args, null);
 		// 	Récupération de la référence du sevice de nommage
 		
 	    NamingContextExt namingContext = NamingContextExtHelper.narrow(orb.resolve_initial_references("NameService"));
-	    
+	    NamingContextTreeNode root = new NamingContextTreeNode(host+" "+port,NamingContextTreeNode.TYPE_NS);
 	    try{
 	    explore((NamingContext) namingContext,root );
 	    }catch(Exception e){e.printStackTrace();};
 	    
-	    
+	    return root;
 	}
 	
 private static void explore(NamingContext context, NamingContextTreeNode node) throws org.omg.CosNaming.NamingContextPackage.InvalidName, NotFound, CannotProceed {
