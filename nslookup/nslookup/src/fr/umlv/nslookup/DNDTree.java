@@ -136,12 +136,15 @@ public class DNDTree extends JTree implements DropTargetListener,DragSourceListe
 				else{
 				    	System.out.println("Père:"+selnode.getParent());
 				    	dropnode.add(selnode);
+				    	
 						//TODO Faire le nouveau mapping
 				}
 			} catch(IllegalArgumentException iae){
 				throw new IllegalArgumentException(iae.toString());
 			}
 			treemodel.reload();
+			this.setExpandsSelectedPaths(true);
+	    	this.setSelectionPath(new TreePath(selnode.getPath()));
         }
 	}
 	

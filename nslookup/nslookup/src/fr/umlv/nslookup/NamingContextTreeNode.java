@@ -33,13 +33,15 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
 	
 	
     private Binding binding;
+    //private 
     private int type;
     public static final DataFlavor TREENODE_FLAVOR = new DataFlavor(NamingContextTreeNode.class, "NCTreeNode"); 
     
     public NamingContextTreeNode(Binding b){
         super(b.binding_name[0].id);
-        
+        System.out.println(b.binding_name[0].kind);
         this.binding = b;
+        
         if(binding.binding_type.equals(BindingType.ncontext))
             this.type=TYPE_CONTEXT;
         else

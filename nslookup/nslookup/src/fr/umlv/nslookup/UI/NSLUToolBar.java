@@ -30,7 +30,7 @@ public class NSLUToolBar extends JToolBar {
 	private JButton addNCButton=new JButton(ActionContainer.addNC);
 	private JButton remNCButton=new JButton(ActionContainer.remNC);
 	private JButton addOBJButton=new JButton(ActionContainer.addOBJ);
-	private JButton remOBJButton=new JButton(ActionContainer.addOBJ);
+	private JButton remOBJButton=new JButton(ActionContainer.remOBJ);
 	private JButton propButton=new JButton(ActionContainer.prop);
 	private JButton optionButton=new JButton(ActionContainer.option);
 	private JButton helpButton=new JButton(ActionContainer.help);

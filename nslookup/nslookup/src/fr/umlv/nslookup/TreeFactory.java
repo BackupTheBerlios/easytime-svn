@@ -25,18 +25,20 @@ import org.omg.CosNaming.NamingContextPackage.*;
  */
 public class TreeFactory {
 
-	public static NamingContextTreeNode createORBTree(String host,String port) throws org.omg.CORBA.ORBPackage.InvalidName {
+    private static ORB orb = null; 
+    
+	public static NamingContextTreeNode createORBTree(String host,String port, NamingContextTreeNode root) throws org.omg.CORBA.ORBPackage.InvalidName {
 	
 	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
-		ORB orb = ORB.init(args, null);
+		orb = ORB.init(args, null);
 		// 	Récupération de la référence du sevice de nommage
 		
 	    NamingContextExt namingContext = NamingContextExtHelper.narrow(orb.resolve_initial_references("NameService"));
-	    NamingContextTreeNode root = new NamingContextTreeNode(host+" "+port,NamingContextTreeNode.TYPE_NS);
+	    NamingContextTreeNode ORBroot = new NamingContextTreeNode(host+" "+port,NamingContextTreeNode.TYPE_NS);
 	    try{
-	    explore((NamingContext) namingContext,root );
+	    explore((NamingContext) namingContext,ORBroot );
 	    }catch(Exception e){e.printStackTrace();};
-	    
+	    root.add(ORBroot);
 	    return root;
 	}
 	
@@ -48,24 +50,24 @@ private static void explore(NamingContext context, NamingContextTreeNode node) t
     
     
     
-    System.out.println(iteratorHolder);
-    System.out.println(listHolder.value.length);
+    //System.out.println(iteratorHolder);
+    //System.out.println(listHolder.value.length);
     
     Binding bindings[];
     
     
     do {
         bindings = listHolder.value;
-        System.out.println("Passage while ");
+        //System.out.println("Passage while ");
       for (int i=0;i<bindings.length;i++) {
       	Binding binding = bindings[i];
-      	System.out.println(i+" binding " + binding);
+      	//System.out.println(i+" binding " + binding);
       	NamingContextTreeNode newSon = new NamingContextTreeNode(binding);
       	
       	node.add(newSon );
                   
         if (newSon.getType()== NamingContextTreeNode.TYPE_CONTEXT ) {
-            System.out.println("nouveau contexte");
+            //System.out.println("nouveau contexte");
           NamingContext newContext = 
             NamingContextHelper.narrow(context.resolve(binding.binding_name));
           	explore(newContext, newSon);

@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
@@ -122,7 +123,11 @@ public class ActionContainer {
         
         quit = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+               if(JOptionPane.showConfirmDialog(frame,"Etes vous sur de vouloir quitter ?","Quitter ?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION)
+               {
+                   frame.dispose();
+                   System.exit(0);
+               }
             }            
         };
         quit.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/quit16.png")));

@@ -32,10 +32,10 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
         
         switch(node.getType()){
         
-	    	case 0 : {
+	    	case NamingContextTreeNode.TYPE_ROOT : {
 	    	    ActionContainer.prop.setEnabled(false);
 	    	    ActionContainer.addORB.setEnabled(true);
-	    	    ActionContainer.remORB.setEnabled(true);
+	    	    ActionContainer.remORB.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(false);
 	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(false);
@@ -43,38 +43,38 @@ public class DnDTreeSelectionListener implements TreeSelectionListener {
 	    	    break;
 	    	}
 	    
-	    	case 1 : {
+	    	case NamingContextTreeNode.TYPE_NS : {
 	    	    ActionContainer.prop.setEnabled(true);
-	    	    ActionContainer.addORB.setEnabled(false);
+	    	    ActionContainer.addORB.setEnabled(true);
+	    	    ActionContainer.remORB.setEnabled(true);
+	    	    ActionContainer.addNC.setEnabled(true);
+	    	    ActionContainer.remNC.setEnabled(false);
+	    	    ActionContainer.addOBJ.setEnabled(false);
+	    	    ActionContainer.remOBJ.setEnabled(false);
+	    	    
+	    	    break;
+	    	}
+	    
+	    	case NamingContextTreeNode.TYPE_CONTEXT : {
+	    	    ActionContainer.prop.setEnabled(true);
+	    	    ActionContainer.addORB.setEnabled(true);
 	    	    ActionContainer.remORB.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(true);
 	    	    ActionContainer.remNC.setEnabled(true);
-	    	    ActionContainer.addOBJ.setEnabled(false);
-	    	    ActionContainer.remOBJ.setEnabled(false);
-	    	    
-	    	    break;
-	    	}
-	    
-	    	case 2 : {
-	    	    ActionContainer.prop.setEnabled(true);
-	    	    ActionContainer.addORB.setEnabled(false);
-	    	    ActionContainer.remORB.setEnabled(false);
-	    	    ActionContainer.addNC.setEnabled(false);
-	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(true);
-	    	    ActionContainer.remOBJ.setEnabled(true);
+	    	    ActionContainer.remOBJ.setEnabled(false);
 	    	    
 	    	    break;
 	    	}
 	    
-	    	case 3 : {
+	    	case NamingContextTreeNode.TYPE_OBJECT : {
 	    	    ActionContainer.prop.setEnabled(true);
-	    	    ActionContainer.addORB.setEnabled(false);
+	    	    ActionContainer.addORB.setEnabled(true);
 	    	    ActionContainer.remORB.setEnabled(false);
 	    	    ActionContainer.addNC.setEnabled(false);
 	    	    ActionContainer.remNC.setEnabled(false);
 	    	    ActionContainer.addOBJ.setEnabled(false);
-	    	    ActionContainer.remOBJ.setEnabled(false);
+	    	    ActionContainer.remOBJ.setEnabled(true);
 	    	    
 	    	    break;
 	    	}

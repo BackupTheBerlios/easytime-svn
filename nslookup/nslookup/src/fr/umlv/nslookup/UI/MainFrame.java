@@ -11,6 +11,9 @@ package fr.umlv.nslookup.UI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -44,18 +47,25 @@ public class MainFrame extends JFrame {
     private DNDTree tree;
     private NSLUToolBar toolBar;
     private NSLUMenuBar menuBar;
-    private ActionContainer ac;
+    private final ActionContainer ac;
     private NamingContextTreeNode root;
     
     public MainFrame(){
         super("NS lookup");
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter(){            
+            public void windowClosing(WindowEvent e){                
+                ActionContainer.quit.actionPerformed(null);
+            }            
+        });        
         this.setSize(800, 600);
         ImageIcon icon = new ImageIcon(MainFrame.class.getResource("icons/logo v-.png"));
         this.setIconImage(icon.getImage());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ac = new ActionContainer(this);
+        
+        
         initLookAndFeel();
-        initRoot();
+        initRoot();// C'est là que l'arbre est créé
         createMenuBar();
         createToolBar();
         createTreeView();
@@ -83,8 +93,12 @@ public class MainFrame extends JFrame {
     }
     
     private void initRoot(){
+        
+        root = new NamingContextTreeNode("Root",NamingContextTreeNode.TYPE_ROOT);
+        	
+        // Creation arbre d'un NC	
         try{
-		    root =TreeFactory.createORBTree("localhost","1234");
+		    TreeFactory.createORBTree("localhost","1234", root);
 		} catch (InvalidName e)
 			{
 			System.out.println("No connection :( ");
