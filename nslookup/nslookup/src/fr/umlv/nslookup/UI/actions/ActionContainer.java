@@ -19,6 +19,12 @@ import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultTreeModel;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContext;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
@@ -233,7 +239,20 @@ public class ActionContainer {
     private void initActions(){
         addNC = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-            	MiscDialog.showNCInputDialog(frame);
+            	String nom = MiscDialog.showNCInputDialog(frame);
+            	NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
+            	NamingContext rootContext = (NamingContext)n.getNodeObject();
+            	
+            	
+            	NameComponent[] contextName = new NameComponent[1];
+            	contextName[0] = new NameComponent(nom,"");
+    	        NamingContext newContext = rootContext.new_context();
+    	        try {
+                    rootContext.rebind_context(contextName,newContext);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(frame,"Création du naming context "+ nom + " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+                }
+            	((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
         addNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")));
@@ -244,6 +263,14 @@ public class ActionContainer {
             
         remNC = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+                NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
+            	NamingContext rootContext = (NamingContext)n.getParentContext();
+            	try {
+                    rootContext.unbind(n.getBinding().binding_name);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(frame,"Suppression du naming context "+ n.getBinding().binding_name[0].id+ " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+                }   	   
+                ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
         remNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remnc16.png")));
@@ -262,6 +289,14 @@ public class ActionContainer {
         
         remOBJ = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+                NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
+            	NamingContext rootContext = (NamingContext)n.getParentContext();
+            	try {
+                    rootContext.unbind(n.getBinding().binding_name);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(frame,"Suppression de l'objet "+ n.getBinding().binding_name[0].id+ " impossible","Erreur!",JOptionPane.ERROR_MESSAGE);
+                }   	   
+                ((DefaultTreeModel)(frame.getTree().getModel())).reload();                                
             }            
         };
         remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remobj16.png")));
@@ -283,11 +318,14 @@ public class ActionContainer {
         
         remORB = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+                NamingContextTreeNode n = (NamingContextTreeNode)(frame.getTree().getSelectedNode());
+                n.removeFromParent();
+                ((DefaultTreeModel)(frame.getTree().getModel())).reload();
             }            
         };
         remORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remorb16.png")));
-        remORB.putValue(Action.NAME, "Ajouter un ORB/NS");
-        remORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
+        remORB.putValue(Action.NAME, "Retirer un ORB/NS");
+        remORB.putValue(Action.SHORT_DESCRIPTION,"Retirer un ORB/Naming Service");
         remORB.setEnabled(false);
             
     }

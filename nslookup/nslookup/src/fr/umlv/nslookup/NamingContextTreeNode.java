@@ -82,7 +82,7 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode implements Tra
     
     public NamingContextTreeNode(Binding b){
         super(b.binding_name[0].id);
-        System.out.println(b.binding_name[0].kind);
+        //System.out.println("name component" +b.binding_name[0].id+ " "+ b.binding_name[0].kind);
         this.binding = b;
         
         if(binding.binding_type.equals(BindingType.ncontext))
