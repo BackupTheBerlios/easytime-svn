@@ -268,7 +268,7 @@ public class ActionContainer {
         addORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addorb16.png")));
         addORB.putValue(Action.NAME, "Ajouter un ORB/NS");
         addORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
-        addORB.setEnabled(false);
+        addORB.setEnabled(true);
         
         remORB = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
