@@ -64,6 +64,15 @@ public class ActionContainer {
     public static Action quit;
     
 
+    public static void reset(){
+    	addNC.setEnabled(false);
+    	remNC.setEnabled(false);
+    	addOBJ.setEnabled(false);
+    	remOBJ.setEnabled(false);
+    	addORB.setEnabled(true);
+    	remORB.setEnabled(false);
+    	prop.setEnabled(false);
+    }
     
     private void initStaticActions(){
         save = new AbstractAction(){
@@ -179,7 +188,8 @@ public class ActionContainer {
         prop.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/prop16.gif")));
         prop.putValue(Action.NAME, "Propriétés");
         prop.putValue(Action.SHORT_DESCRIPTION,"Propriétés");
-        
+    	prop.setEnabled(false);
+
         option = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
             }            
@@ -223,6 +233,7 @@ public class ActionContainer {
     private void initActions(){
         addNC = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+            	MiscDialog.showNCInputDialog(frame);
             }            
         };
         addNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")));

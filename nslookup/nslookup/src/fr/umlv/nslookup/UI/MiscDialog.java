@@ -34,11 +34,15 @@ import fr.umlv.nslookup.TreeFactory;
  */
 public class MiscDialog{
     
-      public static String showIORInputDialog(Frame frame){
-          return JOptionPane.showInputDialog(frame, "Veuillez saisir L'IOR :");
-      }
-    	
-      private static String getPath(NamingContextTreeNode node){
+	public static String showIORInputDialog(Frame frame){
+        return JOptionPane.showInputDialog(frame, "Veuillez saisir l'IOR :");
+    }
+  	
+	public static String showNCInputDialog(Frame frame){
+        return JOptionPane.showInputDialog(frame, "Veuillez saisir le nom du contexte de nommage à créer :");
+    }
+  	
+    private static String getPath(NamingContextTreeNode node){
           String path = "";
           NamingContextTreeNode tmp = node;
           while(tmp.getType() != NamingContextTreeNode.TYPE_NS){
