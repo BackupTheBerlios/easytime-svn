@@ -38,6 +38,7 @@ import fr.umlv.nslookup.UI.MainFrame;
 import fr.umlv.nslookup.UI.MiscDialog;
 import fr.umlv.nslookup.UI.NSLUMenuBar;
 import fr.umlv.nslookup.UI.ORBCfgFileFilter;
+import fr.umlv.nslookup.UI.UIHelp;
 import fr.umlv.nslookup.UI.tree.DNDTree;
 import fr.umlv.nslookup.UI.tree.NamingContextTreeNode;
 import fr.umlv.nslookup.UI.tree.TreeFactory;
@@ -214,6 +215,7 @@ public class ActionContainer {
         
         help = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
+                UIHelp.showHelp(frame);
             }            
         };
         help.putValue(Action.SMALL_ICON, new ImageIcon(MainFrame.class.getResource("icons/help16.gif")));
