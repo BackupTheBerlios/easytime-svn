@@ -8,6 +8,8 @@
  */
 package fr.umlv.nslookup.UI.actions;
 
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -34,6 +36,7 @@ import td1.HorlogeHelper;
 import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.TreeFactory;
+import fr.umlv.nslookup.UI.AboutDialog;
 import fr.umlv.nslookup.UI.MainFrame;
 import fr.umlv.nslookup.UI.MiscDialog;
 import fr.umlv.nslookup.UI.NSLUMenuBar;
@@ -219,7 +222,14 @@ public class ActionContainer {
         
         about = new AbstractAction(){
             public void actionPerformed(ActionEvent arg0) {
-                // TODO Auto-generated method stub
+                AboutDialog d = new AboutDialog(frame);
+                d.setModal(true);
+                Dimension dlgSize = d.getPreferredSize();
+                Dimension frmSize = frame.getSize();
+                Point loc = frame.getLocation();
+                d.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+                
+                d.setVisible(true);                
             }            
         };
         about.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/logoc16.png")));
