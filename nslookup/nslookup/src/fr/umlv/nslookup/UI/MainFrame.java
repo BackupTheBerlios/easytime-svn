@@ -122,7 +122,6 @@ public class MainFrame extends JFrame {
                     }
                 }
                 super.reload();
-                System.out.println("expand merde !");
                 expandAll(tree, new TreePath(root), true);
              
          }
