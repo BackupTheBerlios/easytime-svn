@@ -145,7 +145,7 @@ public class MainFrame extends JFrame {
                 t = new TreePath(root);
                 parent = root;
                 for (int i = 1; i < indexes.length; i++) {
-                    System.out.println(i+" "+indexes[i]);
+                    
                     if(indexes[i] < parent.getChildCount())
                     {
                         parent = (NamingContextTreeNode)(parent.getChildAt(indexes[i]));
