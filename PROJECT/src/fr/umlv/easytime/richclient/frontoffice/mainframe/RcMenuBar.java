@@ -40,7 +40,6 @@ public class RcMenuBar extends JMenuBar {
 
 		fichierMenu.addSeparator();
 		
-		
 		JMenuItem layout = new JMenuItem("Mise en page");
 		fichierMenu.add(layout);
 		
@@ -52,7 +51,9 @@ public class RcMenuBar extends JMenuBar {
 		
 		JMenuItem mail = new JMenuItem("Mail");
 		fichierMenu.add(mail);
-		
+
+		fichierMenu.addSeparator();
+				
 		JMenuItem close = new JMenuItem("Fermer");
 		fichierMenu.add(layout);
 		
