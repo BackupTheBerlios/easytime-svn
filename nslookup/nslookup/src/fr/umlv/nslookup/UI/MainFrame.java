@@ -22,6 +22,7 @@ import javax.swing.tree.DefaultTreeModel;
 import org.omg.CORBA.ORBPackage.InvalidName;
 
 
+import fr.umlv.nslookup.DNDTree;
 import fr.umlv.nslookup.NamingContextTreeNode;
 import fr.umlv.nslookup.TreeFactory;
 import fr.umlv.nslookup.UI.actions.ActionContainer;
@@ -58,7 +59,8 @@ public class MainFrame extends JFrame {
     }
     
     private void createTreeView(){
-        tree = new DnDJTree(new DefaultTreeModel(root));
+        //tree = new DnDJTree(new DefaultTreeModel(root));
+        tree = new DNDTree(new DefaultTreeModel(root));
         tree.setCellRenderer(new ORBTreeCellRenderer());
     }
     
