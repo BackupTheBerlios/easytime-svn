@@ -36,9 +36,7 @@ public class NSLUToolBar extends JToolBar {
 	private JButton propButton=new JButton(ActionContainer.prop);
 	private JButton optionButton=new JButton(ActionContainer.option);
 	private JButton helpButton=new JButton(ActionContainer.help);
-	private JButton aboutButton=new JButton(ActionContainer.about);
-	private JButton quitButton=new JButton(ActionContainer.quit);
-   
+	
     public NSLUToolBar(){
     	super();
     	
@@ -54,8 +52,6 @@ public class NSLUToolBar extends JToolBar {
     	add(propButton);
     	add(optionButton);
     	add(helpButton);
-    	add(aboutButton);
-    	add(quitButton);
     	formatButtons();
 
 		formatStaticButtons();
@@ -86,8 +82,6 @@ public class NSLUToolBar extends JToolBar {
 	private void loadStaticActions(){
 		optionButton.setAction(ActionContainer.option);
 		helpButton.setAction(ActionContainer.help);
-		aboutButton.setAction(ActionContainer.about);
-		quitButton.setAction(ActionContainer.quit);
 		
 		formatStaticButtons();
 	}
@@ -117,16 +111,12 @@ public class NSLUToolBar extends JToolBar {
 	    optionButton.setText("");
 	    refreshButton.setText("");
 	    helpButton.setText("");
-		aboutButton.setText("");
-		quitButton.setText("");
 		
 		saveButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/save24.png")));
 		loadButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/load24.png")));
 		optionButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/option24.gif")));
 		refreshButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/refresh24.png")));
 		helpButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/help24.gif")));
-		aboutButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/logoc24.png")));
-		quitButton.setIcon(new ImageIcon(NSLUToolBar.class.getResource("icons/quit24.png")));
 		
 	}
 		
