@@ -43,7 +43,7 @@ public class ActionContainer {
 	
 	public ActionContainer(MainFrame frame){
 		this.frame = frame;
-		initDefault();
+		initActions();
 		initStaticActions();
 	}
 	
@@ -63,15 +63,15 @@ public class ActionContainer {
     public static Action about;
     public static Action quit;
     
-    public void initDefault(){
-        addNC = DefaultActionFactory.addNC;
-        remNC= DefaultActionFactory.remNC;
-        addOBJ= DefaultActionFactory.addOBJ;
-        remOBJ= DefaultActionFactory.remOBJ;
-        addORB= DefaultActionFactory.addORB;
-        remORB= DefaultActionFactory.remORB;
-        
-    }
+//    public void initDefault(){
+//        addNC = DefaultActionFactory.addNC;
+//        remNC= DefaultActionFactory.remNC;
+//        addOBJ= DefaultActionFactory.addOBJ;
+//        remOBJ= DefaultActionFactory.remOBJ;
+//        addORB= DefaultActionFactory.addORB;
+//        remORB= DefaultActionFactory.remORB;
+//        
+//    }
     
     private void initStaticActions(){
         save = new AbstractAction(){
@@ -231,7 +231,56 @@ public class ActionContainer {
         
     }
     
-    
+    private void initActions(){
+        addNC = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        addNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addnc16.png")));
+        addNC.putValue(Action.NAME, "Ajouter un NC");
+        addNC.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Contexte de Nommage");
+            
+        remNC = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        remNC.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remnc16.png")));
+        remNC.putValue(Action.NAME, "Retirer un NC");
+        remNC.putValue(Action.SHORT_DESCRIPTION,"Retirer un Contexte de Nommage");
+            
+        addOBJ = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        addOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addobj16.png")));
+        addOBJ.putValue(Action.NAME, "Ajouter un Obj.");
+        addOBJ.putValue(Action.SHORT_DESCRIPTION,"Ajouter un Objet CORBA");
+            
+        remOBJ = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        remOBJ.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remobj16.png")));
+        remOBJ.putValue(Action.NAME, "Retirer un Obj.");
+        remOBJ.putValue(Action.SHORT_DESCRIPTION,"Retirer un Objet CORBA");
+            
+        addORB = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        addORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/addorb16.png")));
+        addORB.putValue(Action.NAME, "Ajouter un ORB/NS");
+        addORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
+            
+        remORB = new AbstractAction(){
+            public void actionPerformed(ActionEvent arg0) {
+            }            
+        };
+        remORB.putValue(Action.SMALL_ICON, new ImageIcon(ActionContainer.class.getResource("../icons/remorb16.png")));
+        remORB.putValue(Action.NAME, "Ajouter un ORB/NS");
+        remORB.putValue(Action.SHORT_DESCRIPTION,"Ajouter un ORB/Naming Service");
+            
+    }
  
     
     /**
