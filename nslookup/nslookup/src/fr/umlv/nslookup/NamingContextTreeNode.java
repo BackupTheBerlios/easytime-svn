@@ -21,8 +21,9 @@ import org.omg.CosNaming.BindingType;
  */
 public class NamingContextTreeNode extends DefaultMutableTreeNode {
 
-    public static final int TYPE_CONTEXT = 1;
-	public static final int TYPE_OBJECT = 2;
+    public static final int TYPE_NS = 1;
+    public static final int TYPE_CONTEXT = 2;
+	public static final int TYPE_OBJECT = 3;
 	public static final int TYPE_ROOT = 0;
 	
 	
@@ -40,11 +41,11 @@ public class NamingContextTreeNode extends DefaultMutableTreeNode {
 
     }
     
-    public NamingContextTreeNode(String s){
+    public NamingContextTreeNode(String s, int type){
         super(s);
         
         this.binding = null;
-        this.type=TYPE_ROOT;
+        this.type=type;
         
     }
 

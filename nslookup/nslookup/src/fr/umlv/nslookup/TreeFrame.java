@@ -34,7 +34,7 @@ public class TreeFrame {
 		frame = new JFrame("NSLookup");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		root = new NamingContextTreeNode("localhost 1234") ;
+		root = new NamingContextTreeNode("localhost 1234",NamingContextTreeNode.TYPE_NS) ;
 		try{
 		TreeFactory.createTree("localhost","1234",root);
 		} catch (InvalidName e)
