@@ -63,7 +63,7 @@ public class MainFrame extends JFrame {
             }            
         });        
         this.setSize(800, 600);
-        ImageIcon icon = new ImageIcon(MainFrame.class.getResource("icons/logo v-.png"));
+        ImageIcon icon = new ImageIcon(MainFrame.class.getResource("icons/logo carre.png"));
         this.setIconImage(icon.getImage());
         ac = new ActionContainer(this);
         

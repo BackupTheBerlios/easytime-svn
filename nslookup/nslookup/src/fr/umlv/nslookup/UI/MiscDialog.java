@@ -100,6 +100,30 @@ public class MiscDialog{
           final JLabel path = new JLabel("Chemin :"); 
           final JLabel IOR = new JLabel("IOR :"); 
           
+          final JTextField namet = new JTextField(30); 
+          namet.setEditable(false);
+          namet.setText(node.toString());
+          
+          final JTextField orbTypet = new JTextField("ORB/Naming Service"); 
+          orbTypet.setEditable(false);
+          final JTextField ncTypet = new JTextField("Naming Context"); 
+          ncTypet.setEditable(false);
+          final JTextField objtypet = new JTextField("CORBA object"); 
+          objtypet.setEditable(false);
+          
+          final JTextField addresst = new JTextField(30); 
+          addresst.setEditable(false);
+          final JTextField portt = new JTextField(30); 
+          portt.setEditable(false);
+          final JTextField patht = new JTextField(30); 
+          patht.setEditable(false);
+          patht.setText(getPath(node));
+          final JTextField iort = new JTextField(30); 
+          iort.setEditable(false);
+          
+          
+           
+          
           
           
           switch(node.getType()){
@@ -107,17 +131,20 @@ public class MiscDialog{
           	    fieldPanel.setLayout(new GridLayout(6, 1));
         	    valuePanel.setLayout(new GridLayout(6, 1));
           	    fieldPanel.add(name);
-          	    valuePanel.add(new JLabel(node.toString()));
+          	    valuePanel.add(namet);
           	    fieldPanel.add(type);
-          	    valuePanel.add(new JLabel("ORB/Naming Service"));
+          	    valuePanel.add(orbTypet);
           	    fieldPanel.add(path);
-          	    valuePanel.add(new JLabel(getPath(node)));
+          	    valuePanel.add(patht);
           	    fieldPanel.add(address);
-          	    valuePanel.add(new JLabel("localhost"));
+          	    addresst.setText(node.getHost());
+          	    valuePanel.add(addresst);
+          	    portt.setText(node.getPort());
           	    fieldPanel.add(port);
-          	    valuePanel.add(new JLabel("1234"));
+          	    valuePanel.add(portt);
           	    fieldPanel.add(IOR);
-          	    valuePanel.add(new JLabel(node.getNodeObject().toString()));
+          	    iort.setText(node.getNodeObject().toString());
+          	    valuePanel.add(iort);
           	    break;
           	}
           	case 2 : {		// NC case
@@ -125,26 +152,28 @@ public class MiscDialog{
           	    fieldPanel.setLayout(new GridLayout(4, 1));
           	    valuePanel.setLayout(new GridLayout(4, 1));
         	    fieldPanel.add(name);
-        	    valuePanel.add(new JLabel(node.toString()));
-        	    fieldPanel.add(type);
-        	    valuePanel.add(new JLabel("Naming Context"));
+        	    valuePanel.add(namet);
+          	    fieldPanel.add(type);
+        	    valuePanel.add(ncTypet);
         	    fieldPanel.add(path);
-        	    valuePanel.add(new JLabel(getPath(node)));
+        	    valuePanel.add(patht);
         	    fieldPanel.add(IOR);
-        	    valuePanel.add(new JLabel(node.getNodeObject().toString()));
+        	    iort.setText(node.getNodeObject().toString());
+          	    valuePanel.add(iort);
         	    break;
           	}
           	case 3 : {		// CORBA OBJECT case
           	    fieldPanel.setLayout(new GridLayout(4, 1));
           	    valuePanel.setLayout(new GridLayout(4, 1));
         	    fieldPanel.add(name);
-        	    valuePanel.add(new JLabel(node.toString()));
+        	    valuePanel.add(namet);
         	    fieldPanel.add(type);
-        	    valuePanel.add(new JLabel("CORBA object"));
+        	    valuePanel.add(objtypet);
         	    fieldPanel.add(path);
-        	    valuePanel.add(new JLabel(getPath(node)));
+        	    valuePanel.add(patht);
         	    fieldPanel.add(IOR);
-        	    valuePanel.add(new JLabel(node.getNodeObject().toString()));
+        	    iort.setText(node.getNodeObject().toString());
+          	    valuePanel.add(iort);
           	    break;
           	}
           }
