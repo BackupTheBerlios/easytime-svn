@@ -13,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import fr.umlv.easytime.resource.listing.ResourceListModels;
-
 /**
  * @author Administrateur
  *
@@ -29,11 +27,8 @@ public class ChoosePlanning {
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Sélectionnez la promotion pour laquelle vous souhaitez ouvrir le planning :");
         
-        ResourceListModels model = new ResourceListModels();
-        
-        JList listpromo = new JList(model);
-       
-        
+        JList listpromo = new JList();
+               
         panel.add(label);
         
         frame.add(panel);
