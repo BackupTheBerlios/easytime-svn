@@ -17,7 +17,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -281,12 +290,9 @@ public class MainFrame extends JFrame {
 		    // Nothing is done if the LookAndFeel can't be installed.
 		}
     }
-    public static void main(String[] args) {
-        try{
+    public static void main(String[] args) throws SecurityException, FileNotFoundException, IOException {
             new MainFrame();
-        }catch(Throwable t){
-            System.out.println(" choppé !");
-        }
+            LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE);
     }
     
     

@@ -37,6 +37,7 @@ public class TreeFactory {
 	    try{
 	    String[] args = {"-ORBInitialPort",port,"-ORBInitialHost",host}; 
 		orb = ORB.init(args, null);
+		
 		// 	Récupération de la référence du sevice de nommage
 		ObjectImpl o = (ObjectImpl)orb.resolve_initial_references("NameService");
 		String[] ids = o._ids();
