@@ -6,7 +6,7 @@
  *
  * Person in charge: rjourdan
  */
-package fr.umlv.easytime.resource.teacheroffday;
+package fr.umlv.easytime.resource.teacherOffDay;
 
 import java.util.Date;
 
