@@ -8,6 +8,7 @@
  */
 package fr.umlv.nslookup.UI;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
@@ -48,14 +49,20 @@ public class NSLUToolBar extends JToolBar {
     	
     	add(saveButton);
     	add(loadButton);
+    	add(new Separator());
     	add(addNSButton);
     	add(remNSButton);
+    	add(new Separator());
     	add(addNCButton);
     	add(remNCButton);
+    	add(new Separator());
     	add(addOBJButton);
     	add(remOBJButton);
+    	add(new Separator());
     	add(refreshButton);
+    	add(new Separator());
     	add(propButton);
+    	add(Box.createGlue());
     	add(helpButton);
     	formatButtons();
 		formatStaticButtons();
