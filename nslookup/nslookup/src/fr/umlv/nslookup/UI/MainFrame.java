@@ -58,7 +58,7 @@ public class MainFrame extends JFrame {
     }
     
     private void createTreeView(){
-        tree = new JTree(new DefaultTreeModel(root));
+        tree = new DnDJTree(new DefaultTreeModel(root));
         tree.setCellRenderer(new ORBTreeCellRenderer());
     }
     
